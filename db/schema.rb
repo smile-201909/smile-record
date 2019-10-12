@@ -10,7 +10,119 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_10_055823) do
+ActiveRecord::Schema.define(version: 2019_10_12_114830) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.boolean "main_address"
+    t.string "pulldown_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name", null: false
+    t.string "family_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.string "post", null: false
+    t.text "a_address", null: false
+    t.string "phone", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "arrivals", force: :cascade do |t|
+    t.integer "stock_id", null: false
+    t.integer "arrival_amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "artist_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cart_products", force: :cascade do |t|
+    t.integer "cart_id", null: false
+    t.integer "product_id", null: false
+    t.integer "product_amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "discs", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "disc_num", null: false
+    t.string "disc_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "label_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "product_name", null: false
+    t.text "product_image_id"
+    t.integer "artist_id", null: false
+    t.integer "genre_id", null: false
+    t.integer "label_id", null: false
+    t.integer "status", null: false
+    t.integer "price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "receipt_items", force: :cascade do |t|
+    t.integer "receipt_id", null: false
+    t.string "product_name", null: false
+    t.text "product_image_id"
+    t.integer "price", null: false
+    t.integer "product_amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "purchaser", null: false
+    t.integer "settlement", null: false
+    t.text "delivery_address", null: false
+    t.integer "total_price", null: false
+    t.integer "postage", null: false
+    t.integer "status", null: false
+    t.string "post", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.integer "disc_id", null: false
+    t.integer "song_num", null: false
+    t.string "song_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "stock_amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

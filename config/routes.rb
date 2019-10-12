@@ -18,15 +18,15 @@ resources :songs, only: [:create, :update]
 
 resources :discs, only: [:create, :update]
 
-resources :cart_items only: [:index, :create, :update, :destroy]
+resources :cart_items, only: [:index, :create, :update, :destroy]
 
-resources :receipts only: [:show, :create]
+resources :receipts, only: [:show, :create]
 
-resources :addresses only: [:index, :new, :create, :edit, :update, :destroy]
+resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
 
 resources :products
 
-resources :users only: [:index, :edit, :update, :show, :destroy]
+resources :users, only: [:index, :edit, :update, :show, :destroy]
 
 
 devise_for :users

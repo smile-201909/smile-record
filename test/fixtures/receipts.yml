@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  purchaser: MyString
+  settlement: 1
+  delivery_address: MyText
+  total_price: 1
+  postage: 1
+  status: 1
+  post: MyString
+
+two:
+  user_id: 1
+  purchaser: MyString
+  settlement: 1
+  delivery_address: MyText
+  total_price: 1
+  postage: 1
+  status: 1
+  post: MyString
