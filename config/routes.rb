@@ -6,6 +6,18 @@ Rails.application.routes.draw do
   get 'admins/top'
 
 
+
+# 管理者用ログイン画面へのルーティング(仮)
+   #get "/admin/login" => "admin/user_sessions#new"
+
+# 管理者ログイン後のURLに/admins/..を追加
+  namespace :admin do
+    resources :user_sessions, only: [:create, :destroy]
+    resources :dashboards
+  end
+
+
+
   resources :arrivals, only: [:index, :show, :new, :create]
 
   resources :stocks, only: [:create, :update]
