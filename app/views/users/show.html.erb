@@ -1,2 +1,68 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>ユーザ詳細</h1>
+
+<h4>姓（漢字）</h4>
+<td><%= @user.family_name %></td>
+
+<h4>名（漢字）</h4>
+<td><%= @user.first_name %></td>
+
+<h4>姓（カナ）</h4>
+<td><%= @user.family_name_kana %></td>
+
+<h4>姓（カナ）</h4>
+<td><%= @user.first_name_kana %></td>
+
+<h4>郵便番号※半角入力、ハイフン不要</h4>
+<td><%= @user.post %></td>
+
+<h4>住所</h4>
+<td><%= @user.a_address %></td>
+
+<h4>電話番号※半角入力、ハイフン不要</h4>
+<td><%= @user.phone %></td>
+
+<h4>メールアドレス</h4>
+<td><%= @user.email %></td>
+
+<h4>パスワード</h4>
+<td><%= @user.password %></td>
+
+<td><%= link_to 'Edit', edit_user_path(@user.id) %></td>
+
+<div>このユーザの住所一覧を見るのリンク</div>
+
+<td><%= link_to 'Destroy', ユーザを削除のリンク_path, method: :delete, data: { confirm: '削除しますか？' } %></td>
+
+
+
+
+<h1>購入履歴</h1>
+
+<h4>新着順</h4>
+
+<h4>注文日</h4>
+
+<h4>配送スタータス</h4>
+
+<h4>商品画像</h4>
+
+<h4>シングル・アルバム名</h4>
+
+<h4>購入枚数</h4>
+
+<h4>価格</h4>
+
+<h1>送付先</h1>
+<h4>〒542-0076</h4>
+<h4>大阪府大阪市中央区難波４丁目７−１４ 難波フロントビル 4階</h4>
+<h4>山田太郎様</h4>
+
+
+<h4>小計</h4>
+
+<h4>消費税</h4>
+
+<h4>送料</h4>
+<h5>500円</h5>
+
+<h4>購入価格総計</h4>
