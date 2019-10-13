@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'thanks/index'
 resources :admins, only: [:index, :show]
 get 'admins/top'
 
