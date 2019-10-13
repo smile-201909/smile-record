@@ -6,6 +6,11 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @products = Product.new
+    @artists = Artist.new
+    @genres = Genre.new
+    @labels = Label.new
+    @arrivails = Arrival.new
   end
 
   def create

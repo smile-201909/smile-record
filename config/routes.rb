@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :admins, only: [:index, :show]
   get 'admins/top'
 
+
   resources :arrivals, only: [:index, :show, :new, :create]
 
   resources :stocks, only: [:create, :update]

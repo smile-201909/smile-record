@@ -1,2 +1,22 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+
+
+<%= form_with  model: @product do |f| %>
+
+
+<div class="field">
+  <h2>商品追加(仮)</h2><br>
+
+
+
+
+
+
+  <%= f.string_field :artist_name %>
+  <%= f.string_field :product_name %>
+  
+
+  <%= f.select :status, Product.statuses.keys, {prompt: '選択してください'} %>
+</div>
+
+
+<% end %>
