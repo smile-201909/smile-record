@@ -1,14 +1,25 @@
 Rails.application.routes.draw do
-  devise_for :administrators
+  get 'users/index'
+  get 'users/show'
+  get 'users/edit'
+  get 'administrators/index'
+  get 'administrators/show'
+  get 'administrators/edit'
+  root 'products#index'
+  devise_for :administrators, controllers: {
+    sessions:      'administrators/sessions',
+    passwords:     'administrators/passwords',
+    registrations: 'administrators/registrations'
+  }
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  root 'products#index'
+  get 'administrators' => 'administrators#index', as: 'administrators'
   get 'thanks/index'
-  resources :admins, only: [:index, :show]
   get 'admins/top'
+  resources :products
 
   resources :arrivals, only: [:index, :show, :new, :create]
 
@@ -30,7 +41,6 @@ Rails.application.routes.draw do
 
   resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :products
 
   resources :users, only: [:index, :edit, :update, :show, :destroy]
 
