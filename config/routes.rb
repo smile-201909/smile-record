@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'administrators/index'
+  get 'administrators/show'
+  get 'administrators/top'
   devise_for :administrators
   devise_for :users, controllers: {
     sessions:      'users/sessions',
