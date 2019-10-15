@@ -5,6 +5,6 @@ class AdministratorsController < ApplicationController
   def show
   end
 
-  def top
+  def edit
   end
 end

@@ -18,29 +18,29 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
     if resource.persisted?
-          if resource.active_for_authentication?
-            set_flash_message! :notice, :signed_up
-            sign_up(resource_name, resource)
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
 
-            address = Address.new
-            address.user_id = current_user.id
-            address.post = params[:post]
-            address.a_address = params[:a_address]
-            address.phone = params[:phone]
-            address.family_name = current_user.family_name
-            address.first_name = current_user.first_name
-            address.family_name_kana = current_user.family_name_kana
-            address.first_name_kana = current_user.first_name_kana
-            address.pulldown_name = params[:pulldown_name]
-            address.save
+        address = Address.new
+        address.user_id = current_user.id
+        address.post = params[:post]
+        address.a_address = params[:a_address]
+        address.phone = params[:phone]
+        address.family_name = current_user.family_name
+        address.first_name = current_user.first_name
+        address.family_name_kana = current_user.family_name_kana
+        address.first_name_kana = current_user.first_name_kana
+        address.pulldown_name = params[:pulldown_name]
+        address.save
 
 
-            respond_with resource, location: after_sign_up_path_for(resource)
-          else
-            set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-            expire_data_after_sign_in!
-            respond_with resource, location: after_inactive_sign_up_path_for(resource)
-          end
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
     else
       clean_up_passwords resource
       set_minimum_password_length

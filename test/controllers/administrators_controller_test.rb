@@ -11,8 +11,8 @@ class AdministratorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get top" do
-    get administrators_top_url
+  test "should get edit" do
+    get administrators_edit_url
     assert_response :success
   end
 
