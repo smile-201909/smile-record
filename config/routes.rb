@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   resources :admins, only: [:index, :show]
   get 'admins/top'
 
-  resources :arrivals, only: [:index, :show, :new, :create]
 
-  resources :stocks, only: [:create, :update]
+
+get "search" => "products/search"
+
+
 
   resources :labels, only: [:create, :update]
 
@@ -20,9 +22,6 @@ Rails.application.routes.draw do
 
   resources :artists, only: [:create, :update]
 
-  resources :songs, only: [:create, :update]
-
-  resources :discs, only: [:create, :update]
 
   resources :cart_items, only: [:index, :create, :update, :destroy]
 
@@ -30,7 +29,13 @@ Rails.application.routes.draw do
 
   resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :products
+  resources :products do
+    resources :stocks, only: [:create, :update] do
+      resources :arrivals, only: [:index, :show, :new, :create]
+    end
+    resources :discs, only: [:create, :update]
+    resources :songs, only: [:create, :update]
+  end
 
   resources :users, only: [:index, :edit, :update, :show, :destroy]
 
