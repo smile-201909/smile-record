@@ -1,0 +1,14 @@
+<h3>購入情報確認</h3>
+<div>
+	<h4>お支払い方法の選択</h4>
+		<%= form_for %>
+			<label><%= f.radio_button :settlement, "銀行振込" %>銀行振込</label>
+			<label><%= f.radio_button :settlement, "クレジットカード決済" %>クレジットカード決済</label>
+			<label><%= f.radio_button :settlement, "代金引換" %>代金引換</label>
+		<% end %>
+
+	<h4>お届け先の住所の選択</h4>
+	<%= link_to "別の住所を追加・変更する場合はこちら", addresses_path(current_user.id) %>
+	<h4>お近くのコンビニで受け取る場合はこちら</h4>
+	<h4>ご請求額</h4>
+</div>
