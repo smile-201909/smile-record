@@ -12,7 +12,9 @@ class Administrators::SessionsController < Devise::SessionsController
   # def create
   #   super
   # end
-
+  def after_sign_out_path_for(resource)
+      new_administrator_session_path
+  end
   # DELETE /resource/sign_out
   # def destroy
   #   super
