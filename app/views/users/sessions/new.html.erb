@@ -1,0 +1,38 @@
+<<<<<<< HEAD:app/views/devise/sessions/new.html.erb
+<h2>ユーザログイン</h2>
+=======
+<h2>ユーザLog in</h2>
+>>>>>>> 352d75012e57e0a70a99509cb9daf791e48c8184:app/views/users/sessions/new.html.erb
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "パスワード" %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "ログイン" %>
+  </div>
+<% end %>
+
+<<<<<<< HEAD:app/views/devise/sessions/new.html.erb
+<h3>スマイルレコードのアカウントをお持ちではないですか？</h3>
+
+<div>会員登録</div>
+
+
+=======
+<%= render "users/shared/links" %>
+>>>>>>> 352d75012e57e0a70a99509cb9daf791e48c8184:app/views/users/sessions/new.html.erb
