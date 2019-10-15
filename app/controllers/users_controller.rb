@@ -2,9 +2,10 @@ class UsersController < ApplicationController
   def index
   end
 
-  def show
+  private
+
+  def user_params
+    params.require(:user).permit(:name, address_attributes:[:id, :post, :a_address, :phone])
   end
 
-  def edit
-  end
 end
