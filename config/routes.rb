@@ -1,14 +1,25 @@
 Rails.application.routes.draw do
-  devise_for :administrators
+  get 'users/index'
+  get 'users/show'
+  get 'users/edit'
+  get 'administrators/index'
+  get 'administrators/show'
+  get 'administrators/edit'
+  root 'products#index'
+  devise_for :administrators, controllers: {
+    sessions:      'administrators/sessions',
+    passwords:     'administrators/passwords',
+    registrations: 'administrators/registrations'
+  }
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  root 'products#index'
+  get 'administrators' => 'administrators#index', as: 'administrators'
   get 'thanks/index'
-  resources :admins, only: [:index, :show]
   get 'admins/top'
+  resources :products
 
 
 
@@ -37,7 +48,7 @@ get "search" => "products/search"
     resources :songs, only: [:create, :update]
   end
 
-  resources :users, only: [:index, :edit, :update, :show, :destroy]
+  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
