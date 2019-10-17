@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'administrators' => 'administrators#index', as: 'administrators'
   get 'thanks/index'
   get 'admins/top'
+
+  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
+
   resources :products
 
   resources :arrivals, only: [:index, :show, :new, :create]
@@ -42,7 +45,7 @@ Rails.application.routes.draw do
   resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
 
 
-  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
