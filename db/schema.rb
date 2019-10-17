@@ -89,13 +89,13 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "product_name", null: false
+    t.string "product_name"
     t.text "product_image_id"
-    t.integer "artist_id", null: false
-    t.integer "genre_id", null: false
-    t.integer "label_id", null: false
-    t.integer "status", null: false
-    t.integer "price", null: false
+    t.integer "artist_id"
+    t.integer "genre_id"
+    t.integer "label_id"
+    t.integer "status"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

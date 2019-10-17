@@ -14,17 +14,19 @@
 <nav>
           <% if user_signed_in? %>
 
-              <li><%= link_to  products_path do %>ロゴ<% end %></li>
+              <li><%= link_to products_path do %>ロゴ<% end %></li>
 
-              <li><%= link_to  destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out" aria-hidden="true"> logout</i><% end %></li>
+              <li><%= link_to destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out" aria-hidden="true"> logout</i><% end %></li>
+
+              <li><%= link_to carts_path do %>カート<% end %></li>
 
           <% else %>
 
-              <li><%= link_to  products_path do %>ロゴ<% end %></li>
+              <li><%= link_to products_path do %>ロゴ<% end %></li>
 
-              <li><%= link_to  new_user_registration_path do %>sign up<% end %></li>
+              <li><%= link_to new_user_registration_path do %>sign up<% end %></li>
 
-              <li><%= link_to  new_user_session_path do %>login<% end %></li>
+              <li><%= link_to new_user_session_path do %>login<% end %></li>
 
             </ul>
 

@@ -1,2 +1,30 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<%# 仮の新規商品追加 %>
+<h2>商品新規追加</h2>
+<%= form_for @product do |f| %>
+	<div>
+		<label>商品名</label>
+		<div>
+			<%= f.text_field :product_name %>
+		</div>
+	</div>
+
+	<div>
+		<label>値段</label>
+		<div>
+			<%= f.number_field :price %>
+		</div>
+	</div>
+
+	<div>
+		<label>在庫数</label>
+		<div>
+			<%= f.fields_for :stocks do |stock| %>
+				<%= f.number_field :stock_amount %>
+			<% end %>
+		</div>
+	</div>
+
+	<div>
+		<%= f.submit "商品の登録" %>
+	</div>
+<% end %>
