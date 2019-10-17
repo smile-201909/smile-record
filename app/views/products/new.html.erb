@@ -25,9 +25,7 @@
 
 	<p>販売ステータス：</p>
 	<%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
-<% end %>
 
-<%= form_for(@product) do |f| %>
 
 	<%= f.fields_for 'discs' do |disc| %>
 		<%= render 'disc_fields', f: disc %>
@@ -37,5 +35,8 @@
 	<div class = "links">
 		<%= link_to_add_association 'ディスクを追加',f, :discs %>
 	</div>
+
+<%= f.submit "保存" %>
+
 
 <% end%>

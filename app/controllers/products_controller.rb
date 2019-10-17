@@ -2,12 +2,12 @@ class ProductsController < ApplicationController
   def index
   end
 
-  def show
-    @product = Product.find(params[:id])
+  def index
     @products = Product.all
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
@@ -19,12 +19,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new
     #ここに”if current管理者"の記述が入る
-    @product.save
-    redirect_to product_path(@product)
-  end
-
-  def create
-    @product = Product.new(product_params)
     @product.save
     redirect_to products_path
   end
