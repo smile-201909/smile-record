@@ -6,7 +6,7 @@ class ArtistsController < ApplicationController
 
   def create
   	@artist = Artist.new(artist_params)
-  	#ここに”if currentおっちゃん"の記述が入る
+  	#ここに”if current管理者"の記述が入る
   	@artist.save
   	redirect_to new_product_path
   end

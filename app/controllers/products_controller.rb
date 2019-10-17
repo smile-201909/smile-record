@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @products = Product.all
+  end
+
+  def show
   end
 
   def new
@@ -14,16 +18,22 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new
-    #ここに”if currentおっちゃん"の記述が入る
+    #ここに”if current管理者"の記述が入る
     @product.save
     redirect_to product_path(@product)
+  end
+
+  def create
+    @product = Product.new(product_params)
+    @product.save
+    redirect_to products_path
   end
 
   def edit
   end
 
   def update
-    #ここに”if currentおっちゃん"の記述が入る
+    #ここに”if current管理者"の記述が入る
   end
 
   def destroy
@@ -35,11 +45,12 @@ class ProductsController < ApplicationController
 
 
 
-private
-def product_params
-  params.require(:product).permit(:produt_name, :product_image, :status)
-
-
+  private
+  def product_params
+    params.require(:product).permit(:product_name, :product_image, :status, :price,
+      discs_attribuites: [:id, :description, :done, :_destroy,
+        songs_attribuites: [:id, :description, :_destroy]])
+  end
 
 
 end

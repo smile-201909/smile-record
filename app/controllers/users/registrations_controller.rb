@@ -34,6 +34,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         address.pulldown_name = params[:pulldown_name]
         address.save
 
+        cart = Cart.new
+        cart.user_id = current_user.id
+        cart.save
 
         respond_with resource, location: after_sign_up_path_for(resource)
       else
@@ -73,6 +76,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # DELETE /resource
   # def destroy
   #   super
+  # end
+  # def destroy
+  #   # userモデルのleaveメソッド
+  #   resource.leave
+  #   Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+  #   set_flash_message(:notice, :destroyed)
+  #   yield resource if block_given?
+  #   respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
   # end
 
   # GET /resource/cancel

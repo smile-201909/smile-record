@@ -1,3 +1,18 @@
 class CartsController < ApplicationController
-	@carts = Cart.all
+	def index
+		@cart_products = current_user.cart.products.all
+	end
+	
+	def create
+		
+	end
+
+	def update
+		
+	end
+
+	def destroy
+		
+	end
+
 end

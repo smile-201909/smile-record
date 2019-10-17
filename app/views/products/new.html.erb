@@ -1,6 +1,9 @@
 
+
 <!-- アーティスト名　プルダウン -->
 <!-- ＋アーティスト名を追加 -->
+
+<h2>商品新規追加</h2>
 
 
 <%= form_for(@product) do |f| %>
@@ -22,5 +25,17 @@
 
 	<p>販売ステータス：</p>
 	<%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
-
 <% end %>
+
+<%= form_for(@product) do |f| %>
+
+	<%= f.fields_for 'discs' do |disc| %>
+		<%= render 'disc_fields', f: disc %>
+	<% end %>
+
+
+	<div class = "links">
+		<%= link_to_add_association 'ディスクを追加',f, :discs %>
+	</div>
+
+<% end%>
