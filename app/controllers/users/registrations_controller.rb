@@ -34,6 +34,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         address.pulldown_name = params[:pulldown_name]
         address.save
 
+        cart = Cart.new
+        cart.user_id = current_user.id
+        cart.save
 
         respond_with resource, location: after_sign_up_path_for(resource)
       else
