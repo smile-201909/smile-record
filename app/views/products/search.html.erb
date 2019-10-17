@@ -1,8 +1,7 @@
 
-
+<p>検索結果</p>
 
 <%= form_tag(search_path, :method => 'get') do %>
-	<%= select_tag(:option, options_for_select([["商品名","1"],["曲名","2"]["アーティスト名","3"]])) %>
-	<%= text_field_tag :search %>
+	<%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
 	<%= submit_tag '検索' %>
 <% end %>

@@ -23,15 +23,15 @@ Rails.application.routes.draw do
 
 
 
-get "search" => "products/search"
+get "search" => "products#search"
 
 
 
-  resources :labels, only: [:create, :update]
+  resources :labels, only: [:new, :create, :update] #namespace:admin do の中に入れる
 
-  resources :genres, only: [:create, :update]
+  resources :genres, only: [:new, :create, :update] #namespace:admin do の中に入れる
 
-  resources :artists, only: [:create, :update]
+  resources :artists, only: [:new, :create, :update] #namespace:admin do の中に入れる
 
 
   resources :cart_items, only: [:index, :create, :update, :destroy]

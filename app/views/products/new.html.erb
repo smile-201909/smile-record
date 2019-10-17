@@ -1,2 +1,26 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+
+<!-- アーティスト名　プルダウン -->
+<!-- ＋アーティスト名を追加 -->
+
+
+<%= form_for(@product) do |f| %>
+	<p>シングル/アルバム名</p>
+	<%= f.text_field :product_name %>
+	<p>ジャケット画像：</p>
+	<%= f.attachment_field :product_image %>
+
+	<!-- ジャンル名　プルダウン -->
+	<!-- ジャンル名追加 -->
+
+
+	<!-- レーベル名　プルダウン -->
+	<!-- レーベル名追加 -->
+
+	<!-- 入荷数量 -->
+	<!-- 親子孫一括登録でいくと、中間にあるstockには、値が空のレーベルできるかも。-->
+	<!-- ○枚 -->
+
+	<p>販売ステータス：</p>
+	<%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
+
+<% end %>
