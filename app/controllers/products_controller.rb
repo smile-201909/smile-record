@@ -34,16 +34,21 @@ class ProductsController < ApplicationController
   end
 
 #   def search
-#     @posts = Post.search(params[:search]) #params[:search]の値はmodelのSearch.rbを参照する
+#     @posts = Post.search(params[:search]) #params[:search]の値はモデルのSearch.rbを参照する
 #   end
 
 
 
   private
   def product_params
-    params.require(:product).permit(:product_name, :product_image, :status, :price,
-      discs_attribuites: [:id, :description, :done, :_destroy,
-        songs_attribuites: [:id, :description, :_destroy]])
+    #（下2行は、cocoonの記述。）
+    #上の行から順番に躓いた点
+    #.permit内には、artist_id等も忘れずに書く。←permit内には送信したい値のカラムを全部書く！
+    #discs_attrubutes:[:id(必須), :カラム名, :カラム名, :done. :_destroy(=アソシエーションしてるproductが消えた時に(モデルで定義済)、discsも消去]
+    #songs_attributes:[:id(必須), :カラム名, :カラム名,:_destroy(=アソシエーションしてるdiscsが消えた時に(モデルで定義済)、songsも消去)]
+    params.require(:product).permit(:product_name, :product_image, :status, :price, :artist_id, :genre_id, :label_id,
+      discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
+        songs_attributes: [:id, :song_num, :song_name, :_destroy]])
   end
 
 

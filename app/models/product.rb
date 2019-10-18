@@ -6,6 +6,7 @@ class Product < ApplicationRecord
 
 	has_many :discs
 	accepts_nested_attributes_for :discs, reject_if: :all_blank, allow_destroy: true  #cocoon。discsも同時にデータ作成(保存)
+	                                                             # ↑ productが消えたら、discsも消える(product_paramsに関係有)
 
 	has_many :cart_products
 
