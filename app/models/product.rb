@@ -14,7 +14,6 @@ class Product < ApplicationRecord
 	enum status: { 販売中: 0, 販売停止中: 1 } #statusはproductテーブルにあるカラム。
 
 
-	has_one :stock
 	has_many :carts, through: :cart_products
 
 
