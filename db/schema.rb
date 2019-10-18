@@ -89,13 +89,13 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "product_name", null: false
+    t.string "product_name"
     t.text "product_image_id"
-    t.integer "artist_id", null: false
-    t.integer "genre_id", null: false
-    t.integer "label_id", null: false
-    t.integer "status", null: false
-    t.integer "price", null: false
+    t.integer "artist_id"
+    t.integer "genre_id"
+    t.integer "label_id"
+    t.integer "status"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -145,12 +145,17 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "family_name"
     t.string "first_name"
     t.string "family_name_kana"
     t.string "first_name_kana"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true

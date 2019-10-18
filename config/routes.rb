@@ -42,12 +42,20 @@ get "search" => "products#search"
 
 
   resources :products do
-    resources :stocks, only: [:create, :update] do
-      resources :arrivals, only: [:index, :show, :new, :create]
-    end
     resources :discs, only: [:create, :update]
     resources :songs, only: [:create, :update]
   end
+
+
+#開発の便宜上、一旦ネストを外す　ここから
+
+  resources :stocks, only: [:create, :update]
+  resources :arrivals, only: [:index, :show, :new, :create]
+
+
+#開発の便宜上、一旦ネストを外す　ここまで
+
+
 
   resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
 

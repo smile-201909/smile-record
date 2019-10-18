@@ -17,9 +17,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new
+    @product = Product.new(product_params)
     #ここに”if current管理者"の記述が入る
-    @product.save
+    @product.save!
     redirect_to products_path
   end
 

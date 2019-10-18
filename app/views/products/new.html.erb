@@ -1,22 +1,32 @@
 
 
-<!-- アーティスト名　プルダウン -->
-<!-- ＋アーティスト名を追加 -->
 
 <h2>商品新規追加</h2>
 
 
 <%= form_for(@product) do |f| %>
+
+<!-- アーティスト名　プルダウン -->
+	<%= f.label :artist_id %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選んでください" %>
+    <!-- ↑右のpromptオプションで、最初の行に「選択してください」を追加　-->
+<!-- アーティスト名を追加 -->
+
 	<p>シングル/アルバム名</p>
 	<%= f.text_field :product_name %>
 	<p>ジャケット画像：</p>
 	<%= f.attachment_field :product_image %>
-
+<br>
+<br>
 	<!-- ジャンル名　プルダウン -->
+	<%= f.label :genre_id %>
+	<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選んでください" %>
 	<!-- ジャンル名追加 -->
-
+<br>
 
 	<!-- レーベル名　プルダウン -->
+	<%= f.label :label_id %>
+	<%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選んでください" %>
 	<!-- レーベル名追加 -->
 
 	<!-- 入荷数量 -->
