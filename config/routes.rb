@@ -20,8 +20,9 @@ Rails.application.routes.draw do
   get 'thanks/index'
   get 'admins/top'
 
-  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
-      resources :receipts, only: [:show, :create]
+  resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
+    resources :receipts, only: [:show, :create]
+  end
 
   resources :products
 
