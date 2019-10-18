@@ -2,8 +2,6 @@ class Product < ApplicationRecord
 	belongs_to :artist
 	belongs_to :genre
 	belongs_to :label
-	has_one :stock
-
 	has_many :discs
 	accepts_nested_attributes_for :discs, reject_if: :all_blank, allow_destroy: true  #cocoon。discsも同時にデータ作成(保存)
 
@@ -13,7 +11,7 @@ class Product < ApplicationRecord
 
 	enum status: { 販売中: 0, 販売停止中: 1 } #statusはproductテーブルにあるカラム。
 
-
+	has_one :stock
 	has_many :carts, through: :cart_products
 
 
