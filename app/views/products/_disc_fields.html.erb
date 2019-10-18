@@ -1,0 +1,14 @@
+<div class="nested-fields form-inline">
+  <div class="form-group">
+	<%= f.number_field :disc_num %>
+	<%= f.text_field :disc_name %>
+	<%= link_to_remove_association "ディスクを削除", f %>
+  </div>
+	<%= f.fields_for :songs do |song| %>
+		<%= render 'song_fields', f: song %> <!-- f はproductのform_forで定義した変数。. -->
+	<% end %>
+		<div class = "links">
+			<%= link_to_add_association "曲を追加", f, :songs %> <!-- 追加ボタンは階層が一つ上のviewファイル内に書く -->
+		</div>
+
+</div>

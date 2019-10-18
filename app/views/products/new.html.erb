@@ -1,30 +1,52 @@
-<%# 仮の新規商品追加 %>
+
+
+
 <h2>商品新規追加</h2>
-<%= form_for @product do |f| %>
-	<div>
-		<label>商品名</label>
-		<div>
-			<%= f.text_field :product_name %>
-		</div>
+
+
+<%= form_for(@product) do |f| %>
+
+<!-- アーティスト名　プルダウン -->
+	<%= f.label :artist_id %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選んでください" %>
+    <!-- ↑右のpromptオプションで、最初の行に「選択してください」を追加　-->
+<!-- アーティスト名を追加 -->
+
+	<p>シングル/アルバム名</p>
+	<%= f.text_field :product_name %>
+	<p>ジャケット画像：</p>
+	<%= f.attachment_field :product_image %>
+<br>
+<br>
+	<!-- ジャンル名　プルダウン -->
+	<%= f.label :genre_id %>
+	<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選んでください" %>
+	<!-- ジャンル名追加 -->
+<br>
+
+	<!-- レーベル名　プルダウン -->
+	<%= f.label :label_id %>
+	<%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選んでください" %>
+	<!-- レーベル名追加 -->
+
+	<!-- 入荷数量 -->
+	<!-- 親子孫一括登録でいくと、中間にあるstockには、値が空のレーベルできるかも。-->
+	<!-- ○枚 -->
+
+	<p>販売ステータス：</p>
+	<%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
+
+
+	<%= f.fields_for 'discs' do |disc| %>
+		<%= render 'disc_fields', f: disc %>
+	<% end %>
+
+
+	<div class = "links">
+		<%= link_to_add_association 'ディスクを追加',f, :discs %>
 	</div>
 
-	<div>
-		<label>値段</label>
-		<div>
-			<%= f.number_field :price %>
-		</div>
-	</div>
+<%= f.submit "保存" %>
 
-	<div>
-		<label>在庫数</label>
-		<div>
-			<%= f.fields_for :stocks do |stock| %>
-				<%= f.number_field :stock_amount %>
-			<% end %>
-		</div>
-	</div>
 
-	<div>
-		<%= f.submit "商品の登録" %>
-	</div>
-<% end %>
+<% end%>

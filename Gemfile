@@ -71,9 +71,9 @@ gem "refile-mini_magick"
 
 gem 'paranoia'
 
-gem 'cocoon'
-
 gem 'jquery-rails'
+
+gem 'cocoon'
 
 gem "font-awesome-rails"
 

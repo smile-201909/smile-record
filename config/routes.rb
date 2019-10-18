@@ -25,23 +25,42 @@ Rails.application.routes.draw do
 
   resources :products
 
-  resources :arrivals, only: [:index, :show, :new, :create]
 
-  resources :stocks, only: [:create, :update]
 
-  resources :labels, only: [:create, :update]
+get "search" => "products#search"
 
-  resources :genres, only: [:create, :update]
 
-  resources :artists, only: [:create, :update]
 
-  resources :songs, only: [:create, :update]
+  resources :labels, only: [:new, :create, :update] #namespace:admin do の中に入れる
 
-  resources :discs, only: [:create, :update]
+  resources :genres, only: [:new, :create, :update] #namespace:admin do の中に入れる
+
+  resources :artists, only: [:new, :create, :update] #namespace:admin do の中に入れる
+
 
   resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
 
+
+  resources :products do
+    resources :discs, only: [:create, :update]
+    resources :songs, only: [:create, :update]
+  end
+
+
+#開発の便宜上、一旦ネストを外す　ここから
+
+  resources :stocks, only: [:create, :update]
+  resources :arrivals, only: [:index, :show, :new, :create]
+
+
+#開発の便宜上、一旦ネストを外す　ここまで
+
+
+
+  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
+
   resources :carts, only: [:index, :create, :update, :destroy]
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
