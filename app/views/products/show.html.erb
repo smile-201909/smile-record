@@ -1,2 +1,6 @@
 <h2>商品詳細</h2>
- <%= button_to "カートに入れる", carts_path %>
+<%= @product.product_name %>
+<%= @product.price %>円（税込み）
+<!-- <= @product.stock.stock_amount >枚 -->
+<%= link_to "商品を削除", product_path(@product), method: :delete, data:{ confirm: '本当に消しますか？' } %>
+<!-- <= button_to “カートに入れる“, carts_path > -->
