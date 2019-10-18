@@ -48,11 +48,15 @@ class ProductsController < ApplicationController
     #（下2行は、cocoonの記述。）
     #上の行から順番に躓いた点
     #.permit内には、artist_id等も忘れずに書く。←permit内には送信したい値のカラムを全部書く！
+    #
+    #
     #discs_attrubutes:[:id(必須), :カラム名, :カラム名, :done. :_destroy(=アソシエーションしてるproductが消えた時に(モデルで定義済 allow_destroy)、discsも消去]
     #songs_attributes:[:id(必須), :カラム名, :カラム名,:_destroy(=アソシエーションしてるdiscsが消えた時に(モデルで定義済 allow_destroy)、songsも消去)]
     params.require(:product).permit(:product_name, :product_image, :status, :price, :artist_id, :genre_id, :label_id,
-      discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
-        songs_attributes: [:id, :song_num, :song_name, :_destroy]])
+        stock_attributes:[ :stock_amount ],
+        arrivals_attributes:[ :arrival_amount ],
+        discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
+          songs_attributes: [:id, :song_num, :song_name, :_destroy]])
   end
 
 
