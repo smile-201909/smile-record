@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
     t.boolean "main_address"
-    t.string "pulldown_name", null: false
+    t.string "pulldown_name"
     t.string "family_name"
     t.string "first_name"
     t.string "family_name_kana"
@@ -43,13 +43,13 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
 
   create_table "arrivals", force: :cascade do |t|
     t.integer "stock_id", null: false
-    t.integer "arrival_amount", null: false
+    t.integer "arrival_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "artists", force: :cascade do |t|
-    t.string "artist_name", null: false
+    t.string "artist_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,20 +70,20 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
 
   create_table "discs", force: :cascade do |t|
     t.integer "product_id", null: false
-    t.integer "disc_num", null: false
-    t.string "disc_name", null: false
+    t.integer "disc_num"
+    t.string "disc_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "genre_name", null: false
+    t.string "genre_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "labels", force: :cascade do |t|
-    t.string "label_name", null: false
+    t.string "label_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,10 +102,10 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
 
   create_table "receipt_items", force: :cascade do |t|
     t.integer "receipt_id", null: false
-    t.string "product_name", null: false
+    t.string "product_name"
     t.text "product_image_id"
-    t.integer "price", null: false
-    t.integer "product_amount", null: false
+    t.integer "price"
+    t.integer "product_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
 
   create_table "stocks", force: :cascade do |t|
     t.integer "product_id", null: false
-    t.integer "stock_amount", null: false
+    t.integer "stock_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
