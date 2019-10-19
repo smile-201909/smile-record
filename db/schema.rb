@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
   end
 
   create_table "arrivals", force: :cascade do |t|
-    t.integer "stock_id", null: false
+    t.integer "product_id", null: false
     t.integer "arrival_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

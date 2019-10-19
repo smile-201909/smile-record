@@ -25,7 +25,9 @@
 
               <li><%= link_to destroy_user_session_path, method: :delete do %>logout<% end %></li>
 
-              <li><%= link_to carts_path do %>カート<% end %></li>
+              <li><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
+
+
 
           <% else %>
 
@@ -41,6 +43,9 @@
               <li><%= link_to new_user_registration_path do %>sign up<% end %></li>
 
               <li><%= link_to new_user_session_path do %>login<% end %></li>
+
+              <li><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
+
 
             </ul>
 

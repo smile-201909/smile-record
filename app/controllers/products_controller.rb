@@ -12,8 +12,9 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @disc = @product.discs.build
-    @song = @disc.songs.build
+    @arrival = @product.arrivals.build #子のarrivalsも同時に保存
+    @disc = @product.discs.build #cocoon 子のdiscsも同時に保存
+    @song = @disc.songs.build #cocoon 孫のsongsも同時に保存
   end
 
   def create
@@ -49,8 +50,8 @@ class ProductsController < ApplicationController
     #.permit内には、artist_id等も忘れずに書く。←permit内には送信したい値のカラムを全部書く！
     #
     #
-    #discs_attrubutes:[:id(必須), :カラム名, :カラム名, :done. :_destroy(=アソシエーションしてるproductが消えた時に(モデルで定義済 allow_destroy)、discsも消去]
-    #songs_attributes:[:id(必須), :カラム名, :カラム名,:_destroy(=アソシエーションしてるdiscsが消えた時に(モデルで定義済 allow_destroy)、songsも消去)]
+    #discs_attrubutes:[:id(cocoon必須), :カラム名, :カラム名, :done. :_destroy(=アソシエーションしてるproductが消えた時に(モデルで定義済 allow_destroy)、discsも消去]
+    #songs_attributes:[:id(cocoon必須), :カラム名, :カラム名,:_destroy(=アソシエーションしてるdiscsが消えた時に(モデルで定義済 allow_destroy)、songsも消去)]
     params.require(:product).permit(:product_name, :product_image, :status, :price, :artist_id, :genre_id, :label_id,
         stock_attributes:[ :stock_amount ],
         arrivals_attributes:[ :arrival_amount ],
