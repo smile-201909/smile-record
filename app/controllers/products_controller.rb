@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @arrival = @product.arrivals.build #子のarrivalsも同時に保存
+    @product.arrivals.build #子のarrivalsも同時に保存
     @disc = @product.discs.build #cocoon 子のdiscsも同時に保存
     @song = @disc.songs.build #cocoon 孫のsongsも同時に保存
   end
@@ -25,6 +25,8 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
+    @
   end
 
   def update
