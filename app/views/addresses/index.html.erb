@@ -24,8 +24,8 @@
       <td><%= f.post %></td>
       <td><%= f.a_address %></td>
       <td><%= f.phone %></td>
-      <td><%#= link_to 'Edit', edit_address_path(address) %></td>
-      <td><%#= link_to 'Destroy', address, method: :delete, data: { confirm: '削除しますか？' }%></td>
+      <td><%= link_to 'Edit', edit_user_address_path(@user.id, f.id) %></td>
+      <td><%= link_to 'Destroy', user_address_path(@user.id, f.id), method: :delete, data: { confirm: '削除しますか？' }%></td>
     </tr>
     <% end %>
     <% end %>

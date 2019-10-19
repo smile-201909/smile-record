@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   get 'thanks/index'
   get 'admins/top'
 
-  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
+  resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
+  resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+end
       resources :receipts, only: [:show, :create]
 
   resources :products
@@ -38,7 +40,6 @@ get "search" => "products#search"
   resources :artists, only: [:new, :create, :update] #namespace:admin do の中に入れる
 
 
-  resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
 
 
   resources :products do
