@@ -26,11 +26,17 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    @
   end
 
   def update
     #ここに”if current管理者"の記述が入る
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      # flash[:success] = "更新しました"
+      redirect_to edit_product_path(@product)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -56,7 +62,7 @@ class ProductsController < ApplicationController
     #songs_attributes:[:id(cocoon必須), :カラム名, :カラム名,:_destroy(=アソシエーションしてるdiscsが消えた時に(モデルで定義済 allow_destroy)、songsも消去)]
     params.require(:product).permit(:product_name, :product_image, :status, :price, :artist_id, :genre_id, :label_id,
         stock_attributes:[ :stock_amount ],
-        arrivals_attributes:[ :arrival_amount ],
+        arrivals_attributes:[:id, :arrival_amount, :_destroy ],
         discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
           songs_attributes: [:id, :song_num, :song_name, :_destroy]])
   end
