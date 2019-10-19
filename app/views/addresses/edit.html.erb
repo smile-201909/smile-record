@@ -1,1 +1,37 @@
-<
+<h4>ユーザ情報編集</h4>
+
+
+
+<%= form_for(@user) do |f| %>
+
+  <h5>姓（漢字）</h5>
+  <%= f.text_field :family_name %>
+
+  <h5>名（漢字）</h5>
+  <%= f.text_field :first_name %>
+
+  <h5>姓（カナ）</h5>
+  <%= f.text_field :family_name_kana %>
+
+  <h5>名（カナ）</h5>
+  <%= f.text_field :first_name_kana %>
+
+  <%= f.fields_for :addresses, @address do |i| %>
+
+
+
+      <h5>郵便番号</h5>
+
+      <%= i.text_field :post %>
+
+      <h5>住所</h5>
+      <%= i.text_field :a_address %>
+
+      <h5>電話番号</h5>
+      <%= i.text_field :phone %>
+
+       <% end %>
+
+<%= f.submit '保存' %>
+
+<% end %>
