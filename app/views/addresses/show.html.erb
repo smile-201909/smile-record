@@ -1,0 +1,70 @@
+<!-- <table>
+  <thead>
+    <tr>
+      <th>姓（漢字）</th>
+      <th>名（漢字）</th>
+      <th>姓（カナ）</th>
+      <th>名（カナ）</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% if @user.present? %>
+    <% @user.addresses.each do |f| %>
+    <tr>
+      <td><%= f.family_name %></td>
+      <td><%= f.first_name %></td>
+      <td><%= f.family_name_kana %></td>
+      <td><%= f.first_name_kana %></td>
+      <td><%= f.post %></td>
+      <td><%= f.a_address %></td>
+      <td><%= f.phone %></td>
+      <td><%#= link_to 'Edit', edit_address_path(address) %></td>
+      <td><%#= link_to 'Destroy', address, method: :delete, data: { confirm: '削除しますか？' }%></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_for(@address) do |f| %>
+
+<% if @address.errors.any? %>
+<h3>入力した内容にエラーが<%= @address.errors.count %>件あります</h3>
+<ul>
+  <% @address.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<h4>姓（漢字）</h4>
+<%= f.text_field :family_name %>
+
+<h4>名（漢字）</h4>
+<%= f.text_area :first_name %>
+
+<h5>姓（カナ）</h5>
+<%= f.text_field :family_name_kana %>
+
+<h5>名（カナ）</h5>
+<%= f.text_field :first_name_kana %>
+
+<h5>郵便番号</h5>
+<%= f.text_field :post %>
+
+<h5>住所</h5>
+<%= f.text_field :a_address %>
+
+<h5>電話番号</h5>
+<%= f.text_field :phone %>
+
+
+<%= f.submit '保存' %>
+
+<% end %> -->
