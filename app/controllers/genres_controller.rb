@@ -8,7 +8,7 @@ class GenresController < ApplicationController
 
   def create
     #ここに”if current管理者"の記述が入る
-  	@genre = Genre.new(params[:id])
+  	@genre = Genre.new(genre_params)
   	@genre.save
   	redirect_to new_product_path
   end
@@ -16,6 +16,13 @@ class GenresController < ApplicationController
   def update
     #ここに”if current管理者"の記述が入る
     #もしかして今のところはupdate必要ない...？編集機能がないため。10/16
+  end
+
+
+ private
+
+  def genre_params
+    params.require(:genre).permit(:genre_name)
   end
 
 end
