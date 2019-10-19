@@ -9,6 +9,9 @@ class Product < ApplicationRecord
 	has_one :stock, dependent: :destroy
 	accepts_nested_attributes_for :stock, allow_destroy: true
 
+	has_many :arrivals, dependent: :destroy
+	accepts_nested_attributes_for :stock, allow_destroy: true
+
 	has_many :cart_products
 	has_many :carts, through: :cart_products
 
@@ -17,14 +20,15 @@ class Product < ApplicationRecord
 	enum status: { 販売中: 0, 販売停止中: 1 } #statusはproductテーブルにあるカラム。
 
 	default_scope -> { order(create_at: :desc)}
+	#:descでidの降順（新着順）となる
 
-
-
-
-	 # def self.search(search) #productコントローラのparams[:search]と繋がっている。
-  #     return Post.all unless search
-  #     Post.where(['content LIKE ?', "%#{search}%"])
-  #     #whereで検索した %#{search}% の値を上の(search)に返す→コントローラにいく。
-  #   end
+	def self.search(search)#productコントローラのparams[:search]と繋がっている。
+		# if search
+			Product.where(['product_name LIKE ?', "%#{search}%"])#whereで検索した %#{search}% の値を上の(search)に返す→コントローラにいく。
+		# else
+		# 	Product.all #検索ワードがないときは全データ表示
+	    # end
+	      #%#{search}%は、Productモデル(データベース)のプロパティ(SQL,あいまい検索)
+    end
 
 end

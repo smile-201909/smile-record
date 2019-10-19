@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @produ
     @product = Product.find(params[:id])
   end
 
@@ -32,14 +31,14 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-   @product = Product.find(params[:id])
-   @product.destroy
-   redirect_to products_path
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path
   end
 
-#   def search
-#     @posts = Post.search(params[:search]) #params[:search]の値はモデルのSearch.rbを参照する
-#   end
+  def search
+    @products = Product.search(params[:search]) #params[:search]の値はモデルのSearch.rbを参照する
+  end
 
 
 
