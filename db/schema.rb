@@ -91,11 +91,12 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
   create_table "products", force: :cascade do |t|
     t.string "product_name", null: false
     t.text "product_image_id"
-    t.integer "artist_id", null: false
-    t.integer "genre_id", null: false
-    t.integer "label_id", null: false
-    t.integer "status", null: false
-    t.integer "price", null: false
+    t.integer "artist_id"
+    t.integer "genre_id"
+    t.integer "label_id"
+    t.integer "stock_amount"
+    t.integer "status"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -128,13 +129,6 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
     t.integer "disc_id", null: false
     t.integer "song_num"
     t.string "song_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "stocks", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "stock_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

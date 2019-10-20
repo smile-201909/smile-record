@@ -41,7 +41,7 @@
 
 	<p>入荷数量</p>
 	<%= f.fields_for 'arrivals' do |arrival| %>
-		<%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
+		<%= render 'arrival_fields', f: arrival %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
 	<% end %>
 
 
