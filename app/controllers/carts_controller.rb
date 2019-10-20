@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 	def index
-		@cart_products = current_user.cart.products.all
+		@cart_items = current_user.cart.products.all
 	end
 	
 	def create
@@ -12,7 +12,7 @@ class CartsController < ApplicationController
 	end
 
 	def destroy
-		
+
 	end
 
 end
