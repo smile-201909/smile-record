@@ -19,3 +19,6 @@ Genre.create(:genre_name => 'JPOP')
 Label.create(:label_name => 'レーベル１')
 
 
+Administrators.create(:email => 'example@admin.com')
+
+Administrators.create(:encrypted_password => '000000')
