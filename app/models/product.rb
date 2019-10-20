@@ -9,8 +9,8 @@ class Product < ApplicationRecord
 	has_many :arrivals, dependent: :destroy
 	accepts_nested_attributes_for :arrivals, reject_if: :all_blank, allow_destroy: true
 
-	has_many :cart_products
-	has_many :carts, through: :cart_products
+	has_many :cart_items
+	has_many :carts, through: :cart_items
 
     attachment :product_image #refile用の記述
 
@@ -31,6 +31,5 @@ class Product < ApplicationRecord
     end
 
 	has_one :stock
-	has_many :carts, through: :cart_products
 
 end
