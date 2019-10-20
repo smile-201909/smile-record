@@ -16,9 +16,19 @@
 
               <li><%= link_to products_path do %>ロゴ<% end %></li>
 
+              <li><%= link_to user_path(@user.id) do %>マイページ<% end %>
+
               <li><%= link_to destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out" aria-hidden="true"> logout</i><% end %></li>
 
               <li><%= link_to carts_path do %>カート<% end %></li>
+
+          <% elsif administrator_signed_in? %>
+              <li><%= link_to  products_path do %>ロゴ<% end %></li>
+
+              <li><%= link_to  administrators_users_path do %>管理者ページ<% end %></li>
+
+              <li><%= link_to  destroy_administrator_session_path, method: :delete do %> 管理者ログアウト</i><% end %></li>
+
 
           <% else %>
 
@@ -34,6 +44,16 @@
         </nav>
 
 
+         <%# サイドバー %>
+         <% if administrator_signed_in? %>
+          <ul>
+            <li><%= link_to "管理者ページ", administrators_top_path %>
+            <li><%= link_to "商品一覧", administrators_users_path%></li>
+            <li><%= link_to "ユーザ一覧", administrators_users_path %></li>
+            <li><%= link_to "新規投稿", administrators_users_path%></li>
+            <li><%= link_to "入荷履歴", administrators_users_path%></li>
+          </ul>
+         <% end %>
 
 
 

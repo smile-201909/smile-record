@@ -8,6 +8,7 @@
       <th>郵便番号</th>
       <th>住所</th>
       <th>電話番号</th>
+      <th>プルダウン名</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,12 +25,18 @@
       <td><%= f.post %></td>
       <td><%= f.a_address %></td>
       <td><%= f.phone %></td>
-      <td><%= link_to 'Edit', edit_user_address_path(@user.id, f.id) %></td>
+      <td><%= f.pulldown_name %></td>
+      <% if administrator_signed_in? %>
+        <td><%= link_to 'Edit', edit_administrators_user_address_path(@user.id, f.id) %></td>
+      <% else %>
+        <td><%= link_to 'Edit', edit_user_address_path(@user.id, f.id) %></td>
+      <% end %>
       <td><%= link_to 'Destroy', user_address_path(@user.id, f.id), method: :delete, data: { confirm: '削除しますか？' }%></td>
     </tr>
     <% end %>
     <% end %>
   </tbody>
 </table>
-
-<td><%= link_to 'new', new_user_address_path(@user.id) %></td>
+<% if user_signed_in? %>
+    <td><%= link_to 'new', new_user_address_path(@user.id) %></td>
+<% end %>

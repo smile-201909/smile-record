@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
+  namespace :administrators do
+    resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
+      resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
+    end
+  end
+  get 'administrators/top' => 'administrators#top', as: "administrators_top"
+  # resources :administrators
+  # get 'administrators' => 'administrators#top', as: 'administrators'
+  # get 'administrators/users/:id' => 'administrators#show', as: 'administrators_user_main'
+  # get 'administrators/users/:id/edit' => 'administrators#edit', as: 'edit_administrators_user_main'
+  # patch 'administrators/users/:id' => 'administrators#update', as: 'update_administrators_user_main'
+  # put 'administrators/users/:id' => 'administrators#update'
   get 'users/index'
   get 'users/show'
   get 'users/edit'
-  get 'administrators/index'
-  get 'administrators/show'
-  get 'administrators/edit'
+  # get 'administrators/show'
+  # get 'administrators/edit'
   root 'products#index'
   devise_for :administrators, controllers: {
     sessions:      'administrators/sessions',
@@ -16,13 +27,12 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  get 'administrators' => 'administrators#index', as: 'administrators'
   get 'thanks/index'
   get 'admins/top'
 
   resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
-  resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
-end
+    resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  end
       resources :receipts, only: [:show, :create]
 
   resources :products
@@ -58,8 +68,9 @@ get "search" => "products#search"
 
 
 
-  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
-
+  resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
+    resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
+  end
   resources :carts, only: [:index, :create, :update, :destroy]
 
 

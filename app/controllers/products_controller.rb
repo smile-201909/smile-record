@@ -1,13 +1,17 @@
 class ProductsController < ApplicationController
-  def index
-  end
 
   def index
     @products = Product.all
+    @user = current_user
   end
 
   def show
     @product = Product.find(params[:id])
+    @discs     = @product.disc.all
+    @disc       = Disc.find(params[:product_id])
+    @songs    = @disc.song.all
+    # @artist     = Product.find_by(
+    @stock     = Stock.find_by(product_id: params[:product_id], stock_id: params[:id])
   end
 
   def new
@@ -24,6 +28,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -48,5 +53,3 @@ class ProductsController < ApplicationController
 
 
 end
-
-

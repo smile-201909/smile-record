@@ -1,6 +1,8 @@
-class UsersController < ApplicationController
+class Administrators::UsersController < ApplicationController
 
 	def index
+		@users = User.search(params[:search]).page(params[:page])
+		render "administrators/index"
 	end
 
 	def edit
@@ -8,6 +10,7 @@ class UsersController < ApplicationController
 		#find =PK
 		@address =Address.find_by(user_id: @user.id)
 		#find_by =カラム
+		render "administrators/edit"
 	end
 
 	def show
@@ -17,6 +20,7 @@ class UsersController < ApplicationController
 		#find_by =カラム
 		#@address =Address.find(@user.id)
 		#@address =User.find(@user.address_id)
+		render "administrators/show"
 	end
 
 	def destroy
@@ -39,6 +43,6 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:email,:family_name,:first_name,:family_name_kana, :first_name_kana, addresses_attributes:[:id, :post, :a_address, :phone, :_destroy, :pulldown_name])
+		params.require(:user).permit(:email,:family_name,:first_name,:family_name_kana, :first_name_kana, addresses_attributes:[:id, :post, :a_address, :phone, :_destroy, :pulldown_nama])
 	end
 end

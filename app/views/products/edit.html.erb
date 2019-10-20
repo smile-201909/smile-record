@@ -1,2 +1,31 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+  <h2>商品編集<h2>
+  <div class="product-edit-upper">
+    <div class="edit-upper-left">
+      <%= attachment_image_tag %>
+      <%= f.attachment_field :product_image %>
+    </div>
+    <div class="edit-upper-right">
+      <%= form_for(@product) do |f| %>
+        <label>シングル/アルバム名 </label> <%= f.text_field :name %><br>
+        <label>アーティスト名</label> <%= f.text_field :artist.name %><br>
+        <label>レーベル名</label> <%= f.text_field :label.name %><br>
+        <label>定価</label> <%= f.text_field :price %><br>
+        <label>入庫数</label> <%= f.number_field :
+        <label>在庫数</label> <%= f.number_field :stock.amount %>個
+        <label>ディスク枚数</label> <%= f.number_field :disc.amount %>枚
+        <label>ジャンル名</label> <%= f.text_field :genre.name %>
+    </div>
+  </div>
+
+
+  <div class="parents">
+        <%= s.fields_for :discs do |t| %>
+            <%= render "children_fields", f: t %>
+        <% end %>
+        <div class="links">
+            <%= link_to_add_association "子供を追加", s, :discs %>
+        </div>
+    <div class="actions">
+        <%= s.submit %>
+    </div>
+  </div>
