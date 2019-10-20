@@ -29,7 +29,7 @@ class Product < ApplicationRecord
 
     end
 
-	has_one :stock
+
 
 
 
