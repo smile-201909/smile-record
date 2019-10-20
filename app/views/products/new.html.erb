@@ -36,9 +36,18 @@
 	<p>販売ステータス：</p>
 	<%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
 
+	<p>価格（税抜）</p>
+	<%= f.number_field :price %>
+
+	<p>入荷数量</p>
+	<%= f.fields_for 'arrivals' do |arrival| %>
+		<%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
+	<% end %>
+
+
 
 	<%= f.fields_for 'discs' do |disc| %>
-		<%= render 'disc_fields', f: disc %>
+		<%= render 'disc_fields', f: disc %> <!-- cocoonの仕様の表記。renderで、_disc_fields.html.erb を呼び出す -->
 	<% end %>
 
 
@@ -46,7 +55,7 @@
 		<%= link_to_add_association 'ディスクを追加',f, :discs %>
 	</div>
 
-<%= f.submit "保存" %>
+	<%= f.submit "保存" %>
 
 
-<% end%>
+<% end %>

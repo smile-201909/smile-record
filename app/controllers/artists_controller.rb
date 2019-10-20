@@ -10,4 +10,9 @@ class ArtistsController < ApplicationController
   	@artist.save
   	redirect_to new_product_path
   end
+
+   private
+  def artist_params
+    params.require(:artist).permit(:artist_name)
+  end
 end

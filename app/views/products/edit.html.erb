@@ -1,2 +1,61 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+
+
+
+<h2>商品編集</h2>
+
+
+<%= form_for(@product) do |f| %>
+
+<!-- アーティスト名　プルダウン -->
+	<%= f.label :artist_id %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選んでください" %>
+    <!-- ↑右のpromptオプションで、最初の行に「選択してください」を追加　-->
+<!-- アーティスト名を追加 -->
+
+	<p>シングル/アルバム名</p>
+	<%= f.text_field :product_name %>
+	<p>ジャケット画像：</p>
+	<%= f.attachment_field :product_image %>
+<br>
+<br>
+	<!-- ジャンル名　プルダウン -->
+	<%= f.label :genre_id %>
+	<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選んでください" %>
+	<!-- ジャンル名追加 -->
+<br>
+
+	<!-- レーベル名　プルダウン -->
+	<%= f.label :label_id %>
+	<%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選んでください" %>
+	<!-- レーベル名追加 -->
+
+	<!-- 入荷数量 -->
+	<!-- 親子孫一括登録でいくと、中間にあるstockには、値が空のレーベルできるかも。-->
+	<!-- ○枚 -->
+
+	<p>販売ステータス：</p>
+	<%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
+
+	<p>価格（税抜）</p>
+	<%= f.number_field :price %>
+
+	<p>在庫増減数</p>
+	<%= f.fields_for 'arrivals' do |arrival| %>
+		<%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
+	<% end %>
+
+
+
+	<%= f.fields_for 'discs' do |disc| %>
+		<%= render 'disc_fields', f: disc %> <!-- cocoonの仕様の表記。renderで、_disc_fields.html.erb を呼び出す -->
+	<% end %>
+
+
+	<div class = "links">
+		<%= link_to_add_association 'ディスクを追加',f, :discs %>
+	</div>
+
+	<%= f.submit "保存" %>
+
+
+<% end %>
