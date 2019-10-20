@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
     #
     #discs_attrubutes:[:id(cocoon必須), :カラム名, :カラム名, :done. :_destroy(=アソシエーションしてるproductが消えた時に(モデルで定義済 allow_destroy)、discsも消去]
     #songs_attributes:[:id(cocoon必須), :カラム名, :カラム名,:_destroy(=アソシエーションしてるdiscsが消えた時に(モデルで定義済 allow_destroy)、songsも消去)]
-    params.require(:product).permit(:product_name, :product_image, :status, :price, :artist_id, :genre_id, :label_id,
+    params.require(:product).permit(:product_name, :product_image, :status, :price, :stock_amount, :artist_id, :genre_id, :label_id,
         arrivals_attributes:[ :arrival_amount, :_destroy ],
         discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
           songs_attributes: [:id, :song_num, :song_name, :_destroy]])
