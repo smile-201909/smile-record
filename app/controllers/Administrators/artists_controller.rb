@@ -1,4 +1,4 @@
-class ArtistsController < ApplicationController
+class Administrators::ArtistsController < ApplicationController
   def new
   	@artist = Artist.new
   	render layout: false #application.html.erbを適用しない

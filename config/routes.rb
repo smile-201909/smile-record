@@ -3,6 +3,13 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
       resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
     end
+    resources :products do
+      resources :discs, only: [:create, :update]
+      resources :songs, only: [:create, :update]
+    end
+    resources :labels, only: [:new, :create, :update]
+    resources :genres, only: [:new, :create, :update]
+    resources :artists, only: [:new, :create, :update]
   end
   get 'administrators/top' => 'administrators#top', as: "administrators_top"
   # resources :administrators
@@ -40,17 +47,6 @@ Rails.application.routes.draw do
 
 
 get "search" => "products#search"
-
-
-
-  resources :labels, only: [:new, :create, :update] #namespace:admin do の中に入れる
-
-  resources :genres, only: [:new, :create, :update] #namespace:admin do の中に入れる
-
-  resources :artists, only: [:new, :create, :update] #namespace:admin do の中に入れる
-
-
-
 
   resources :products do
     resources :discs, only: [:create, :update]

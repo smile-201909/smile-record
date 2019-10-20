@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Administrators::ProductsController < ApplicationController
 
   def index
     @products = Product.all
@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    render "products/new"
     @product = Product.new
     @product.arrivals.build #子のarrivalsも同時に保存
     @disc = @product.discs.build #cocoon 子のdiscsも同時に保存
@@ -22,9 +23,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
+    @product = Product.new(product_params)
     #ここに”if current管理者"の記述が入る
-    product.save
+    @product.save
     redirect_to products_path
   end
 

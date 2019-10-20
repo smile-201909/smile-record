@@ -1,4 +1,4 @@
-class LabelsController < ApplicationController
+class Administrators::LabelsController < ApplicationController
 
   def new
   	@label = Label.new
@@ -24,4 +24,3 @@ class LabelsController < ApplicationController
   end
 
 end
-

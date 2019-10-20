@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
   end
 
   create_table "arrivals", force: :cascade do |t|
-    t.integer "stock_id", null: false
+    t.integer "product_id", null: false
     t.integer "arrival_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cart_products", force: :cascade do |t|
+  create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id", null: false
     t.integer "product_id", null: false
-    t.integer "product_amount", null: false
+    t.integer "product_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,13 +112,13 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
 
   create_table "receipts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "purchaser_family_name", null: false
-    t.integer "settlement", null: false
-    t.text "delivery_address", null: false
-    t.integer "total_price", null: false
-    t.integer "postage", null: false
-    t.integer "status", null: false
-    t.string "post", null: false
+    t.string "purchaser_family_name"
+    t.integer "settlement"
+    t.text "delivery_address"
+    t.integer "total_price"
+    t.integer "postage"
+    t.integer "status"
+    t.string "post"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "purchaser_first_name"
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(version: 2019_10_16_105247) do
 
   create_table "songs", force: :cascade do |t|
     t.integer "disc_id", null: false
-    t.integer "song_num", null: false
-    t.string "song_name", null: false
+    t.integer "song_num"
+    t.string "song_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
