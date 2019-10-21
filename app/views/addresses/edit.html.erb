@@ -4,6 +4,9 @@
 
 <%= form_for(@address, url: user_address_path(@user.id, @address.id)) do |f| %>
 
+  <h5>住所の名前</h5>
+  <%= f.text_field :pulldown_name %>
+
   <h5>姓（漢字）</h5>
   <%= f.text_field :family_name %>
 
@@ -19,7 +22,6 @@
 
 
   <h5>郵便番号</h5>
-
   <%= f.text_field :post %>
 
   <h5>住所</h5>
@@ -28,8 +30,6 @@
   <h5>電話番号</h5>
   <%= f.text_field :phone %>
 
-  <h5>プルダウン名</h5>
-  <%= f.text_field :pulldown_name %>
 
 
 <%= f.submit '保存' %>
