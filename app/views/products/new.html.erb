@@ -44,6 +44,8 @@
 	<p>価格（税抜）</p>
 	<%= f.number_field :price %>
 
+	<p></p>
+
 	<p>入荷数量</p>
 	<%= f.fields_for 'arrivals' do |arrival| %>
 		<%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->

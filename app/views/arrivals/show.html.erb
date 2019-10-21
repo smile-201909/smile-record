@@ -1,2 +1,31 @@
-<h1>Arrivals#show</h1>
-<p>Find me in app/views/arrivals/show.html.erb</p>
+<div class="product-info">
+  <h2>商品の入荷履歴</h2>
+  <%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: 'no_image.jpg', size: '200x200' %>
+  <p><%= @product.product_name %></p>
+  <p><%= @product.artist.artist_name %></p>
+  <p><%= @product.label.label_name %></p>
+  <p><%= @product.price %></p>
+  <p><%= @product.stock_amount %></p>
+  <p><%= @product.genre.genre_name %></p>
+  <p><%= @product.status %></p>
+  <button><%= link_to "商品一覧に戻る", products_path %></button>
+
+  <h2>入荷履歴</h2>
+  <p>新着順▼</p>
+  <table>
+    <thead
+    <tr>
+      <th>入荷日時</th>
+      <th>入荷個数</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @arrival.created_at %></td>
+        <td><%= @arrival.arrival_amount %></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

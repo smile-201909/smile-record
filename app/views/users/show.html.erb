@@ -29,11 +29,10 @@
 
 <td><%= link_to 'Edit', edit_user_path(@user.id) %></td>
 
-<h5>お届け先の住所の登録・変更・削除はこちら</h5>
+<h5><%= link_to user_addresses_path(@user.id) do %>お届け先の住所の登録・変更・削除はこちら<% end %></h5>
 
 <%# if @user == current_user.id %>
 
   <%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%>
 
 <%# end %>
-
