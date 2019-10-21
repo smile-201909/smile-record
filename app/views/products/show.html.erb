@@ -5,27 +5,27 @@
     <div class="detail-left">
       <h3>曲リスト</h3>
       <% @discs.each do |disc| %>
-        <p>ディスク <%= product.disc.name %></p>
+        <p>ディスク <%= disc.disc_name %></p>
         <ul>
-          <% disc.@songs.each do |song| %>
-            <li><%= disc.song.name %></li>
+          <% disc.songs.each do |song| %>
+            <li><%= song.song_name %></li>
           <% end %>
         <ul>
       <% end %>
     </div>
     <div class="detail-right">
-      <p><%= @product..name %></p>
-      <p><%= @product.artist.name %></p>
-      <p><%= @product.lebel.name %></p>
+      <p><%= @product.product_name %></p>
+      <p><%= @product.artist.artist_name %></p>
+      <p><%= @product.label.label_name %></p>
       <p><%= @product.price %></p>
-      <p><%= @stock.stock_amount %></p>
-      <p><%= @product.genre.name %></p>
+      <p><%= @product.stock_amount %></p>
+      <p><%= @product.genre.genre_name %></p>
       <p><%= @product.status %></p>
       <% if administrator_signed_in? %>
         <button><%= link_to "編集", edit_product_path(@product.id) %></button>
-        <button><%= link_to "この商品の入荷履歴を見る", 入荷履歴のパス %></button>
+        <button><%= link_to "この商品の入荷履歴を見る", administrators_arrival_path(@product.id) %></button>
       <% else %>
-        <button><%= link_to "カートへ追加", カート一覧のパス %></button>
+        <button><%= link_to "カートへ追加", carts_path %></button>
       <% end %>
     </div>
     <button><%= link_to "商品一覧に戻る", products_path %></button>

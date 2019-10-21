@@ -24,15 +24,24 @@ class AdministratorsController < ApplicationController
     @dayreceipts           = Receipt.where(created_at: search_date.in_time_zone.all_day)
     @monthreceipts       = Receipt.where(created_at: search_date.in_time_zone.all_month)
     @yearreceipts          = Receipt.where(created_at: search_date.in_time_zone.all_year)
-    @receipts                 = Receipt.all
+    @receipts                 = Receipt.page(params[:page])
     @day_total_price     = @dayreceipts.sum(:total_price)
     @month_total_price = @monthreceipts.sum(:total_price)
     @year_total_price    = @yearreceipts.sum(:total_price)
     @total_price             = @receipts.sum(:total_price)
 
     # @receipt                   =
-    # @receipt_items   = @receipt.receipt_item.all
-    
+    @receipt_items   = ReceiptItem.all
+#一つ目の計
+    # @receipt_total = ReceiptItem.all.sum(:price)
+    # @tax_receipt_total = (@receipt_total*tax) - @receipt_total
+
+
+#二つ目の計算
+    # @total_price = 0
+    # @receipt_items.each do |receipt_item|
+    #   @total_price += receipt_item.price
+    # end|
 
 
   end
@@ -54,6 +63,10 @@ class AdministratorsController < ApplicationController
                                                                    :a_address,
                                                                    :phone,
                                                                    :pulldown_name])
+  end
+
+  def receipt_params
+    params.require(:receipt).permit(:status)
   end
 
 
