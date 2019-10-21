@@ -1,25 +1,25 @@
-class ProductsController < ApplicationController
+class Administrators::ProductsController < ApplicationController
  def index
    @products = Product.all
-   @user = current_user
+   render 'products/index'
  end
  def show
    @product = Product.find(params[:id])
    @discs = @product.discs.all
-   @user = current_user
-
+   render 'products/show'
  end
  def new
    @product = Product.new
    @product.arrivals.build #子のarrivalsも同時に保存
    @disc = @product.discs.build #cocoon 子のdiscsも同時に保存
    @song = @disc.songs.build #cocoon 孫のsongsも同時に保存
+   render "administrators/products/new"
  end
  def create
-   product = Product.new(product_params)
+  product = Product.new(product_params)
    #ここに“if current管理者“の記述が入る
-   product.save!
-   redirect_to products_path
+  product.save!
+   redirect_to administrators_products_path
  end
  def edit
    @product = Product.find(params[:id])

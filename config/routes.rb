@@ -1,10 +1,33 @@
 Rails.application.routes.draw do
+  namespace :administrators do
+    resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
+      resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
+    end
+    resources :products do
+      resources :discs, only: [:create, :update]
+      resources :songs, only: [:create, :update]
+    end
+    resources :products do
+      resources :discs, only: [:create, :update]
+      resources :songs, only: [:create, :update]
+    end
+    resources :labels, only: [:new, :create, :update]
+    resources :genres, only: [:new, :create, :update]
+    resources :artists, only: [:new, :create, :update]
+    resources :arrivals, only: [:index, :show, :new, :create]
+  end
+  get 'administrators/top' => 'administrators#top', as: "administrators_top"
+  # resources :administrators
+  # get 'administrators' => 'administrators#top', as: 'administrators'
+  # get 'administrators/users/:id' => 'administrators#show', as: 'administrators_user_main'
+  # get 'administrators/users/:id/edit' => 'administrators#edit', as: 'edit_administrators_user_main'
+  # patch 'administrators/users/:id' => 'administrators#update', as: 'update_administrators_user_main'
+  # put 'administrators/users/:id' => 'administrators#update'
   get 'users/index'
   get 'users/show'
   get 'users/edit'
-  get 'administrators/index'
-  get 'administrators/show'
-  get 'administrators/edit'
+  # get 'administrators/show'
+  # get 'administrators/edit'
   root 'products#index'
   devise_for :administrators, controllers: {
     sessions:      'administrators/sessions',
@@ -16,31 +39,19 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  get 'administrators' => 'administrators#index', as: 'administrators'
   get 'thanks/index'
   get 'admins/top'
 
   resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
-  resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
-end
-      resources :receipts, only: [:show, :create]
+    resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
+  end
+      resources :receipts, only: [:show, :create, :update]
 
   resources :products
 
 
 
-get "search" => "products#search"
-
-
-
-  resources :labels, only: [:new, :create, :update] #namespace:admin do の中に入れる
-
-  resources :genres, only: [:new, :create, :update] #namespace:admin do の中に入れる
-
-  resources :artists, only: [:new, :create, :update] #namespace:admin do の中に入れる
-
-
-
+  get "search" => "products#search"
 
   resources :products do
     resources :discs, only: [:create, :update]
@@ -51,15 +62,22 @@ get "search" => "products#search"
 #開発の便宜上、一旦ネストを外す　ここから
 
   resources :stocks, only: [:create, :update]
-  resources :arrivals, only: [:index, :show, :new, :create]
 
 
 #開発の便宜上、一旦ネストを外す　ここまで
+  resources :products do
+    resources :discs, only: [:create, :update]
+    resources :songs, only: [:create, :update]
+  end
+  resources :labels, only: [:new, :create, :update]
+  resources :genres, only: [:new, :create, :update]
+  resources :artists, only: [:new, :create, :update]
 
 
 
-  resources :users, only: [:index, :edit, :update, :show, :destroy, :create]
-
+  resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
+    resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy]
+  end
   resources :carts, only: [:index, :create, :update, :destroy]
 
 

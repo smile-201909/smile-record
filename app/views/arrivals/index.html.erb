@@ -1,0 +1,21 @@
+<h2>入荷履歴</h2>
+<p>新着順▼</p>
+<% @arrivals.each do |arrival| %>
+<table>
+  <thead
+  <tr>
+    <th>入荷日時</th>
+    <th>商品名</th>
+    <th>入荷個数</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= arrival.created_at %></td>
+      <td><%= arrival.product.product_name %></td>
+      <td><%= arrival.arrival_amount %></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

@@ -1,6 +1,33 @@
-<h2>商品詳細</h2>
-<%= @product.product_name %>
-<%= @product.price %>円（税込み）
-<!-- <= @product.stock.stock_amount >枚 -->
-<%= link_to "商品を削除", product_path(@product), method: :delete, data:{ confirm: '本当に消しますか？' } %>
-<!-- <= button_to “カートに入れる“, carts_path > -->
+<div class="product-info">
+  <h2>商品詳細</h2>
+  <%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: 'no_image.jpg', size: '200x200' %>
+  <div class="product-detail">
+    <div class="detail-left">
+      <h3>曲リスト</h3>
+      <% @discs.each do |disc| %>
+        <p>ディスク <%= disc.disc_name %></p>
+        <ul>
+          <% disc.songs.each do |song| %>
+            <li><%= song.song_name %></li>
+          <% end %>
+        <ul>
+      <% end %>
+    </div>
+    <div class="detail-right">
+      <p><%= @product.product_name %></p>
+      <p><%= @product.artist.artist_name %></p>
+      <p><%= @product.label.label_name %></p>
+      <p><%= @product.price %></p>
+      <p><%= @product.stock_amount %></p>
+      <p><%= @product.genre.genre_name %></p>
+      <p><%= @product.status %></p>
+      <% if administrator_signed_in? %>
+        <button><%= link_to "編集", edit_product_path(@product.id) %></button>
+        <button><%= link_to "この商品の入荷履歴を見る", administrators_arrival_path(@product.id) %></button>
+      <% else %>
+        <button><%= link_to "カートへ追加", carts_path %></button>
+      <% end %>
+    </div>
+    <button><%= link_to "商品一覧に戻る", products_path %></button>
+  </div>
+</div
