@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
  def index
    @products = Product.all
-   @user = current_user
  end
 
  def show
@@ -64,3 +63,4 @@ class ProductsController < ApplicationController
        discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
          songs_attributes: [:id, :song_num, :song_name, :_destroy]])
  end
+end
