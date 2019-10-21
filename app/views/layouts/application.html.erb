@@ -8,13 +8,16 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-　<meta charset="utf-8">
-　<script type="text/javascript">
-　　$(function(){
-    $("#artist-outer").load("../artists/new #artist-inner");
-　　})
-　</script>
-
+  　<meta charset="utf-8">
+    <!-- src="URL" について：add.jsと共通のディレクトリ(= app)が３つ上にあるので . が３つではないのか？ -->
+<!--     <script type="text/javascript" src= "...assets/javascripts/add.js"></script> -->
+    <script type="text/javascript">
+  　　$(function(){
+      $("#artist-outer").load("../artists/new #artist-inner");
+      $("#genre-outer").load("../genres/new #genre-inner");
+      $("#label-outer").load("../labels/new #label-inner");
+  　　})
+    </script>
   </head>
 
   <body>

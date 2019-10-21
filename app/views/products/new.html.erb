@@ -1,25 +1,35 @@
 <h2>商品新規追加</h2>
 <%= form_for(@product, url: administrators_products_path) do |f| %>
     <%= f.label :artist_id %>
-   <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => '選んでください' %>
-   <%= link_to '新規アーティストを追加', new_artist_path %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => '選んでください' %>
+    <%= link_to '新規アーティストを追加', new_artist_path %>
 
 
-<div id="artist-outer">
-<!-- ここにinclude -->
-</div>
+    <div id="artist-outer">
+    <!-- ここに　artist/new ページをインクルード -->
+    </div>
 
 
     <p>シングル/アルバム名</p>
     <%= f.text_field :product_name %>
     <p>ジャケット画像：</p>
     <%= f.attachment_field :product_image %>
+
     <%= f.label :genre_id %>
     <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => '選んでください' %>
     <%= link_to '新規ジャンルを追加', new_genre_path %>
+
+    <div id="genre-outer">
+    <!-- ここに　genre/new ページをインクルード -->
+    </div>
+
     <%= f.label :label_id %>
     <%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => '選んでください' %>
     <%= link_to '新規レーベルを追加', new_label_path %>
+
+    <div id="label-outer">
+    <!-- ここに　label/new ページをインクルード -->
+    </div>
 
     <p>販売ステータス：</p>
     <%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
