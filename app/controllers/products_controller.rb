@@ -1,13 +1,21 @@
 class ProductsController < ApplicationController
  def index
    @products = Product.all
-   @user = current_user
  end
+
  def show
    @product = Product.find(params[:id])
    @discs = @product.discs.all
    @user = current_user
+   @cart_item = @product.cart_items.build
 
+ end
+
+ def new
+   @product = Product.new
+   @product.arrivals.build #子のarrivalsも同時に保存
+   @disc = @product.discs.build #cocoon 子のdiscsも同時に保存
+   @song = @disc.songs.build #cocoon 孫のsongsも同時に保存
  end
 
  def create
@@ -16,9 +24,11 @@ class ProductsController < ApplicationController
    product.save!
    redirect_to products_path
  end
+
  def edit
    @product = Product.find(params[:id])
  end
+
  def update
    #ここに“if current管理者“の記述が入る
    @product = Product.find(params[:id])
@@ -29,14 +39,17 @@ class ProductsController < ApplicationController
      render ‘edit’
    end
  end
+
  def destroy
    @product = Product.find(params[:id])
    @product.destroy
    redirect_to products_path
  end
+
  def search
    @products = Product.search(params[:search]) #params[:search]の値はモデルのSearch.rbを参照する
  end
+
  private
  def product_params
    #（下2行は、cocoonの記述。）
@@ -51,3 +64,4 @@ class ProductsController < ApplicationController
          songs_attributes: [:id, :song_num, :song_name, :_destroy]])
  end
 end
+>>>>>>> 6c943945ccf2a6b8d3596ddfadb1fb7867bc0a9a

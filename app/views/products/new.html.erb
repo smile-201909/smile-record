@@ -1,0 +1,66 @@
+<%# エンドユーザーでも使える仮の新規商品追加なので、adminに実装する %>
+
+<h2>商品新規追加</h2>
+
+<%= form_for(@product) do |f| %>
+
+	<!-- アーティスト名　プルダウン -->
+	<%= f.label :artist_id %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選んでください" %>
+    <%= link_to "新規アーティストを追加", new_artist_path %>
+    <!-- ↑右のpromptオプションで、最初の行に「選択してください」を追加　-->
+	<!-- アーティスト名を追加 -->
+
+	<p>シングル/アルバム名</p>
+	<%= f.text_field :product_name %>
+	<p>ジャケット画像：</p>
+	<%= f.attachment_field :product_image %>
+
+	<!-- ジャンル名　プルダウン -->
+	<%= f.label :genre_id %>
+	<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選んでください" %>
+	<%= link_to "新規ジャンルを追加", new_genre_path %>
+	<!-- ジャンル名追加 -->
+
+	<!-- レーベル名　プルダウン -->
+	<%= f.label :label_id %>
+	<%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選んでください" %>
+	<%= link_to "新規レーベルを追加", new_label_path %>
+	<!-- レーベル名追加 -->
+
+	<!-- 在庫数の登録はinputタグで代用中 -->
+	<!-- <label>在庫数</label> -->
+	<!-- <div> -->
+		<!-- <input type="number" name="product[stock][stock_amount]" id="product_stocks_stock_amount"> -->
+	<!-- </div> -->
+
+	<!-- 入荷数量 -->
+	<!-- 親子孫一括登録でいくと、中間にあるstockには、値が空のレーベルできるかも。-->
+	<!-- ○枚 -->
+
+	<p>販売ステータス：</p>
+	<%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
+
+	<p>価格（税抜）</p>
+	<%= f.number_field :price %>
+
+	<p></p>
+
+	<p>入荷数量</p>
+	<%= f.fields_for 'arrivals' do |arrival| %>
+		<%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
+	<% end %>
+
+
+	<%= f.fields_for 'discs' do |disc| %>
+		<%= render 'disc_fields', f: disc %> <!-- cocoonの仕様の表記。renderで、_disc_fields.html.erb を呼び出す -->
+	<% end %>
+
+	<div class = "links">
+		<%= link_to_add_association 'ディスクを追加',f, :discs %>
+	</div>
+
+	<%= f.submit "保存" %>
+
+
+<% end %>

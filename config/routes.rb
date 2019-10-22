@@ -37,7 +37,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
     resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
-      resources :receipts, only: [:show, :create, :update]
+  
+  resources :receipts, only: [:show, :create, :update]
 
 
 
@@ -51,10 +52,14 @@ resources :products do
 
   get "search" => "products#search"
 
+  resources :cart_items, only: [:create, :update]
+
 
 #開発の便宜上、一旦ネストを外す　ここから
 
-  resources :stocks, only: [:create, :update]
+
+  resources :arrivals, only: [:index, :show, :new, :create]
+
 
 
 #開発の便宜上、一旦ネストを外す　ここまで

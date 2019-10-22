@@ -16,8 +16,7 @@ class Product < ApplicationRecord
 
 	enum status: { 販売中: 0, 販売停止中: 1 } #statusはproductテーブルにあるカラム。
 
-
-	default_scope -> { order(create_at: :desc)}
+	default_scope -> { order(created_at: :desc) }
 	#:descでidの降順（新着順）となる
 
 	def self.search(search)#productコントローラのparams[:search]と繋がっている。
@@ -29,6 +28,8 @@ class Product < ApplicationRecord
 	    end
 
     end
+
+
 
 
 

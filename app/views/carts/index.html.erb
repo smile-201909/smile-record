@@ -1,18 +1,24 @@
 <h2>ショッピングカート</h2>
 <div>
-	<% if @cart_products.empty? %>
+	<% if @cart_items.blank? %>
 		<h3>カート内に商品がありません。</h3>
 	<% else %>
-		<%= @cart_products.each do |cart|%>
+		<% @cart_items.each do |product|%>
 
-			<%= link_to product_path(cart.product_id) do %><%= attachment_image_tag cart, :profile_image, size:"40x40", format: 'jpeg', fallback: "no_image.jpg" %><% end %><%# これは仮のno image画像%>
-			<%= link_to cart.product_name, product_path(cart.product_id)%>
-			<%= cart.price + "円（税込み）" %>
-
+			<%= link_to product_path(product.id) do %>
+				<%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
+			<% end %><
+			<%= link_to product.product_name, product_path(product.id)%>
+			<%= (product.price*1.1).floor %>円（税込み）
+			<%= product.cart_items.first.product_amount %>
+			<!-- .firstが必要な理由は、ブロック変数productが持つcart_itemsレコードが１つであるにも関わらず、railsがcart_itemsを複数（になる可能性がある）と認識するため -->
+		    <%= form_for product, url: receipt_path(receipt.id) do |f| %>
+		      <%= f.select :status, [["受付", "0"], ["準備中", "1"], ["配送済み", "2"]], :selected =>receipt.status_before_type_cast %>
+		      <%= f.submit "更新" %>
+	    	<% end %>
+			<%= link_to "削除", cart_path(product.cart_items.first.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
 		<% end %>
 	<% end %>
-
-	
 
 	<%= link_to "もっと買い物をする", products_path%>
 </div>
