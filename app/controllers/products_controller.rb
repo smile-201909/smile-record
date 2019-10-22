@@ -9,12 +9,7 @@ class ProductsController < ApplicationController
    @user = current_user
 
  end
- def new
-   @product = Product.new
-   @product.arrivals.build #子のarrivalsも同時に保存
-   @disc = @product.discs.build #cocoon 子のdiscsも同時に保存
-   @song = @disc.songs.build #cocoon 孫のsongsも同時に保存
- end
+
  def create
    product = Product.new(product_params)
    #ここに“if current管理者“の記述が入る
