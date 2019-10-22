@@ -6,8 +6,6 @@ class UsersController < ApplicationController
 	def edit
 		@user =User.find(params[:id])
 		#find =PK
-		@address =Address.find_by(user_id: @user.id)
-		#find_by =カラム
 	end
 
 	def show
