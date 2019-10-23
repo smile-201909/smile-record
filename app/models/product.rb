@@ -9,7 +9,7 @@ class Product < ApplicationRecord
 	has_many :arrivals, dependent: :destroy
 	accepts_nested_attributes_for :arrivals, reject_if: :all_blank, allow_destroy: true
 
-	has_many :cart_items
+	has_many :cart_items, dependent: :destroy
 	has_many :carts, through: :cart_items
 
     attachment :product_image #refile用の記述

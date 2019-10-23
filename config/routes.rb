@@ -69,7 +69,9 @@ Rails.application.routes.draw do
 
 
 
-  resources :carts, only: [:index, :create, :update, :destroy]
+  resources :carts, only: [:index, :create, :destroy]
+  put "cart_update" => "carts#update"
+  # 引数を指定せずにupdateアクションを呼び出すため、別でルーティングを設定
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
