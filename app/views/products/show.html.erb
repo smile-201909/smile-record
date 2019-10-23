@@ -28,9 +28,9 @@
       <% else %>
         <%= form_for(@cart_item, url:carts_path) do |f| %>
           <!-- url:carts_pathで、cartコントローラーに入力情報を送る -->
-          <%= f.hidden_field :product_id, :value => @product.id %>
+          <%= f.hidden_field :product_id, value: @product.id %>
           <!-- .hidden_fieldのフォームはviewには表示されない。@productが持つidをcarts_pathでcartコントローラーへ渡している。 -->
-          <%= f.number_field :product_amount %>
+          <%= f.select :product_amount, 1..@product.stock_amount %>
           <%= f.submit "カートに入れる" %>
         <% end %>
       <% end %>

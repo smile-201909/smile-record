@@ -3,20 +3,23 @@
 	<% if @cart_items.blank? %>
 		<h3>カート内に商品がありません。</h3>
 	<% else %>
-		<% @cart_items.each do |product|%>
-
-			<%= link_to product_path(product.id) do %>
-				<%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
-			<% end %><
-			<%= link_to product.product_name, product_path(product.id)%>
-			<%= (product.price*1.1).floor %>円（税込み）
-			<%= product.cart_items.first.product_amount %>
-			<!-- .firstが必要な理由は、ブロック変数productが持つcart_itemsレコードが１つであるにも関わらず、railsがcart_itemsを複数（になる可能性がある）と認識するため -->
-		    <%= form_for product, url: receipt_path(receipt.id) do |f| %>
-		      <%= f.select :status, [["受付", "0"], ["準備中", "1"], ["配送済み", "2"]], :selected =>receipt.status_before_type_cast %>
-		      <%= f.submit "更新" %>
-	    	<% end %>
-			<%= link_to "削除", cart_path(product.cart_items.first.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
+		<!-- each文をform_tagで囲って数量の一括更新を実装 -->
+		<%= form_tag cart_update_path, method: :put do %>
+		<!-- 引数を渡さずにupdateアクションを呼び出すため、別でルーティングを設定 -->
+			<% @cart_items.each do |cart_item|%>
+				<%= link_to product_path(cart_item.product_id) do %>
+					<%= attachment_image_tag cart_item.product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
+				<% end %>
+				<%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%>
+				<%= (cart_item.product.price*1.1).floor %>円（税込み）
+				<%= cart_item.product_amount %>枚
+			    <%= fields_for "cart_items[]", cart_item do |fi| %>
+					<%= fi.select :product_amount, 1..cart_item.product.stock_amount %>
+					<!-- プルダウンには１〜在庫数までを表示 -->
+		    	<% end %>
+				<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
+			<% end %>
+			<%= submit_tag "数量を更新" %>
 		<% end %>
 	<% end %>
 
