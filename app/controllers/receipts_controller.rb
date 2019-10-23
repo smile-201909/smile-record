@@ -5,6 +5,13 @@ class ReceiptsController < ApplicationController
 
 
  def new
+   @user = current_user
+   @receipt = Receipt.new
+   @addresses = @user.addresses.all
+   
+   # @cart = @user.cart
+   @cart_items = @user.cart.products.all
+
  end
 
 

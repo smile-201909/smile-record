@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   # get 'administrators/show'
   # get 'administrators/edit'
   root 'products#index'
+
   devise_for :administrators, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',
@@ -41,11 +42,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
     resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
-  
-  resources :receipts, only: [:show, :create, :update]
 
-
-
+  resources :receipts, only: [:show, :create, :update, :new]
 
   get "search" => "products#search"
 
@@ -72,8 +70,6 @@ Rails.application.routes.draw do
 
 
   resources :carts, only: [:index, :create, :update, :destroy]
-
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
