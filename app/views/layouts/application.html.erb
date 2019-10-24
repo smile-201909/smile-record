@@ -13,11 +13,19 @@
 <!--     <script type="text/javascript" src= "...assets/javascripts/add.js"></script> -->
     <script type="text/javascript">
   　　$(function() {
+     // 左側の (#"") と同じidの部分に、一番右の (#"")が代入される。
+     // $(ターゲット要素).load(読み込まれるURL(相対パス), #読み込まれる部分(そのURLのidで囲った部分))
         $("#artist-outer").load("../artists/new #artist-inner");
         $("#genre-outer").load("../genres/new #genre-inner");
         $("#label-outer").load("../labels/new #label-inner");
   　　})
     </script>
+
+    <!-- GoogleFonts 自家製フォント工房 -->
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+
+
+
 
   </head>
 
@@ -26,57 +34,75 @@
 <nav>
           <% if user_signed_in? %>
 
-              <li><%= link_to products_path do %>ロゴ<% end %></li>
+          <div class="clearfix">
 
-              <li><%= link_to user_path(current_user.id) do %>マイページ<% end %>
+            <div class="header-left">
+              <li class="logo"><%= link_to products_path do %>ロゴ<% end %></li>
+            </div>
+            <div class="header-right">
+              <li class="search">
+                <%= form_tag(search_path, :method => 'get') do %>
+                  <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                  <%= submit_tag '検索' %>
+                <% end %>
+              </li>
+              <li class="menu-item"><%= link_to user_path(current_user.id) do %>マイページ<% end %></li>
 
-              <%= form_tag(search_path, :method => 'get') do %>
-                <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                <%= submit_tag '検索' %>
-              <% end %>
+              <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete do %>logout<% end %></li>
 
-
-              <li><%= link_to destroy_user_session_path, method: :delete do %>logout<% end %></li>
-
-              <li><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
-
-
+              <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
+            </div>
+          </div>
 
           <% elsif administrator_signed_in? %>
-              <li><%= link_to  products_path do %>ロゴ<% end %></li>
 
-              <%= form_tag(search_path, :method => 'get') do %>
-                <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                <%= submit_tag '検索' %>
-              <% end %>
+          <div class="clearfix">
 
-              <li><%= link_to  administrators_users_path do %>管理者ページ<% end %></li>
+            <div class="header-left">
+              <li class="logo"><%= link_to products_path do %>ロゴ<% end %></li>
+            </div>
 
-              <li><%= link_to  destroy_administrator_session_path, method: :delete do %> 管理者ログアウト</i><% end %></li>
+
+              <li class="search">
+                <%= form_tag(search_path, :method => 'get') do %>
+                  <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                  <%= submit_tag '検索' %>
+                <% end %>
+              </li>
+            <div class="header-right">
+              <li class="menu-item"><%= link_to  administrators_users_path do %>管理者ページ<% end %></li>
+
+              <li class="menu-item"><%= link_to  destroy_administrator_session_path, method: :delete do %> 管理者ログアウト</i><% end %></li>
+            </div>
+          </div>
 
 
           <% else %>
-
-              <li><%= link_to products_path do %>ロゴ<% end %></li>
-
-
-              <%= form_tag(search_path, :method => 'get') do %>
-                <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                <%= submit_tag '検索' %>
-              <% end %>
+        </nav>
+            <div class="header-left">
+              <li class="logo"><%= link_to products_path do %>ロゴ<% end %></li>
+            </div>
 
 
-              <li><%= link_to new_user_registration_path do %>sign up<% end %></li>
+              <li class="search">
+                <%= form_tag(search_path, :method => 'get') do %>
+                  <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                  <%= submit_tag '検索' %>
+                <% end %>
+            <div class="header-right">
+              </li>
+              <li class="menu-item"><%= link_to new_user_registration_path do %>sign up<% end %></li>
 
-              <li><%= link_to new_user_session_path do %>login<% end %></li>
+              <li class="menu-item"><%= link_to new_user_session_path do %>login<% end %></li>
 
-              <li><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
+              <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
 
+            </div>
 
             </ul>
 
           <% end %>
-        </nav>
+
 
 
          <%# サイドバー %>
@@ -89,8 +115,6 @@
             <li><%= link_to "入荷履歴", administrators_arrivals_path %></li>
           </ul>
          <% end %>
-
-
 
 
 

@@ -17,6 +17,61 @@
  */
 
 
+
+/*共通部分*/
+
+/*子要素をfloat状態にした時、親要素に.clearfixをつけて親要素の高さが0になるのを防ぐ*/
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+h2{
+	text-align:center;
+	margin:100px 0px 100px 0px;
+	/*GoogleFonts 自家製フォント工房*/
+	font-family: "M PLUS Rounded 1c";
+	font-size:30px;
+}
+
 li{
 	list-style: none;
+}
+
+
+/*ヘッダー部分*/
+
+
+.header-left{
+	float:left;
+}
+
+.search{
+	text-align:center;
+}
+
+
+.header-right{
+	float:right;
+}
+
+.menu-item{
+	float:left;
+	padding:10px 50px;
+}
+
+
+/*productのindex部分*/
+
+.contents-item{
+	text-align:center; /*各要素を中央寄せ*/
+	float: left;
+	width:25%;
+}
+
+.contents{
+	margin: 0 auto;
 }

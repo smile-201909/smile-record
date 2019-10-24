@@ -18,9 +18,9 @@ class ProductsController < ApplicationController
    @song = @disc.songs.build #cocoon 孫のsongsも同時に保存
  end
 
- def create 
+ def create
    product = Product.new(product_params)
-   product.stock_amount = (params[:product][:arrivals_attributes][:"0"][:arrival_amount]).to_i
+   product.stock_amount = params[:product][:arrivals_attributes][:"0"][:arrival_amount]
    #ここに“if current管理者“の記述が入る
    product.save!
    redirect_to products_path
@@ -65,4 +65,3 @@ class ProductsController < ApplicationController
          songs_attributes: [:id, :song_num, :song_name, :_destroy]])
  end
 end
->>>>>>> 6c943945ccf2a6b8d3596ddfadb1fb7867bc0a9a
