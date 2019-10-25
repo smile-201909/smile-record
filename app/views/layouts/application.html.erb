@@ -29,37 +29,42 @@
 
   </head>
 
-  <body>
+  <!-- bodyタグを装飾。 link="クリック前の色" vlink="クリック後の色" -->
+  <body link="black" vlink="black">
 
 <nav>
           <% if user_signed_in? %>
 
-          <div class="clearfix">
+          <div class="clearfix header">
 
             <div class="header-left">
-              <li class="logo"><%= link_to products_path do %>ロゴ<% end %></li>
+              <%= link_to products_path do %>ロゴ<% end %>
             </div>
+
             <div class="header-right">
-              <li class="search">
+
+              <li class="menu-item">
                 <%= form_tag(search_path, :method => 'get') do %>
                   <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
                   <%= submit_tag '検索' %>
                 <% end %>
               </li>
-              <li class="menu-item"><%= link_to user_path(current_user.id) do %>マイページ<% end %></li>
 
-              <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete do %>logout<% end %></li>
 
+
+              <li class="menu-item"><%= link_to user_path(current_user.id), class: 'link' do %>マイページ<% end %></li>
+
+              <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete, class: 'link' do %>logout<% end %></li>
               <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
             </div>
           </div>
 
           <% elsif administrator_signed_in? %>
 
-          <div class="clearfix">
+          <div class="clearfix header">
 
             <div class="header-left">
-              <li class="logo"><%= link_to products_path do %>ロゴ<% end %></li>
+              <%= link_to products_path do %>ロゴ<% end %>
             </div>
 
 
@@ -70,9 +75,9 @@
                 <% end %>
               </li>
             <div class="header-right">
-              <li class="menu-item"><%= link_to  administrators_users_path do %>管理者ページ<% end %></li>
+              <li class="menu-item"><%= link_to  administrators_users_path, class: 'link' do %>管理者ページ<% end %></li>
 
-              <li class="menu-item"><%= link_to  destroy_administrator_session_path, method: :delete do %> 管理者ログアウト</i><% end %></li>
+              <li class="menu-item"><%= link_to  destroy_administrator_session_path, method: :delete, class: 'link' do %> 管理者ログアウト</i><% end %></li>
             </div>
           </div>
 
@@ -80,20 +85,19 @@
           <% else %>
         </nav>
             <div class="header-left">
-              <li class="logo"><%= link_to products_path do %>ロゴ<% end %></li>
+              <%= link_to products_path do %>ロゴ<% end %>
             </div>
 
-
+            <div class="header-right">
               <li class="search">
                 <%= form_tag(search_path, :method => 'get') do %>
                   <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
                   <%= submit_tag '検索' %>
                 <% end %>
-            <div class="header-right">
               </li>
-              <li class="menu-item"><%= link_to new_user_registration_path do %>sign up<% end %></li>
+              <li class="menu-item"><%= link_to new_user_registration_path, class: 'link' do %>sign up<% end %></li>
 
-              <li class="menu-item"><%= link_to new_user_session_path do %>login<% end %></li>
+              <li class="menu-item"><%= link_to new_user_session_path, class: 'link' do %>login<% end %></li>
 
               <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
 
@@ -108,11 +112,11 @@
          <%# サイドバー %>
          <% if administrator_signed_in? %>
           <ul>
-            <li><%= link_to "管理者ページ", administrators_top_path %>
-            <li><%= link_to "商品一覧", administrators_products_path%></li>
-            <li><%= link_to "ユーザ一覧", administrators_users_path %></li>
-            <li><%= link_to "商品の追加・入荷", new_administrators_product_path%></li>
-            <li><%= link_to "入荷履歴", administrators_arrivals_path %></li>
+            <li><%= link_to "管理者ページ", administrators_top_path, class: 'link' %>
+            <li><%= link_to "商品一覧", administrators_products_path, class: 'link' %></li>
+            <li><%= link_to "ユーザ一覧", administrators_users_path, class: 'link' %></li>
+            <li><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link'%></li>
+            <li><%= link_to "入荷履歴", administrators_arrivals_path, class: 'link' %></li>
           </ul>
          <% end %>
 

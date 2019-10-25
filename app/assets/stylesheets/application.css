@@ -41,18 +41,22 @@ li{
 	list-style: none;
 }
 
+.link{
+	text-decoration:none; /*リンクの下線をなくす。<a>タグに使用*/
+}
+
 
 /*ヘッダー部分*/
 
+.header{
+	height:100px;
+	background-color: #ffff00;
+}
 
 .header-left{
 	float:left;
+	padding:40px 50px;
 }
-
-.search{
-	text-align:center;
-}
-
 
 .header-right{
 	float:right;
@@ -60,7 +64,9 @@ li{
 
 .menu-item{
 	float:left;
-	padding:10px 50px;
+	padding:40px 50px;
+	font-size:18px;
+	font-family: "M PLUS Rounded 1c";
 }
 
 
@@ -72,6 +78,4 @@ li{
 	width:25%;
 }
 
-.contents{
-	margin: 0 auto;
-}
+
