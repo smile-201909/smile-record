@@ -32,7 +32,8 @@
   <!-- bodyタグを装飾。 link="クリック前の色" vlink="クリック後の色" -->
   <body link="black" vlink="black">
 
-<nav>
+    <div id="container">
+
           <% if user_signed_in? %>
 
           <div class="clearfix header">
@@ -112,7 +113,7 @@
          <%# サイドバー %>
          <% if administrator_signed_in? %>
           <ul>
-            <li><%= link_to "管理者ページ", administrators_top_path, class: 'link' %>
+            <li><%= link_to "管理者ページ", administrators_top_path, class: 'link' %></li>
             <li><%= link_to "商品一覧", administrators_products_path, class: 'link' %></li>
             <li><%= link_to "ユーザ一覧", administrators_users_path, class: 'link' %></li>
             <li><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link'%></li>
@@ -124,5 +125,6 @@
 
 
     <%= yield %>
+  </div>
   </body>
 </html>
