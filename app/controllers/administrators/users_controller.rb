@@ -26,7 +26,7 @@ class Administrators::UsersController < ApplicationController
 	def destroy
 		user = User.find(params[:id])
 		user.destroy
-		redirect_to products_path
+		redirect_to users_path
 	end
 
 	def update

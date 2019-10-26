@@ -17,11 +17,10 @@ class Administrators::ProductsController < ApplicationController
  end
  def create
   product = Product.new(product_params)
+  #ここに“if current管理者“の記述が入る
   product.stock_amount = params[:product][:arrivals_attributes][:"0"][:arrival_amount]
-
-   #ここに“if current管理者“の記述が入る
   product.save!
-   redirect_to administrators_products_path
+  redirect_to administrators_products_path
  end
  def edit
    @product = Product.find(params[:id])

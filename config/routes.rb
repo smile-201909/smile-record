@@ -43,7 +43,8 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
 
-  resources :receipts, only: [:create, :update, :new]
+  resources :receipts, only: [:new, :create, :update]
+
 
   get "search" => "products#search"
 
