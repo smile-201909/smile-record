@@ -1,7 +1,7 @@
 class AdministratorsController < ApplicationController
   before_action :authenticate_administrator!
   def index
-    @users = User.search(params[:search]).page(params[:page])
+    @users = User.search(params[:search]).page(params[:page]).per(30)
   end
 
   def show
@@ -24,7 +24,7 @@ class AdministratorsController < ApplicationController
     @dayreceipts           = Receipt.where(created_at: search_date.in_time_zone.all_day)
     @monthreceipts       = Receipt.where(created_at: search_date.in_time_zone.all_month)
     @yearreceipts          = Receipt.where(created_at: search_date.in_time_zone.all_year)
-    @receipts                 = Receipt.page(params[:page])
+    @receipts                 = Receipt.page(params[:page]).per(5)
     @day_total_price     = @dayreceipts.sum(:total_price)
     @month_total_price = @monthreceipts.sum(:total_price)
     @year_total_price    = @yearreceipts.sum(:total_price)
