@@ -1,3 +1,3 @@
 class ReceiptItem < ApplicationRecord
-	belongs_to :receit
+	belongs_to :receipt
 end

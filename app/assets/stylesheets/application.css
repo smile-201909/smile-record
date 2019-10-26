@@ -108,6 +108,7 @@ li{
 	text-align:center; /*各要素を中央寄せ*/
 	float: left;
 	width:25%;
+	margin:50px 0px;
 }
 
 /*商品詳細*/
@@ -160,8 +161,6 @@ li{
     border-radius: 10px;/*角の丸み*/
 }
 
-
-
 /*.btn{
 	padding:100px;
 }
@@ -176,7 +175,7 @@ li{
 
 
 /*「カートに入れる」ボタン*/
-.cart-add-btn{
+.cart-add-btn , .purchase-button{
   /*文字そのものに関する装飾*/
   font-size:15px;
   color: #FFF;
@@ -193,9 +192,14 @@ li{
   margin:20px 0px;
 }
 
-.cart-add-btn:active {
+.cart-add-btn , .purchase-button:active {
   /*「カートに入れる」ボタンを押したとき*/
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
+.cart-detail{
+	width:1000px;
+	margin: 0 auto;
+	text-align: center;
+}
 

@@ -4,7 +4,7 @@
 <h2>商品編集</h2>
 
 
-<%= form_for(@product) do |f| %>
+<%= form_for(@product, url: administrators_product_path(@product.id), method: :patch) do |f| %>
 
 <!-- アーティスト名　プルダウン -->
 	<%= f.label :artist_id %>
@@ -39,8 +39,10 @@
 	<p>価格（税抜）</p>
 	<%= f.number_field :price %>
 
+	<p>在庫数</p>
+	<%= @product.stock_amount %>
 	<p>在庫増減数</p>
-	<%= f.fields_for 'arrivals' do |arrival| %>
+	<%= fields_for (@new_arrival) do |arrival| %>
 		<%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
 	<% end %>
 

@@ -1,8 +1,21 @@
 <h2>入荷履歴</h2>
+<% if @product != nil %>
+
+<h2>商品の入荷履歴</h2>
+<%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: 'no_image.jpg', size: '200x200' %>
+<p><%= @product.product_name %></p>
+<p><%= @product.artist.artist_name %></p>
+<p><%= @product.label.label_name %></p>
+<p><%= @product.price %></p>
+<p><%= @product.stock_amount %></p>
+<p><%= @product.genre.genre_name %></p>
+<p><%= @product.status %></p>
+<button><%= link_to "商品一覧に戻る", products_path %></button>
+
+<% end %>
 <p>新着順▼</p>
-<% @arrivals.each do |arrival| %>
 <table>
-  <thead
+  <thead>
   <tr>
     <th>入荷日時</th>
     <th>商品名</th>
@@ -10,10 +23,12 @@
     <th></th>
   </tr>
   </thead>
+  <% @arrivals.each do |arrival| %>
   <tbody>
     <tr>
       <td><%= arrival.created_at %></td>
-      <td><%= arrival.product.product_name %></td>
+      <% product = Product.find(arrival.product_id) %>
+      <td><%= product.product_name %></td>
       <td><%= arrival.arrival_amount %></td>
     </tr>
   </tbody>

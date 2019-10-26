@@ -24,13 +24,20 @@ class Administrators::ProductsController < ApplicationController
  end
  def edit
    @product = Product.find(params[:id])
+   @new_arrival = Arrival.new
+   render "administrators/products/edit"
+
  end
  def update
    #ここに“if current管理者“の記述が入る
    @product = Product.find(params[:id])
+   @new_arrival = Arrival.new(product_id: params[:id], arrival_amount: params[:arrival][:arrival_amount])
    if @product.update(product_params)
+     @new_arrival.save
+     new_stock = @product.stock_amount + @new_arrival.arrival_amount
+     @product.update(stock_amount: new_stock)
      # flash[:success] = “更新しました”
-     redirect_to edit_product_path(@product)
+     redirect_to administrators_product_path(@product.id)
    else
      render ‘edit’
    end
