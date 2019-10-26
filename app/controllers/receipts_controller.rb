@@ -32,7 +32,6 @@ class ReceiptsController < ApplicationController
    r.settlement = params[:receipt][:settlement].to_i
    r.save
 
-     # r.receipt_items.first.save(product_name, product_image_id, price)
    current_user.cart.cart_items.each do |a|
      i = ReceiptItem.new
      i.receipt_id = r.id
@@ -46,8 +45,6 @@ class ReceiptsController < ApplicationController
      sa.save
    end
    current_user.cart.cart_items.destroy_all
-
-
    redirect_to thanks_path
  end
 
