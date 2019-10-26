@@ -6,9 +6,8 @@ class Administrators::ArrivalsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @arrival = Arrival.find(params[:id])
-    # @artist     = Product.find_by(
-    render 'arrivals/show'
+    @arrivals = @product.arrivals.order(created_at: :desc).all
+    render 'arrivals/index'
   end
 
   def new

@@ -20,7 +20,7 @@
     <% end %>
   </p>
   <% @receipt_items.each do |item| %>
-    <%= attachment_image_tag item, :product_image_id, format: 'jpeg', fallback: 'no_image_jpg', size: '40x40' %>
+    <%= attachment_image_tag item, :product_image_id, format: 'jpeg', fallback: 'no_image.jpg', size: '40x40' %>
     <%= item.product_name %>
     <p>数量：<%= item.product_amount %>枚</p>
     <p>価格：<%= item.price %></p>
@@ -32,7 +32,7 @@
   <p>小計：　<%= receipt.total_price_without_tax %>円</p>
   <p>消費税：<%= receipt.tax_price.floor%>円</p>
   <p>送料：  500円</p>
-  <p>購入価格総計：<%= receipt.total_price.floor %></p>
+  <p>購入価格総計：<%= receipt.total_price_with_tax.floor %>円</p>
 <% end %>
 
 <%= paginate(@receipts) %>
