@@ -8,13 +8,13 @@
         <p>ディスク <%= disc.disc_name %></p>
         <ul class="song">
           <% disc.songs.each do |song| %>
-            <li class="song-list"><%= song.song_name %></li>
+            <li class="song-list"><%= song.song_num %>.<%= song.song_name %></li>
           <% end %>
         </ul>
       <% end %>
     </div>
     <div class="detail-right">
-      <p><%= @product.product_name %></p>
+      <p class="product_name"><%= @product.product_name %></p>
       <p><%= @product.artist.artist_name %></p>
       <p><%= @product.label.label_name %></p>
       <p><%= (@product.price*1.1).floor %>円</p>
@@ -34,7 +34,7 @@
           <%= f.submit "カートに入れる", class: 'cart-add-btn' %>
         <% end %>
       <% end %>
-    <%= link_to "商品一覧に戻る", products_path %>
+    <p><%= link_to "商品一覧に戻る", products_path %></p>
     </div>
 
 </div>
