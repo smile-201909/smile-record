@@ -1,8 +1,16 @@
 class CartsController < ApplicationController
 	def index
 		@cart_items = current_user.cart.cart_items.all
+		sum = 0
+		@cart_items.each do |item|
+			item_amount = item.product_amount
+			sum += item.product.price*item_amount
+		end
+		@total_price = sum
+
+
 	end
-	
+
 	def create
 		cart_item = current_user.cart.cart_items.find_or_initialize_by(product_id: params[:cart_item][:product_id])
 		# .find_or_initialize_byは、対象から()の条件を満たすレコードを探してくる。見つからなければレコードを作る直前で止まる。

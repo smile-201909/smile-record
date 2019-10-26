@@ -22,6 +22,10 @@
 			<%= submit_tag "数量を更新" %>
 		<% end %>
 	<% end %>
+	<p>合計金額：</p>
+	<%= (@total_price*1.1).floor  %>円
+	<p>送料：　500円（一律）</p>
+	<%= link_to "購入確認へ進む", new_receipt_path %>
 
 	<%= link_to "もっと買い物をする", products_path%>
 </div>

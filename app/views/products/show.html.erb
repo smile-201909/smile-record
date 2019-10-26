@@ -22,7 +22,7 @@
       <p><%= @product.genre.genre_name %></p>
       <p><%= @product.status %></p>
       <% if administrator_signed_in? %>
-        <%= link_to "編集", edit_product_path(@product.id) %>
+        <%= link_to "編集", edit_administrators_product_path(@product.id) %>
         <%= link_to "削除", product_path(@product), method: :delete, data:{ confirm: '本当に消しますか？' } %>
         <%= link_to "この商品の入荷履歴を見る", administrators_arrival_path(@product.id) %>
       <% else %>
@@ -37,6 +37,3 @@
     </div>
     <%= link_to "商品一覧に戻る", products_path %>
 </div>
-
-
-

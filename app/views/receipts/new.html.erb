@@ -2,12 +2,12 @@
 <div>
 	<h4>お支払い方法の選択</h4>
 	<%= form_with(model: @receipt, local: true) do |f| %>
-		<p><%= f.radio_button :settlement, "銀行振込" %>銀行振込</p>
-		<p><%= f.radio_button :settlement, "クレジットカード決済" %>クレジットカード決済</p>
-		<p><%= f.radio_button :settlement, "代金引換" %>代金引換</p>
+		<p><%= f.radio_button :settlement, "0" %>銀行振込</p>
+		<p><%= f.radio_button :settlement, "1" %>クレジットカード決済</p>
+		<p><%= f.radio_button :settlement, "2" %>代金引換</p>
 
 
-	<h4 id="addresses" data-addresses=<%= @addresses.to_json%>>お届け先の住所の選択</h4>
+		<h4 id="addresses" data-addresses=<%= @addresses.to_json%>>お届け先の住所の選択</h4>
 
 		<%= f.collection_select :delivery_address, @addresses, :a_address, :pulldown_name %>
 		<p class="post"><%= @addresses.first.post %></p>
@@ -15,18 +15,17 @@
 		<p><span class="name"><%= @addresses.first.family_name %></span><span class="first-name"><%= @addresses.first.first_name %></span></p>
 		<p class="phone"><%= @addresses.first.phone %></p>
 
-		<%= f.hidden_field :a_address, :value =>"", class: "post" %>
-		<%= f.hidden_field :post, :value =>"", class: "address" %>
+		<%= f.hidden_field :post, :value =>"", class: "post" %>
 		↑addressのhidden_fieldプルダウンメニューで取得してるので消す可能性有り
 
 
 		<%= link_to "別の住所を追加・変更する場合はこちら", new_user_address_path(current_user.id) %>
 		<h4>お近くのコンビニで受け取る場合はこちら</h4>
 		<h4>ご請求額</h4>
-		<%= @cart_items.total_price_with_tax_for_cart %>円（税込み）
-		<p>(消費税　<%= receipt.tax_price %>円)</p>
+		<%= @total.floor %>円（税込み）
+		<p>(消費税　<%= @tax.floor %>円)</p>
 		<p>(送料　500円)</p>
-
+		<%= f.hidden_field :total_price, value: @total.floor %>
 
 		<h3>購入内容の選択</h3>
 		<% @cart_items.each do |item| %>
@@ -36,6 +35,7 @@
 			<%= item.cart_items.first.product_amount %>
 			<%= link_to "削除", cart_path(item.cart_items.first.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
 		<% end %>
+		<%= f.submit "購入確定" %>
 	<% end %>
 </div>
 

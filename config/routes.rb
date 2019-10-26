@@ -37,13 +37,13 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  get 'thanks/index'
+  get 'thanks/index' => 'thanks#index', as: "thanks"
 
   resources :users, only: [:index, :edit, :update, :show, :destroy, :create] do
     resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
 
-  resources :receipts, only: [:show, :create, :update, :new]
+  resources :receipts, only: [:create, :update, :new]
 
   get "search" => "products#search"
 

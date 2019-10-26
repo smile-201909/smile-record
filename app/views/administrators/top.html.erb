@@ -20,7 +20,7 @@
     <% end %>
   </p>
   <% @receipt_items.each do |item| %>
-    <%= attachment_image_tag item, :product_image_id, format: 'jpeg', fallback: 'no_image_jpg', size: '40x40' %>
+    <%= attachment_image_tag item, :product_image_id, format: 'jpeg', fallback: 'no_image.jpg', size: '40x40' %>
     <%= item.product_name %>
     <p>数量：<%= item.product_amount %>枚</p>
     <p>価格：<%= item.price %></p>
