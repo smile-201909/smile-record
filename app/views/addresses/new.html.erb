@@ -8,10 +8,13 @@
 		<h3>入力した内容にエラーが<%= @address.errors.count %>件あります</h3>
 		<ul>
 			<% @address.errors.full_messages.each do |message| %>
-				<li><%= message %></li>
+			<li><%= message %></li>
 			<% end %>
 		</ul>
 	<% end %>
+
+	<h5>住所の名前</h5>
+	<%= f.text_field :pulldown_name %>
 
 	<h4>姓（漢字）</h4>
 	<%= f.text_field :family_name %>
@@ -34,8 +37,8 @@
 	<h5>電話番号</h5>
 	<%= f.text_field :phone %>
 
-	<h5>プルダウン名</h5>
-	<%= f.text_field :pulldown_name %>
+
+
 
 	<%= f.submit '保存' %>
 
