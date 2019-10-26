@@ -1,4 +1,55 @@
+
 <h2>商品一覧</h2>
+
+
+  <% if administrator_signed_in? %>
+
+    <div class="contents clearfix">
+
+      <% @products.each do |product| %>
+        	<ul>
+    	    	<li class="contents-item">
+              <!-- 商品画像 -->
+    				<%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
+              <!-- 商品名 -->
+    		        <%= link_to administrators_product_path(product.id) do %><%= product.product_name %><% end %>
+              <!-- 商品価格 -->
+    		        <%= (product.price*1.1).floor %>円（税込み）
+    		        <%# .floorは小数点以下切り捨て %>
+
+
+                <% if product.stock_amount == 0 %>
+                  <p> -- SOLD OUT -- </p>
+                <% end %>
+
+    		    </li>
+    	    </ul>
+      <% end %>
+    </div>
+  <% else %>
+
+    <div class="contents clearfix">
+
+      <% @products.each do |product| %>
+        <ul>
+          <li class="contents-item">
+            <!-- 商品画像 -->
+            <div><%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "200x200" %></div>
+            <!-- 商品名 -->
+            <div><%= link_to product_path(product.id) do %><%= product.product_name %><% end %></div>
+            <!-- 商品価格 -->
+            <div><%= (product.price*1.1).floor %>円（税込み）</div>
+              <%# .floorは小数点以下切り捨て %>
+
+            <!-- 在庫の有無　一旦コメントアウト -->
+            <% if product.stock_amount == 0 %>
+                <p> -- SOLD OUT -- </p>
+            <% end %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
 
 <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
     <script>
@@ -50,3 +101,4 @@
     <%= paginate @products %>
   </div>
 </div>
+

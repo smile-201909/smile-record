@@ -7,10 +7,6 @@ Rails.application.routes.draw do
       resources :discs, only: [:create, :update]
       resources :songs, only: [:create, :update]
     end
-    resources :products do
-      resources :discs, only: [:create, :update]
-      resources :songs, only: [:create, :update]
-    end
     resources :labels, only: [:new, :create, :update]
     resources :genres, only: [:new, :create, :update]
     resources :artists, only: [:new, :create, :update]
@@ -43,15 +39,17 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
 
+resources :products do
+      resources :discs, only: [:create, :update]
+      resources :songs, only: [:create, :update]
+    end
+
   resources :receipts, only: [:new, :create, :update]
 
 
-  get "search" => "products#search"
 
-  resources :products do
-    resources :discs, only: [:create, :update]
-    resources :songs, only: [:create, :update]
-  end
+
+  get "search" => "products#search"
 
   resources :cart_items, only: [:create, :update]
 

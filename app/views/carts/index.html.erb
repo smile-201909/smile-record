@@ -1,10 +1,14 @@
 <h2>ショッピングカート</h2>
 
+<div class="cart-detail">
+
+
 <% if flash[:amount_over] %>
 	<p><%= flash[:amount_over] %></p>
 <% end %>
 
 <div>
+
 	<% if @cart_items.blank? %>
 		<h3>カート内に商品がありません。</h3>
 		<%= link_to "商品一覧に戻る", products_path %>
@@ -14,16 +18,22 @@
 			<!-- 引数を渡さずにupdateアクションを呼び出すため、別でルーティングを設定 -->
 			<% @cart_items.each do |cart_item|%>
 				<%= link_to product_path(cart_item.product_id) do %>
+				<!-- 商品画像 -->
 					<%= attachment_image_tag cart_item.product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
 				<% end %>
+				<!-- 商品名 -->
 				<%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%>
+				<!-- 税込価格 -->
 				<%= (cart_item.product.price*1.1).floor %>円（税込み）
+				<!-- 購入数編集 -->
 			    <%= fields_for "cart_items[]", cart_item do |fi| %>
 					<%= fi.select :product_amount, 1..cart_item.product.stock_amount %>枚
 					<!-- プルダウンには１〜在庫数までを表示 -->
 		    	<% end %>
+		    	<!-- 削除 -->
 				<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
 			<% end %>
+				<!-- 数量を更新 -->
 			<%= submit_tag "数量を更新" %>
 		<% end %>
 

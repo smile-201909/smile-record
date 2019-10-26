@@ -1,20 +1,20 @@
-<div class="product-info">
+<div class="product-info clearfix">
   <h2>商品詳細</h2>
-  <%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: 'no_image.jpg', size: '200x200' %>
+  <div class="product-image"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: 'no_image.jpg', size: '600x600' %></div>
   <div class="product-detail">
     <div class="detail-left">
       <h3>曲リスト</h3>
       <% @discs.each do |disc| %>
         <p>ディスク <%= disc.disc_name %></p>
-        <ul>
+        <ul class="song">
           <% disc.songs.each do |song| %>
-            <li><%= song.song_name %></li>
+            <li class="song-list"><%= song.song_num %>.<%= song.song_name %></li>
           <% end %>
-        <ul>
+        </ul>
       <% end %>
     </div>
     <div class="detail-right">
-      <p><%= @product.product_name %></p>
+      <p class="product_name"><%= @product.product_name %></p>
       <p><%= @product.artist.artist_name %></p>
       <p><%= @product.label.label_name %></p>
       <p><%= (@product.price*1.1).floor %>円</p>
@@ -31,9 +31,9 @@
           <%= f.hidden_field :product_id, value: @product.id %>
           <!-- .hidden_fieldのフォームはviewには表示されない。@productが持つidをcarts_pathでcartコントローラーへ渡している。 -->
           <%= f.select :product_amount, 1..@product.stock_amount %>
-          <%= f.submit "カートに入れる" %>
+          <%= f.submit "カートに入れる", class: 'cart-add-btn' %>
         <% end %>
       <% end %>
+    <p><%= link_to "商品一覧に戻る", products_path %></p>
     </div>
-    <%= link_to "商品一覧に戻る", products_path %>
 </div>
