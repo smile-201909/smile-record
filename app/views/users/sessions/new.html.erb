@@ -1,32 +1,41 @@
-
-<h2>ユーザログイン</h2>
-
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+    <h1><p class="text-center">ユーザログイン</p></h1>
+      
+        <div class="box1">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <br><br>
+          <p class="text-center">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </p>
+          <p class="text-center">
+          <br>
+          <%= f.label :password, "パスワード" %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+          </p>
+          <% if devise_mapping.rememberable? %>
+          <p class="text-center">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+          </p>
+          <% end %>
+          <br>
+          <p class="text-center">
+          <%= f.submit "ログイン" %>
+          </p>
+          <% end %>
+        </div>
+      
+      <br>
+    <p class="text-center">
+       スマイルレコードのアカウントをお持ちではないですか？
+    </p>
+    <p class="text-center">
+      <%= render "devise/shared/links" %>
+    </p>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
-<% end %>
-
-
-<h3>スマイルレコードのアカウントをお持ちではないですか？</h3>
-
-<%= render "devise/shared/links" %>
+</div>
 

@@ -14,29 +14,27 @@
   </thead>
 
 
+
   <tbody>
     <% if @user.present? %>
-      <% @user.addresses.each do |f| %>
-        <tr>
-          <td><%= f.pulldown_name %></td>
-          <td><%= f.family_name %></td>
-          <td><%= f.first_name %></td>
-          <td><%= f.family_name_kana %></td>
-          <td><%= f.first_name_kana %></td>
-          <td><%= f.post %></td>
-          <td><%= f.a_address %></td>
-          <td><%= f.phone %></td>
-          <% if administrator_signed_in? %>
-            <td><%= link_to 'Edit', edit_administrators_user_address_path(@user.id, f.id) %></td>
-          <% else %>
-            <td><%= link_to 'Edit', edit_user_address_path(@user.id, f.id) %></td>
-          <% end %>
-          <td><%= link_to 'Destroy', user_address_path(@user.id, f.id), method: :delete, data: { confirm: '削除しますか？' }%></td>
-        </tr>
-      <% end %>
+    <% @user.addresses.each do |f| %>
+    <tr>
+      <td><%= f.pulldown_name %></td>
+      <td><%= f.family_name %></td>
+      <td><%= f.first_name %></td>
+      <td><%= f.family_name_kana %></td>
+      <td><%= f.first_name_kana %></td>
+      <td><%= f.post %></td>
+      <td><%= f.a_address %></td>
+      <td><%= f.phone %></td>
+      <td><%= link_to '編集', edit_user_address_path(@user.id, f.id) %></td>
+      <td><%= link_to '削除', user_address_path(@user.id, f.id), method: :delete, data: { confirm: '削除しますか？' }%></td>
+    </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to '住所の新規追加', new_user_address_path(@user.id) %>
+<td><%= link_to '住所の新規追加', new_user_address_path(@user.id) %></td>
+
 <%= link_to 'マイページへ', user_path(@user) %>

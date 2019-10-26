@@ -12,7 +12,17 @@ class User < ApplicationRecord
   has_one :cart
   accepts_nested_attributes_for :addresses
 
+  validates :family_name, presence: true
+  validates :family_name, format: { with: /\A[一-龥]+\z/ }
 
+  validates :first_name, presence: true
+  validates :first_name, format: { with: /\A[一-龥]+\z/ }
+
+  validates :family_name_kana, presence: true
+  validates :family_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
+
+  validates :first_name_kana, presence: true
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
 
    def self.search(search)
      if search

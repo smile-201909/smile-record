@@ -17,6 +17,8 @@ class Administrators::UsersController < ApplicationController
 		@user =User.find(params[:id])
 		#find =PK
 		@address =Address.find_by(user_id: @user.id)
+
+		@receipts = Receipt.page(params[:page]).per(5)
 		#find_by =カラム
 		#@address =Address.find(@user.id)
 		#@address =User.find(@user.address_id)
