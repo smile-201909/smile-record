@@ -1,18 +1,19 @@
 class ProductsController < ApplicationController
- def index
-   @products = Product.all
- end
+  
+def index
+  @products = Product.page(params[:page])
+end
 
- def show
-   @product = Product.find(params[:id])
-   @discs = @product.discs.all
-   @user = current_user
-   @cart_item = @product.cart_items.build
+def show
+ @product = Product.find(params[:id])
+ @discs = @product.discs.all
+ @user = current_user
+ @cart_item = @product.cart_items.build
 
- end
+end
 
- def new
-   @product = Product.new
+def new
+ @product = Product.new
    @product.arrivals.build #子のarrivalsも同時に保存
    @disc = @product.discs.build #cocoon 子のdiscsも同時に保存
    @song = @disc.songs.build #cocoon 孫のsongsも同時に保存
@@ -60,8 +61,9 @@ class ProductsController < ApplicationController
    #discs_attrubutes:[:id(cocoon必須), :カラム名, :カラム名, :done. :_destroy(=アソシエーションしてるproductが消えた時に(モデルで定義済 allow_destroy)、discsも消去]
    #songs_attributes:[:id(cocoon必須), :カラム名, :カラム名,:_destroy(=アソシエーションしてるdiscsが消えた時に(モデルで定義済 allow_destroy)、songsも消去)]
    params.require(:product).permit(:product_name, :product_image, :status, :price, :stock_amount, :artist_id, :genre_id, :label_id,
-       arrivals_attributes:[:id, :product_id, :arrival_amount, :_destroy ],
-       discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
-         songs_attributes: [:id, :song_num, :song_name, :_destroy]])
+     arrivals_attributes:[:id, :product_id, :arrival_amount, :_destroy ],
+     discs_attributes: [:id, :disc_num, :disc_name, :done, :_destroy,
+       songs_attributes: [:id, :song_num, :song_name, :_destroy]])
  end
+
 end

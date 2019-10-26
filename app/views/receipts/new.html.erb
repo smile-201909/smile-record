@@ -16,7 +16,7 @@
 		<p class="phone"><%= @addresses.first.phone %></p>
 
 		<%= f.hidden_field :post, :value =>"", class: "post" %>
-		↑addressのhidden_fieldプルダウンメニューで取得してるので消す可能性有り
+		<!-- ↑addressのhidden_fieldプルダウンメニューで取得してるので消す可能性有り -->
 
 
 		<%= link_to "別の住所を追加・変更する場合はこちら", new_user_address_path(current_user.id) %>

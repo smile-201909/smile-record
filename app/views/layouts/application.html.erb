@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   　<meta charset="utf-8">
@@ -23,6 +23,8 @@
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 
 
+    <% self_css_path = "/assets/"+controller.controller_name  %>
+    <%= stylesheet_link_tag self_css_path, :media => "all" %>
 
 
   </head>
@@ -121,6 +123,11 @@
          <% end %>
 
     <%= yield %>
+<<<<<<< HEAD
   </div>
+=======
+
+
+>>>>>>> 39d4be28a8736cedae6128b5adf1be09c998c062
   </body>
 </html>

@@ -1,11 +1,21 @@
 <h2>ショッピングカート</h2>
+
 <div class="cart-detail">
+
+
+<% if flash[:amount_over] %>
+	<p><%= flash[:amount_over] %></p>
+<% end %>
+
+<div>
+
 	<% if @cart_items.blank? %>
 		<h3>カート内に商品がありません。</h3>
+		<%= link_to "商品一覧に戻る", products_path %>
 	<% else %>
 		<!-- each文をform_tagで囲って数量の一括更新を実装 -->
 		<%= form_tag cart_update_path, method: :put do %>
-		<!-- 引数を渡さずにupdateアクションを呼び出すため、別でルーティングを設定 -->
+			<!-- 引数を渡さずにupdateアクションを呼び出すため、別でルーティングを設定 -->
 			<% @cart_items.each do |cart_item|%>
 				<%= link_to product_path(cart_item.product_id) do %>
 				<!-- 商品画像 -->
@@ -15,11 +25,9 @@
 				<%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%>
 				<!-- 税込価格 -->
 				<%= (cart_item.product.price*1.1).floor %>円（税込み）
-				<!-- 枚数 -->
-				<%= cart_item.product_amount %>枚
 				<!-- 購入数編集 -->
 			    <%= fields_for "cart_items[]", cart_item do |fi| %>
-					<%= fi.select :product_amount, 1..cart_item.product.stock_amount %>
+					<%= fi.select :product_amount, 1..cart_item.product.stock_amount %>枚
 					<!-- プルダウンには１〜在庫数までを表示 -->
 		    	<% end %>
 		    	<!-- 削除 -->
@@ -28,16 +36,12 @@
 				<!-- 数量を更新 -->
 			<%= submit_tag "数量を更新" %>
 		<% end %>
+
+		<p>合計金額：</p>
+		<%= (@total_price*1.1).floor  %>円
+		<p>送料：　500円（一律）</p>
+		<%= link_to "購入確認へ進む", new_receipt_path %>
+
+		<%= link_to "もっと買い物をする", products_path %>
 	<% end %>
-
-
-	<p>合計金額：</p>
-	<%= (@total_price*1.1).floor %>円
-	<p>送料：　500円（一律）</p>
-
-	<%= link_to "購入確認へ進む", new_receipt_path,:class=> "purchase-button" %>
-
-
-
-	<%= link_to "もっと買い物をする", products_path%>
 </div>

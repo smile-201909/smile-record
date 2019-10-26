@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+	before_action :correct_user, only: [:edit, :update ]
+	def correct_user
+		@user = User.find(params[:id])
+		unless @user==current_user
+               redirect_to user_path(current_user.id)
+		end
+	end
 
 	def index
 	end
@@ -13,8 +20,7 @@ class UsersController < ApplicationController
 		#find =PK
 		@address =Address.find_by(user_id: @user.id)
 		#find_by =カラム
-		#@address =Address.find(@user.id)
-		#@address =User.find(@user.address_id)
+		@receipts = Receipt.page(params[:page]).per(5)
 	end
 
 	def destroy
