@@ -1,4 +1,5 @@
 class Administrators::AddressesController < ApplicationController
+  before_action :authenticate_administrator!
 
   def index
     @user = User.find(params[:user_id])
@@ -10,7 +11,7 @@ class Administrators::AddressesController < ApplicationController
   def edit
     @user = User.find(params[:user_id])
     @address = Address.find(params[:id])
-    render "addresses/edit"
+    render "administrators/addresses/edit"
   end
 
   def update
@@ -21,37 +22,17 @@ class Administrators::AddressesController < ApplicationController
       redirect_to administrators_user_addresses_path(@user.id)
     else
       flash[:notice] = "error "
-      render :edit
+      render 'administrators/addresses/edit'
     end
   end
 
-  def show
-  	@user =User.find(params[:user_id])
-    @address =Address.new
-
-  end
 
   def destroy
     user = User.find(params[:user_id])
     address =Address.find(params[:id])
     address.destroy
-    redirect_to administrators_user_addresses(user.id)
-
-
+    redirect_to administrators_user_addresses_path(user.id)
   end
-
-  def new
-    @user = User.find(params[:user_id])
-    @address =Address.new
-    render "addresses/new"
-  end
-
-  def create
-    @address = current_user.addresses.new(address_params)
-    @address.save
-    redirect_to user_addresses_path
-  end
-
 
   private
 

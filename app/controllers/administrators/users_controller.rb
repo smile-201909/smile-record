@@ -1,4 +1,5 @@
 class Administrators::UsersController < ApplicationController
+	before_action :authenticate_administrator!
 
 	def index
 		@users = User.search(params[:search]).page(params[:page])
@@ -35,10 +36,10 @@ class Administrators::UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if	@user.update(user_params)
 			flash[:notice] = "successfully "
-			redirect_to user_path(@user.id)
+			redirect_to administrators_user_addresses_path(@user.id)
 		else
 			flash[:notice] = "error "
-			render :edit
+			render 'administrators/edit'
 		end
 	end
 

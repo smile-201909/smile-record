@@ -23,14 +23,15 @@
     <th></th>
   </tr>
   </thead>
-  <% @arrivals.each do |arrival| %>
   <tbody>
+    <% @arrivals.each do |arrival| %>
     <tr>
-      <td><%= arrival.created_at %></td>
-      <% product = Product.find(arrival.product_id) %>
-      <td><%= product.product_name %></td>
+      <td><%= arrival.created_at.strftime("%Y-%m-%d") %></td>
+    <% product = Product.find(arrival.product_id) %>
+      <td><%= arrival.product.product_name %></td>
       <td><%= arrival.arrival_amount %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
-<% end %>
+<%= paginate @arrivals %>

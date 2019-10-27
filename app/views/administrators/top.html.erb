@@ -10,7 +10,7 @@
 <h4>購入履歴一覧</h4>
 <p>新着順▼</p>
 <% @receipts.each do |receipt| %>
-  <p>注文日：<%= receipt.created_at %></p>
+  <p>注文日：<%= receipt.created_at.strftime("%Y-%m-%d") %></p>
   <p>注文者：<%= receipt.purchaser_family_name%><%= receipt.purchaser_first_name %></p>
   <p>
     配送ステータス：
@@ -19,7 +19,7 @@
       <%= f.submit "保存" %>
     <% end %>
   </p>
-  <% @receipt_items.each do |item| %>
+  <% receipt.receipt_items.each do |item| %>
     <%= attachment_image_tag item, :product_image_id, format: 'jpeg', fallback: 'no_image.jpg', size: '40x40' %>
     <%= item.product_name %>
     <p>数量：<%= item.product_amount %>枚</p>

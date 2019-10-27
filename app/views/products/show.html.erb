@@ -17,21 +17,27 @@
       <p class="product_name"><%= @product.product_name %></p>
       <p><%= @product.artist.artist_name %></p>
       <p><%= @product.label.label_name %></p>
-      <p><%= (@product.price*1.1).floor %>円</p>
-      <p><%= @product.stock_amount %>枚</p>
+      <p><%= (@product.price*1.1).floor %>円（税込み）</p>
+      <p>在庫：　<%= @product.stock_amount %>枚</p>
+      <% if @product.status == "販売停止中" %>
+        <p><%= @product.status %></p>
+      <% end %>
       <p><%= @product.genre.genre_name %></p>
-      <p><%= @product.status %></p>
       <% if administrator_signed_in? %>
         <%= link_to "編集", edit_administrators_product_path(@product.id) %>
         <%= link_to "削除", product_path(@product), method: :delete, data:{ confirm: '本当に消しますか？' } %>
         <%= link_to "この商品の入荷履歴を見る", administrators_arrival_path(@product.id) %>
       <% else %>
-        <%= form_for(@cart_item, url:carts_path) do |f| %>
-          <!-- url:carts_pathで、cartコントローラーのcreateアクションに入力情報を送る -->
-          <%= f.hidden_field :product_id, value: @product.id %>
-          <!-- .hidden_fieldのフォームはviewには表示されない。@productが持つidをcarts_pathでcartコントローラーへ渡している。 -->
-          <p><%= f.select :product_amount, 1..@product.stock_amount %>  枚</p>
-          <p><%= f.submit "カートに入れる" ,:class=>"button" %></p>
+
+        <% if @product.stock_amount != 0 && @product.status != "販売停止中" %>
+          <%= form_for(@cart_item, url:carts_path) do |f| %>
+            <!-- url:carts_pathで、cartコントローラーのcreateアクションに入力情報を送る -->
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <!-- .hidden_fieldのフォームはviewには表示されない。@productが持つidをcarts_pathでcartコントローラーへ渡している。 -->
+            <p><%= f.select :product_amount, 1..@product.stock_amount %></p>
+            <p><%= f.submit "カートに入れる", class: 'cart-add-btn'  %></p>
+          <% end %>
+
         <% end %>
       <% end %>
     <p><%= link_to "商品一覧に戻る", products_path %></p>
