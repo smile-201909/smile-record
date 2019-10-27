@@ -22,7 +22,6 @@
     <!-- GoogleFonts 自家製フォント工房 -->
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 
-
     <% self_css_path = "/assets/"+controller.controller_name  %>
     <%= stylesheet_link_tag self_css_path, :media => "all" %>
 
@@ -45,15 +44,13 @@
             <div class="header-right">
 
               <li class="menu-item">
-                <%= form_tag(search_path, :method => 'get') do %>
-                  <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-
+                  <%= form_tag(search_path, :method => 'get') do %>
+                    <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                    <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
+                    <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
+                  <% end %><!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
                   <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
-                  <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
-                <% end %>
               </li>
-
-
 
               <li class="menu-item"><%= link_to user_path(current_user.id), class: 'link' do %>マイページ<% end %></li>
 
@@ -72,13 +69,12 @@
 
 
             <div class="header-right">
-              <li class="menu-item">
+                <li class="menu-item">
                   <%= form_tag(search_path, :method => 'get') do %>
-                    <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                    <%= submit_tag '検索',"", :placeholder => "キーワードを入力",:class=>"search-form" %>
-                  <% end %><!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                  <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
-                  <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
+                    <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                    <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
+                    <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
+                  <% end %>
                 </li>
                 <li class="menu-item"><%= link_to  administrators_users_path, class: 'link' do %>管理者ページ<% end %></li>
 
@@ -95,17 +91,16 @@
 
               <div class="header-right">
                 <li class="menu-item">
-                    <%= form_tag(search_path, :method => 'get') do %>
-                      <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                      <%= submit_tag '検索' %>
-                    <% end %>
-                  </li>
+                  <%= form_tag(search_path, :method => 'get') do %>
+                    <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                    <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
+                  <% end %>
+                </li>
                   <li class="menu-item"><%= link_to new_user_registration_path, class: 'link' do %>sign up<% end %></li>
 
                   <li class="menu-item"><%= link_to new_user_session_path, class: 'link' do %>login<% end %></li>
 
                   <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
-
               </div>
             </div>
 
