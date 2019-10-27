@@ -1,47 +1,61 @@
 <h2>ショッピングカート</h2>
 
-<div class="cart-detail">
+
 
 
 <% if flash[:amount_over] %>
 	<p><%= flash[:amount_over] %></p>
 <% end %>
 
-<div>
 
-	<% if @cart_items.blank? %>
-		<h3>カート内に商品がありません。</h3>
-		<%= link_to "商品一覧に戻る", products_path %>
-	<% else %>
-		<!-- each文をform_tagで囲って数量の一括更新を実装 -->
-		<%= form_tag cart_update_path, method: :put do %>
-			<!-- 引数を渡さずにupdateアクションを呼び出すため、別でルーティングを設定 -->
-			<% @cart_items.each do |cart_item|%>
-				<%= link_to product_path(cart_item.product_id) do %>
-				<!-- 商品画像 -->
-					<%= attachment_image_tag cart_item.product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
+<% if @cart_items.blank? %>
+	<h3>カート内に商品がありません。</h3>
+	<%= link_to "商品一覧に戻る", products_path %>
+<% else %>
+	<!-- each文をform_tagで囲って数量の一括更新を実装 -->
+	<%= form_tag cart_update_path, method: :put do %>
+		<!-- 引数を渡さずにupdateアクションを呼び出すため、別でルーティングを設定 -->
+
+	<div class="cart clearfix">
+		<div class="cart-left clearfix">
+				<% @cart_items.each do |cart_item|%>
+				<li class="cart-item">
+					<div>
+						<%= link_to product_path(cart_item.product_id) do %>
+						<!-- 商品画像 -->
+							<%= attachment_image_tag cart_item.product, :product_image, fallback: "no_image.jpg", size: "150x150",class: "cart-item-logo" %>
+						<% end %>
+					</div>
+
+					<div class="cart-item-string">
+							<!-- 商品名 -->
+							<p><%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%></p>
+							<!-- 税込価格 -->
+							<p><%= (cart_item.product.price*1.1).floor %>円（税込み）</p>
+							<!-- 購入数編集 -->
+						    <p><%= fields_for "cart_items[]", cart_item do |fi| %>
+								<p><%= fi.select :product_amount, 1..cart_item.product.stock_amount %>枚
+								<!-- プルダウンには１〜在庫数までを表示 -->
+					    	<% end %>
+					    	<!-- 削除 -->
+							<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
+							<!-- 数量を更新 -->
+							<%= submit_tag "数量を更新" %></p>
+					</div>
+				</li>
 				<% end %>
-				<!-- 商品名 -->
-				<%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%>
-				<!-- 税込価格 -->
-				<%= (cart_item.product.price*1.1).floor %>円（税込み）
-				<!-- 購入数編集 -->
-			    <%= fields_for "cart_items[]", cart_item do |fi| %>
-					<%= fi.select :product_amount, 1..cart_item.product.stock_amount %>枚
-					<!-- プルダウンには１〜在庫数までを表示 -->
-		    	<% end %>
-		    	<!-- 削除 -->
-				<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
+
 			<% end %>
-				<!-- 数量を更新 -->
-			<%= submit_tag "数量を更新" %>
-		<% end %>
+		</div>
 
-		<p>合計金額：</p>
-		<%= (@total_price*1.1).floor  %>円
-		<p>送料：　500円（一律）</p>
-		<%= link_to "購入確認へ進む", new_receipt_path %>
 
-		<%= link_to "もっと買い物をする", products_path %>
-	<% end %>
-</div>
+		<div class="cart-right">
+			<p>合計金額：</p>
+			<p class="purchase-price"><%= (@total_price*1.1).floor  %>円</p>
+			<p>送料：　500円（一律）</p>
+			<p><%= link_to "購入確認へ進む", new_receipt_path,:class=>"button" %></p>
+			<p><%= link_to "もっと買い物をする", products_path %></p>
+		</div>
+	</div>
+
+<% end %>

@@ -15,11 +15,18 @@
  */
 
 
- /* @import "bootstrap-sprockets";*/
-  /*@import "bootstrap";*/
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
 
 
 /*共通部分*/
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 /*子要素をfloat状態にした時、親要素に.clearfixをつけて親要素の高さが0になるのを防ぐ*/
 
@@ -86,11 +93,12 @@ li{
 	width:100%;
 	top:0;
 	left:0;
+	z-index:1;
 }
 
 .header-left{
 	float:left;
-	padding:40px 50px;
+	padding:40px 0px 40px 30px;
 }
 
 .header-right{
@@ -99,7 +107,7 @@ li{
 
 .menu-item{
 	float:left;
-	padding:40px 50px;
+	padding:40px 30px;
 	font-size:18px;
 	font-family: "M PLUS Rounded 1c";
 }
@@ -114,7 +122,7 @@ li{
 	margin:50px 0px;
 }
 
-/*商品詳細*/
+/*商品詳細ページ*/
 
 /*ページの下に余白*/
 .product-info{
@@ -177,8 +185,10 @@ li{
 }*/
 
 
-/*「カートに入れる」ボタン*/
-.cart-add-btn , .purchase-button{
+/*商品詳細　「カートに入れる」ボタン*/
+/*カート一覧ページ　購入画面へ進むボタン*/
+/*購入情報確認ページ　購入確定ボタン*/
+.button{
   /*文字そのものに関する装飾*/
   font-size:15px;
   color: #FFF;
@@ -195,16 +205,149 @@ li{
   margin:20px 0px;
 }
 
-.cart-add-btn , .purchase-button:active {
+.button:active {
   /*「カートに入れる」ボタンを押したとき*/
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
-.cart-detail{
-	width:1000px;
+/*カート一覧ページ*/
+
+.cart{
 	margin: 0 auto;
-	text-align: center;
+	text-align: left;
 }
+
+.cart-left{
+	float: left;
+	margin-top:20px;
+	margin-left:80px;
+}
+
+.cart-item{
+	margin:50px 0px;
+	height:150px;
+	display: table;
+}
+
+/*商品画像と文字を横並びにする*/
+.cart-item div{
+	display: inline-block;
+}
+
+.cart-item-logo{
+	vertical-align: middle;/*上下左右中央寄せ*/
+}
+
+/*複数行の上下センタリング*/
+.cart-item-string{
+	display: table-cell; /* IE8から使用可能。 */
+	vertical-align: middle;/*上下左右中央寄せ*/
+	margin-left:50px;
+}
+
+.cart-item-string p{
+	line-height: 40px;
+}
+
+
+.cart-right{
+	float:right;
+	padding:20px;
+	margin-right:80px;
+	width: 30%;
+	color: #666666; /*文字色*/
+	border: 2px solid #fd9535; /*線の太さ・色*/
+	background-color: #fff; /*背景色*/
+	box-shadow: -2px 5px 5px #e8d3c7; /*影*/
+	border-radius: 20px; /*角の丸み*/
+	position:fixed;
+	right:0;
+}
+
+.cart-right p{
+	text-align:center;
+	line-height:40px;
+}
+
+
+/*合計金額*/
+.purchase-price{
+	font-size:20px;
+	color:red;
+	font-weight:bold;
+}
+
+
+
+/*購入確認ページ*/
+
+
+.purchase-detail,
+.purchase-item{
+	width:50%;
+	margin:0 auto;
+}
+
+.purchase-detail{
+	padding:30px 0px 30px 50px;
+	border: 2px solid #808080; /*線の太さ・色*/
+	background-color: #fff; /*背景色*/
+	line-height: 30px;
+}
+
+.purchase-detail h4{
+	margin-top:20px;
+}
+
+
+
+.purchase-item{
+	margin-top:60px;
+}
+
+/*"購入内容の選択"の文字*/
+.purchase-item h3{
+	margin:20px 10px;
+}
+
+/*商品画像と文字の横並び*/
+.purchase-item div{
+	display:inline-block;
+}
+
+/*購入内容それぞれに囲み枠*/
+.purchase-item-list{
+	padding:30px 0px 30px 10px;
+	margin:10px 0px;
+	/*囲み枠　ここから*/
+	border: 2px solid #808080; /*線の太さ・色*/
+	background-color: #fff; /*背景色*/
+}
+
+.purchase-item-image,
+.purchase-item-string{
+	display: table-cell; /* IE8から使用可能。 */
+	vertical-align: middle;/*上下左右中央寄せ*/
+	margin-left:20px;
+}
+
+
+
+
+/*購入確定ボタン*/
+
+.confirm{
+	/*submitボタンが持つinputはインライン要素*/
+	/*confirmクラスの中にあるインライン要素に対して指定する。*/
+	text-align:center;
+	margin:50px 0px;
+}
+
+
+
+
+
+/*購入確定ページ*/
 
 
 /*まっつん入力部分*/
