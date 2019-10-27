@@ -28,6 +28,7 @@ display: block;
 clear: both;
 }
 
+
 /*サイト幅*/
 #conteiner{
     width:1024px;
@@ -79,7 +80,7 @@ border: solid 2px #d27d00;/*線色*/
 
 .header{
     height:100px;
-    background-color: #ffff00;
+    background-color: #f2ba1b;
     position:fixed;
     /*position:fixed;によるズレを防ぐ*/
     width:100%;
@@ -90,6 +91,13 @@ border: solid 2px #d27d00;/*線色*/
 .header-left{
     float:left;
     padding:40px 50px;
+    font-size: 30px;
+    a {
+        text-decoration: none;
+        span {
+            font-size: 30px;
+        }
+    }
 }
 
 .header-right{

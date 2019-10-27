@@ -24,11 +24,11 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true
   validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
 
-   def self.search(search)
-     if search
-       User.where(['email LIKE ?', "%#{search}%"])
-     else
-       User.all
-     end
-   end
+  def self.search(search)
+    if search
+      User.where(['email LIKE ?', "%#{search}%"])
+    else
+      User.all
+    end
+  end
 end
