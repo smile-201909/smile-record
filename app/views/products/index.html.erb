@@ -79,64 +79,12 @@
             <% end %>
             <!-- 在庫の有無　一旦コメントアウト -->
             <% if product.stock_amount == 0 %>
-                <p> -- SOLD OUT -- </p>
+              <p> -- SOLD OUT -- </p>
             <% end %>
           </li>
         </ul>
       <% end %>
   </div>
   <% end %>
-<<<<<<< HEAD
         <%= paginate @products %>
-  </div>
-=======
-
-<script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.js"></script>
-    <script>
-    $(function(){
-      $(document).on("scroll",function(){
-      var elem = document.querySelector('#infinite-scroll');
-        $('#infinite-scroll').infiniteScroll({
-          path: "nav.pagination a[rel=next]",
-          append: ".products",
-          // scrollThreshold: 500,
-          history: false,
-          prefill: false,
-          status: '.page-load-status'
-          });
-        });
-      });
-</script>
-
-<div id="infinite-scroll">
-  <div class="products">
-    <ul>
-      <!-- render @products -->
-        <% if administrator_signed_in? %>
-          <% @products.each do |product| %>
-          	<ul>
-      	    	<li>
-      				<%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
-      		        <%= link_to administrators_product_path(product.id) do %><%= product.product_name %><% end %>
-      		        <%= (product.price*1.1).floor %>円（税込み）
-                  在庫数：<%= product.stock_amount %>個
-      		        <%= product.status %>
-      		    </li>
-      	    </ul>
-          <% end %>
-        <% else %>
-          <% @products.each do |product| %>
-            <ul>
-              <li>
-              <%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
-                  <%= link_to product_path(product.id) do %><%= product.product_name %><% end %>
-                  <%= (product.price*1.1).floor %>円（税込み）
-                  <%= product.status %>
-              </li>
-            </ul>
-          <% end %>
-        <% end %>
-    </ul>
-    <%= paginate @products %>
->>>>>>> 49a9e2b73099366a3c6c9954ccdda7e0dcb433b2
   </div>

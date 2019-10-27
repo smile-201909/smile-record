@@ -34,11 +34,10 @@
             <!-- url:carts_pathで、cartコントローラーのcreateアクションに入力情報を送る -->
             <%= f.hidden_field :product_id, value: @product.id %>
             <!-- .hidden_fieldのフォームはviewには表示されない。@productが持つidをcarts_pathでcartコントローラーへ渡している。 -->
-            <p><%= f.select :product_amount, 1..@product.stock_amount %></p>
-            <p><%= f.submit "カートに入れる", class: 'cart-add-btn'  %></p>
+            <p><%= f.select :product_amount, 1..@product.stock_amount %>  枚</p>
+            <p><%= f.submit "カートに入れる" ,:class=>"button" %></p>
           <% end %>
 
-        <% end %>
       <% end %>
     <p><%= link_to "商品一覧に戻る", products_path %></p>
     </div>
