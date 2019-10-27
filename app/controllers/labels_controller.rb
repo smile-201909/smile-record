@@ -9,7 +9,7 @@ class LabelsController < ApplicationController
   	#ここに”if current管理者"の記述が入る
   	@label = Label.new(label_params)
   	@label.save
-  	redirect_to new_product_path
+  	redirect_to new_administrators_product_path
   end
 
   def update

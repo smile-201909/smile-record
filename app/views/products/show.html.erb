@@ -28,15 +28,16 @@
         <%= link_to "削除", product_path(@product), method: :delete, data:{ confirm: '本当に消しますか？' } %>
         <%= link_to "この商品の入荷履歴を見る", administrators_arrival_path(@product.id) %>
       <% else %>
+
         <% if @product.stock_amount != 0 && @product.status != "販売停止中" %>
           <%= form_for(@cart_item, url:carts_path) do |f| %>
             <!-- url:carts_pathで、cartコントローラーのcreateアクションに入力情報を送る -->
             <%= f.hidden_field :product_id, value: @product.id %>
             <!-- .hidden_fieldのフォームはviewには表示されない。@productが持つidをcarts_pathでcartコントローラーへ渡している。 -->
-            <%= f.select :product_amount, 1..@product.stock_amount %>
-            <%= f.submit "カートに入れる", class: 'cart-add-btn'  %>
+            <p><%= f.select :product_amount, 1..@product.stock_amount %>  枚</p>
+            <p><%= f.submit "カートに入れる" ,:class=>"button" %></p>
           <% end %>
-        <% end %>
+
       <% end %>
     <p><%= link_to "商品一覧に戻る", products_path %></p>
     </div>
