@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   before_action :correct_user, only: [:edit, :update ]
   def correct_user
     @user = User.find(params[:user_id])
-    unless @user==current_user || administrator_signed_in?
+    unless @user == current_user || administrator_signed_in?
       redirect_to user_addresses_path(current_user.id)
     end
   end
@@ -15,8 +15,8 @@ class AddressesController < ApplicationController
   end
 
   def update
-    @user =User.find(params[:user_id])
-    @address =Address.find(params[:id])
+    @user = User.find(params[:user_id])
+    @address = Address.find(params[:id])
     if @address.update(address_params)
       redirect_to user_addresses_path(@user.id)
     else
@@ -26,13 +26,13 @@ class AddressesController < ApplicationController
 
   def destroy
     user = current_user
-    address =Address.find(params[:id])
+    address = Address.find(params[:id])
     address.destroy
     redirect_to user_addresses_path(user)
   end
   def new
     @user = User.find(params[:user_id])
-    @address =Address.new
+    @address = Address.new
   end
   def create
     @address = current_user.addresses.new(address_params)
