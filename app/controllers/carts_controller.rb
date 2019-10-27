@@ -12,18 +12,22 @@ class CartsController < ApplicationController
 	end
 
 	def create
-		cart_item = current_user.cart.cart_items.find_or_initialize_by(product_id: params[:cart_item][:product_id])
-		# .find_or_initialize_byは、対象から()の条件を満たすレコードを探してくる。見つからなければレコードを作る直前で止まる。
-		if cart_item.new_record?#initializeされた場合
-			cart_item.product_amount = params[:cart_item][:product_amount].to_i
-		elsif cart_item.product_amount.to_i + params[:cart_item][:product_amount].to_i > cart_item.product.stock_amount.to_i
-			#findされて、すでにカート内に入っていた数量とカートに入れようとしている数量の合計が、商品の在庫数を超える場合
-			flash[:amount_over] = "商品の在庫数を超えてカートに追加することはできません。"
+		if user_signed_in?
+			cart_item = current_user.cart.cart_items.find_or_initialize_by(product_id: params[:cart_item][:product_id])
+			# .find_or_initialize_byは、対象から()の条件を満たすレコードを探してくる。見つからなければレコードを作る直前で止まる。
+			if cart_item.new_record?#initializeされた場合
+				cart_item.product_amount = params[:cart_item][:product_amount].to_i
+			elsif cart_item.product_amount.to_i + params[:cart_item][:product_amount].to_i > cart_item.product.stock_amount.to_i
+				#findされて、すでにカート内に入っていた数量とカートに入れようとしている数量の合計が、商品の在庫数を超える場合
+				flash[:amount_over] = "商品の在庫数を超えてカートに追加することはできません。"
+			else
+				cart_item.product_amount += params[:cart_item][:product_amount].to_i
+			end
+			cart_item.save!
+			redirect_to carts_path
 		else
-			cart_item.product_amount += params[:cart_item][:product_amount].to_i
+			redirect_to new_user_session_path
 		end
-		cart_item.save!
-		redirect_to carts_path
 	end
 
 	def update
@@ -41,9 +45,7 @@ class CartsController < ApplicationController
 	end
 
 	private
-	def cart_item_params
-		params.require(:cart_item).permit(:cart_id, :product_id, :product_amount)
-	end
+
 	def update_params
 		params.permit(cart_items: [:product_amount])[:cart_items]
 	end

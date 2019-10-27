@@ -39,7 +39,7 @@
           <div class="clearfix header">
 
             <div class="header-left">
-              <%= link_to products_path do %>ロゴ<% end %>
+              <%= link_to products_path do %>Smile Rec<span>☻</span>rd<% end %>
             </div>
 
             <div class="header-right">
@@ -67,7 +67,7 @@
             <div class="clearfix header">
 
               <div class="header-left">
-                <%= link_to products_path do %>ロゴ<% end %>
+                <%= link_to administrators_products_path do %>Smile Rec<span>☻</span>rd<% end %>
               </div>
 
 
@@ -75,12 +75,12 @@
               <li class="menu-item">
                   <%= form_tag(search_path, :method => 'get') do %>
                     <%= text_field_tag :search %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                    <%= submit_tag '検索',"", :placeholder => "キーワードを入力",:class=>"search-form" %>
+                    <%= text_field '検索',"", :placeholder => "キーワードを入力",:class => "search-form" %>
                   <% end %><!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
                   <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
                   <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
                 </li>
-                <li class="menu-item"><%= link_to  administrators_users_path, class: 'link' do %>管理者ページ<% end %></li>
+                <li class="menu-item"><%= link_to  administrators_top_path, class: 'link' do %>管理者ページ<% end %></li>
 
                 <li class="menu-item"><%= link_to  destroy_administrator_session_path, method: :delete, class: 'link' do %> 管理者ログアウト</i><% end %></li>
             </div>
@@ -90,7 +90,7 @@
 
             <div class="clearfix header">
               <div class="header-left">
-                <%= link_to products_path do %>ロゴ<% end %>
+                <%= link_to products_path do %>Smile Rec<span>☻</span>rd<% end %>
               </div>
 
               <div class="header-right">
@@ -111,16 +111,16 @@
 
           <% end %>
 
-         <%# サイドバー %>
-         <% if administrator_signed_in? %>
-          <ul>
-            <li><%= link_to "管理者ページ", administrators_top_path, class: 'link' %></li>
-            <li><%= link_to "商品一覧", administrators_products_path, class: 'link' %></li>
-            <li><%= link_to "ユーザ一覧", administrators_users_path, class: 'link' %></li>
-            <li><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link'%></li>
-            <li><%= link_to "入荷履歴", administrators_arrivals_path, class: 'link' %></li>
-          </ul>
-         <% end %>
+          <%# サイドバー %>
+          <% if administrator_signed_in? %>
+            <ul>
+              <li><%= link_to "管理者ページ", administrators_top_path, class: 'link' %></li>
+              <li><%= link_to "商品一覧", administrators_products_path, class: 'link' %></li>
+              <li><%= link_to "ユーザ一覧", administrators_users_path, class: 'link' %></li>
+              <li><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link'%></li>
+              <li><%= link_to "入荷履歴", administrators_arrivals_path, class: 'link' %></li>
+            </ul>
+          <% end %>
 
     <%= yield %>
 

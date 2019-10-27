@@ -39,8 +39,9 @@
             <div><%= link_to product_path(product.id) do %><%= product.product_name %><% end %></div>
             <!-- 商品価格 -->
             <div><%= (product.price*1.1).floor %>円（税込み）</div>
-              <%# .floorは小数点以下切り捨て %>
-
+            <% if product.status == "販売停止中" %>
+              <p><%= product.status %></p>
+            <% end %>
             <!-- 在庫の有無　一旦コメントアウト -->
             <% if product.stock_amount == 0 %>
                 <p> -- SOLD OUT -- </p>
@@ -79,7 +80,7 @@
       				<%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
       		        <%= link_to administrators_product_path(product.id) do %><%= product.product_name %><% end %>
       		        <%= (product.price*1.1).floor %>円（税込み）
-      		        <%# .floorは小数点以下切り捨て %>
+                  在庫数：<%= product.stock_amount %>個
       		        <%= product.status %>
       		    </li>
       	    </ul>
@@ -91,7 +92,6 @@
               <%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
                   <%= link_to product_path(product.id) do %><%= product.product_name %><% end %>
                   <%= (product.price*1.1).floor %>円（税込み）
-                  <%# .floorは小数点以下切り捨て %>
                   <%= product.status %>
               </li>
             </ul>

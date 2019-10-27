@@ -27,10 +27,8 @@ class Product < ApplicationRecord
 			Product.all #検索ワードがないときは全データ表示
 	    end
 
-    end
-
-
-
-
-
+	end
+	[:product_name, :artist_id, :genre_id, :label_id, :status, :price, :stock_amount].each do |v|
+		validates v, presence: true
+	end
 end

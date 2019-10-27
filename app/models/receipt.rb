@@ -9,7 +9,7 @@ class Receipt < ApplicationRecord
 	def total_price_without_tax
 		sum = 0
 		self.receipt_items.each do |item|
-			sum += item.price
+			sum += item.price*item.product_amount
 		end
 		return sum
 	end
@@ -17,9 +17,9 @@ class Receipt < ApplicationRecord
 	def tax_price
 		sum = 0
 		self.receipt_items.each do |item|
-			sum += item.price
+			sum += item.price*item.product_amount
 		end
-		(sum*1.1)-sum
+		sum*0.1
 	end
 
 	def total_price_with_tax
