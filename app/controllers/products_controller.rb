@@ -21,6 +21,7 @@ def new
 
  def create
    product = Product.new(product_params)
+   binding.pry
    product.stock_amount = params[:product][:arrivals_attributes][:"0"][:arrival_amount]
    #ここに“if current管理者“の記述が入る
    product.save!

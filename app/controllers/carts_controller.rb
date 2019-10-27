@@ -7,8 +7,6 @@ class CartsController < ApplicationController
 			sum += item.product.price*item_amount
 		end
 		@total_price = sum
-
-
 	end
 
 	def create
