@@ -1,161 +1,170 @@
 /*
-* This is a manifest file that'll be compiled into application.css, which will include all the files
-* listed below.
-*
-* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
-* vendor/assets/stylesheets directory can be referenced here using a relative path.
-*
-* You're free to add application-wide styles to this file and they'll appear at the bottom of the
-* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
-* files in this directory. Styles in this file should be added after the last require_* statement.
-* It is generally better to create a new file per style scope.
-*= require_self
-*= require font-awesome
-*/
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+
+ *= require_self
+ *= require font-awesome
+ */
 
 
-/* @import "bootstrap-sprockets";*/
-/*@import "bootstrap";*/
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
 
 
 /*共通部分*/
 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /*子要素をfloat状態にした時、親要素に.clearfixをつけて親要素の高さが0になるのを防ぐ*/
 
 .clearfix::after {
-content: "";
-display: block;
-clear: both;
+  content: "";
+  display: block;
+  clear: both;
 }
 
 /*サイト幅*/
 #conteiner{
-    width:1024px;
+	width:1024px;
 }
 
 
 h2{
-    text-align:center;
-    margin:100px 0px 50px 0px;
-    /*GoogleFonts 自家製フォント工房*/
-    font-family: "M PLUS Rounded 1c";
-    font-size:30px;
+	text-align:center;
+	margin:100px 0px 50px 0px;
+	/*GoogleFonts 自家製フォント工房*/
+	font-family: "M PLUS Rounded 1c";
+	font-size:30px;
 }
 
 li{
-    list-style: none;
+	list-style: none;
 }
 
 /*検索フォーム*/
 .search-form{
-    width:200px;
-    height:25px;
+	width:200px;
+	height:25px;
 }
 
 /*検索ボタン*/
 .search-btn{
-    position: relative;
-display: inline-block;
-padding: 6px;
-text-decoration: none;
-background: #fd9535;/*色*/
-border-radius: 4px;/*角の丸み*/
-box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
-font-weight: bold;
-border: solid 2px #d27d00;/*線色*/
+	position: relative;
+  display: inline-block;
+  padding: 6px;
+  text-decoration: none;
+  background: #fd9535;/*色*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px #d27d00;/*線色*/
 }
 
 .fa-search{
-    color:white;
+	color:white;
 }
 
 /*ヘッダーのリンク*/
 .link{
-    text-decoration:none; /*リンクの下線をなくす。<a>タグに使用*/
+	text-decoration:none; /*リンクの下線をなくす。<a>タグに使用*/
 }
 
 
 /*ヘッダー部分*/
 
 .header{
-    height:100px;
-    background-color: #ffff00;
-    position:fixed;
-    /*position:fixed;によるズレを防ぐ*/
-    width:100%;
-    top:0;
-    left:0;
+	height:100px;
+	background-color: #ffff00;
+	position:fixed;
+	/*position:fixed;によるズレを防ぐ*/
+	width:100%;
+	top:0;
+	left:0;
+	z-index:1;
 }
 
 .header-left{
-    float:left;
-    padding:40px 50px;
+	float:left;
+	padding:40px 0px 40px 30px;
 }
 
 .header-right{
-    float:right;
+	float:right;
 }
 
 .menu-item{
-    float:left;
-    padding:40px 50px;
-    font-size:18px;
-    font-family: "M PLUS Rounded 1c";
+	float:left;
+	padding:40px 30px;
+	font-size:18px;
+	font-family: "M PLUS Rounded 1c";
 }
 
 
 /*商品一覧*/
 
 .contents-item{
-    text-align:center; /*各要素を中央寄せ*/
-    float: left;
-    width:25%;
-    margin:50px 0px;
+	text-align:center; /*各要素を中央寄せ*/
+	float: left;
+	width:25%;
+	margin:50px 0px;
 }
 
-/*商品詳細*/
+/*商品詳細ページ*/
 
 /*ページの下に余白*/
 .product-info{
-    margin-bottom:100px;
+	margin-bottom:100px;
 }
 
 .product-image{
-    width:600px;
-    margin:0 auto;
-    margin-bottom:15px;
+	width:600px;
+	margin:0 auto;
+	margin-bottom:15px;
 }
 
 
 .product-detail{
-    width:50%;
-    margin:0 auto;
+	width:50%;
+	margin:0 auto;
 }
 
 .detail-left{
-    float:left;
+	float:left;
 }
 
 .detail-right{
-    float:right;
+	float:right;
 }
 
 .detail-right p{
-    text-align:center;
+	text-align:center;
 }
 
 .product_name{
-    font-size:30px;
-    margin-top:20px;
+	font-size:30px;
+	margin-top:20px;
 }
 
 .song{
-    /*ulタグにより、<li>タグが浮くのを防ぐ*/
-    padding-inline-start: unset;
+	/*ulタグにより、<li>タグが浮くのを防ぐ*/
+	padding-inline-start: unset;
 }
 
 .song-list {
-    width:250px;
+	width:250px;
     padding: 0.5em 1em;
     margin: 2em 0;
     background: #FFF;
@@ -164,44 +173,181 @@ border: solid 2px #d27d00;/*線色*/
 }
 
 /*.btn{
-    padding:100px;
+	padding:100px;
 }
+
 .col-xs-12{
-    width:100%;
+	width:100%;
 }
+
 .btn-primary{
-    margin:0px -15px 10px 10px;
+	margin:0px -15px 10px 10px;
 }*/
 
 
-/*「カートに入れる」ボタン*/
-.cart-add-btn , .purchase-button{
-/*文字そのものに関する装飾*/
-font-size:15px;
-color: #FFF;
-/*文字の周りに関する装飾*/
-position: relative;
-display: inline-block;
-padding: 10px 30px;
-text-decoration: none;
-background: #fd9535;/*色*/
-border-radius: 4px;/*角の丸み*/
-box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
-font-weight: bold;
-border: solid 2px #d27d00;/*線色*/
-margin:20px 0px;
+/*商品詳細　「カートに入れる」ボタン*/
+/*カート一覧ページ　購入画面へ進むボタン*/
+/*購入情報確認ページ　購入確定ボタン*/
+.button{
+  /*文字そのものに関する装飾*/
+  font-size:15px;
+  color: #FFF;
+  /*文字の周りに関する装飾*/
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px;
+  text-decoration: none;
+  background: #fd9535;/*色*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px #d27d00;/*線色*/
+  margin:20px 0px;
 }
 
-.cart-add-btn , .purchase-button:active {
-/*「カートに入れる」ボタンを押したとき*/
-box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+.button:active {
+  /*「カートに入れる」ボタンを押したとき*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
-.cart-detail{
-    width:1000px;
-    margin: 0 auto;
-    text-align: center;
+/*カート一覧ページ*/
+
+.cart{
+	margin: 0 auto;
+	text-align: left;
 }
+
+.cart-left{
+	float: left;
+	margin-top:20px;
+	margin-left:80px;
+}
+
+.cart-item{
+	margin:50px 0px;
+	height:150px;
+	display: table;
+}
+
+/*商品画像と文字を横並びにする*/
+.cart-item div{
+	display: inline-block;
+}
+
+.cart-item-logo{
+	vertical-align: middle;/*上下左右中央寄せ*/
+}
+
+/*複数行の上下センタリング*/
+.cart-item-string{
+	display: table-cell; /* IE8から使用可能。 */
+	vertical-align: middle;/*上下左右中央寄せ*/
+	margin-left:50px;
+}
+
+.cart-item-string p{
+	line-height: 40px;
+}
+
+
+.cart-right{
+	float:right;
+	padding:20px;
+	margin-right:80px;
+	width: 30%;
+	color: #666666; /*文字色*/
+	border: 2px solid #fd9535; /*線の太さ・色*/
+	background-color: #fff; /*背景色*/
+	box-shadow: -2px 5px 5px #e8d3c7; /*影*/
+	border-radius: 20px; /*角の丸み*/
+	position:fixed;
+	right:0;
+}
+
+.cart-right p{
+	text-align:center;
+	line-height:40px;
+}
+
+
+/*合計金額*/
+.purchase-price{
+	font-size:20px;
+	color:red;
+	font-weight:bold;
+}
+
+
+
+/*購入確認ページ*/
+
+
+.purchase-detail,
+.purchase-item{
+	width:50%;
+	margin:0 auto;
+}
+
+.purchase-detail{
+	padding:30px 0px 30px 50px;
+	border: 2px solid #808080; /*線の太さ・色*/
+	background-color: #fff; /*背景色*/
+	line-height: 30px;
+}
+
+.purchase-detail h4{
+	margin-top:20px;
+}
+
+
+
+.purchase-item{
+	margin-top:60px;
+}
+
+/*"購入内容の選択"の文字*/
+.purchase-item h3{
+	margin:20px 10px;
+}
+
+/*商品画像と文字の横並び*/
+.purchase-item div{
+	display:inline-block;
+}
+
+/*購入内容それぞれに囲み枠*/
+.purchase-item-list{
+	padding:30px 0px 30px 10px;
+	margin:10px 0px;
+	/*囲み枠　ここから*/
+	border: 2px solid #808080; /*線の太さ・色*/
+	background-color: #fff; /*背景色*/
+}
+
+.purchase-item-image,
+.purchase-item-string{
+	display: table-cell; /* IE8から使用可能。 */
+	vertical-align: middle;/*上下左右中央寄せ*/
+	margin-left:20px;
+}
+
+
+
+
+/*購入確定ボタン*/
+
+.confirm{
+	/*submitボタンが持つinputはインライン要素*/
+	/*confirmクラスの中にあるインライン要素に対して指定する。*/
+	text-align:center;
+	margin:50px 0px;
+}
+
+
+
+
+
+/*購入確定ページ*/
 
 
 /*まっつん入力部分*/
@@ -214,9 +360,9 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
 .name1 {
-    display: inline-block;
+     display: inline-block;
 }
 
 .form{
-    width:100px;
+	width:100px;
 }
