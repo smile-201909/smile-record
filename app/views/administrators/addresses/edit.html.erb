@@ -1,13 +1,5 @@
 <h4>住所の編集</h4>
-<% if @address.errors.any? %>
-    <ul>
-        <% @address.errors.full_messages.each do |message| %>
-            <li>
-                <%= message %>
-            </li>
-		<% end %>
-    </ul>
-<% end %>
+
 
 
 <%= form_for(@address, url: user_address_path(@user.id, @address.id)) do |f| %>

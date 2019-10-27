@@ -1,3 +1,12 @@
+<% if @user.errors.any? %>
+    <ul>
+        <% @user.errors.full_messages.each do |message| %>
+            <li>
+                <%= message %>
+            </li>
+		<% end %>
+    </ul>
+<% end %>
 <h1>ユーザ情報編集</h1>
 
   <%= form_for(@user, url: administrators_user_path(@user.id)) do |f| %>
@@ -15,7 +24,7 @@
     <%= f.text_field :first_name_kana %>
 
 
-    <%= f.fields_for :addresses, f do |i| %>
+    <%= f.fields_for :addresses, @user.addresses.first do |i| %>
 　　　　<h4>プルダウンの名前</h4>
       <%= i.text_field :pulldown_name %>
       <h4>郵便番号※半角入力、ハイフン不要</h4>
@@ -30,5 +39,4 @@
     <%= f.text_field :email %>
 
     <%= f.submit '保存', class: 'update' %>
-
- <% end %>
+  <% end %>

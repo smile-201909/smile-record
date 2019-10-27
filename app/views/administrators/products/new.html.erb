@@ -1,9 +1,18 @@
 
 
 <h2>商品新規追加</h2>
+<% if @product.errors.any? %>
+    <ul>
+        <% @product.errors.full_messages.each do |message| %>
+            <li>
+                <%= message %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
 
-    <%= form_for(@product, url: administrators_products_path) do |f| %>
-        <div>
+<%= form_for(@product, url: administrators_products_path) do |f| %>
+    <div>
 
             <%= f.label :artist_id %>
             <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => '選んでください' %>

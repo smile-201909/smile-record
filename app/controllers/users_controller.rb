@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
 	before_action :correct_user, only: [:edit, :update ]
-	def correct_user
-		@user = User.find(params[:id])
-		unless @user==current_user
-               redirect_to user_path(current_user.id)
-		end
-	end
 
 	def index
 	end
@@ -20,7 +14,7 @@ class UsersController < ApplicationController
 		#find =PK
 		@address =Address.find_by(user_id: @user.id)
 		#find_by =カラム
-		@receipts = Receipt.page(params[:page]).per(5)
+		@receipts = Receipt.order(created_at: :desc).page(params[:page]).per(5)
 	end
 
 	def destroy
@@ -44,5 +38,12 @@ class UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:email,:family_name,:first_name,:family_name_kana, :first_name_kana, addresses_attributes:[:id, :post, :a_address, :phone, :_destroy, :pulldown_name])
+	end
+
+	def correct_user
+		@user = User.find(params[:id])
+		if @user != current_user
+			redirect_to user_path(current_user.id)
+		end
 	end
 end

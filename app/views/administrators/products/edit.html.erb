@@ -1,28 +1,36 @@
 
 
 
+<% if @product.errors.any? %>
+    <ul>
+        <% @product.errors.full_messages.each do |message| %>
+            <li>
+                <%= message %>
+            </li>
+		<% end %>
+    </ul>
+<% end %>
 <h2>商品編集</h2>
-
 
 <%= form_for(@product, url: administrators_product_path(@product.id), method: :patch) do |f| %>
 
-<!-- アーティスト名　プルダウン -->
+	<!-- アーティスト名　プルダウン -->
 	<%= f.label :artist_id %>
     <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選んでください" %>
     <!-- ↑右のpromptオプションで、最初の行に「選択してください」を追加　-->
-<!-- アーティスト名を追加 -->
+	<!-- アーティスト名を追加 -->
 
 	<p>シングル/アルバム名</p>
 	<%= f.text_field :product_name %>
 	<p>ジャケット画像：</p>
 	<%= f.attachment_field :product_image %>
-<br>
-<br>
+	<br>
+	<br>
 	<!-- ジャンル名　プルダウン -->
 	<%= f.label :genre_id %>
 	<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選んでください" %>
 	<!-- ジャンル名追加 -->
-<br>
+	<br>
 
 	<!-- レーベル名　プルダウン -->
 	<%= f.label :label_id %>
@@ -43,7 +51,7 @@
 	<%= @product.stock_amount %>
 	<p>在庫増減数</p>
 	<%= fields_for (@new_arrival) do |arrival| %>
-		<%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
+		<%= arrival.number_field :arrival_amount, value: 0 %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
 	<% end %>
 
 

@@ -1,4 +1,6 @@
 class Administrators::ArtistsController < ApplicationController
+  before_action :authenticate_administrator!
+
   def new
   	@artist = Artist.new
   	render layout: false #application.html.erbを適用しない
