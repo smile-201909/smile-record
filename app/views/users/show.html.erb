@@ -27,15 +27,15 @@
 
               <h5>メールアドレス</h5>
               <td><%= @user.email %></td>
-              <br><br>
+              
               <button type="button" class="btn btn-success">
-              <td><%= link_to 'Edit', edit_user_path(@user.id) %></td>
+                <td><%= link_to 'Edit', edit_user_path(@user.id) %></td>
               </button>
               <button type="button" class="btn btn-warning">
-              <h5><%= link_to user_addresses_path(@user.id) do %>お届け先の住所の登録・変更・削除はこちら<% end %></h5>
+                <h5><%= link_to user_addresses_path(@user.id) do %>お届け先の住所の登録・変更・削除はこちら<% end %></h5>
               </button>
               <button type="button" class="btn btn-danger">
-              <%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%>
+                <%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%>
               </button>
           </div>
     </div>
@@ -46,8 +46,8 @@
                 <p>注文日：<%= receipt.created_at.strftime("%Y-%m-%d") %></p>
                 <p>注文者：<%= receipt.purchaser_family_name%><%= receipt.purchaser_first_name %></p>
                 <p>
-                 配送ステータス：
-                 <%= receipt.status %>
+                   配送ステータス：
+                   <%= receipt.status %>
                 </p>
               <div class="box1">
                   <% receipt.receipt_items.each do |item| %>
