@@ -13,7 +13,7 @@
                   <p><%= @product.stock_amount %></p>
                   <p><%= @product.genre.genre_name %></p>
                   <p><%= @product.status %></p>
-                  <button><%= link_to "商品一覧に戻る", products_path %></button>
+                  <%= link_to "商品一覧に戻る", products_path, class:"btn btn-default"%>
 
               <% end %>
               <p>新着順▼</p>
