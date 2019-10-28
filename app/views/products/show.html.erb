@@ -23,6 +23,8 @@
         <p><%= @product.status %></p>
       <% end %>
       <p><%= @product.genre.genre_name %></p>
+
+
       <% if administrator_signed_in? %>
         <%= link_to "編集", edit_administrators_product_path(@product.id) %>
         <%= link_to "削除", product_path(@product), method: :delete, data:{ confirm: '本当に消しますか？' } %>
@@ -30,6 +32,7 @@
       <% else %>
 
         <% if @product.stock_amount != 0 && @product.status != "販売停止中" %>
+
           <%= form_for(@cart_item, url:carts_path) do |f| %>
             <!-- url:carts_pathで、cartコントローラーのcreateアクションに入力情報を送る -->
             <%= f.hidden_field :product_id, value: @product.id %>
@@ -38,7 +41,11 @@
             <p><%= f.submit "カートに入れる" ,:class=>"button" %></p>
           <% end %>
 
+        <% end %>
+
       <% end %>
-    <p><%= link_to "商品一覧に戻る", products_path %></p>
+      <p><%= link_to "商品一覧に戻る", products_path %></p>
     </div>
+  </div>
+
 </div>

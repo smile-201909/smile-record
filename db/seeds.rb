@@ -20,3 +20,14 @@ Label.create(:label_name => 'レーベル１')
 
 
 Administrator.create(:email => 'example@admin.com', :password => '000000')
+
+
+
+if Rails.env == "development"
+  100.times do |i|
+    Product.create!(:artist_id=>1, :genre_id=>1, :label_id=>1,  :product_name=> "アルバム" + (i + 1).to_s , :stock_amount=>i + 1, :status=>0, :price=> i + 1)
+    Arrival.create!(:product_id=>i + 1, :arrival_amount=> i + 1)
+    Disc.create!(:product_id=>i + 1, :disc_num=>i + 1, :disc_name=>"ディスク#{i + 1}")
+    Song.create!(:disc_id=>i + 1, :song_num=>i + 1, :song_name=>"ソング#{i + 1}")
+  end
+end

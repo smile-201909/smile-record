@@ -54,7 +54,7 @@
 
               <li class="menu-item"><%= link_to user_path(current_user.id), class: 'link' do %>マイページ<% end %></li>
 
-              <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete, class: 'link' do %>logout</p><% end %></li>
+              <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete, class: 'link text-dark' do %>logout</p><% end %></li>
               <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
             </div>
           </div>
@@ -117,9 +117,10 @@
             </ul>
           <% end %>
 
-    <%= yield %>
+
 
   </div>
 
+    <%= yield %>
   </body>
 </html>

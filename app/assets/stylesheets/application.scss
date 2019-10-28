@@ -28,8 +28,8 @@
   box-sizing: border-box;
 }
 
-/*子要素をfloat状態にした時、親要素に.clearfixをつけて親要素の高さが0になるのを防ぐ*/
 
+/*子要素をfloat状態にした時、親要素に.clearfixをつけて親要素の高さが0になるのを防ぐ*/
 .clearfix::after {
   content: "";
   display: block;
@@ -44,7 +44,7 @@
 
 h2{
 	text-align:center;
-	margin:100px 0px 50px 0px;
+	margin:150px 0px 50px 0px;
 	/*GoogleFonts 自家製フォント工房*/
 	font-family: "M PLUS Rounded 1c";
 	font-size:30px;
@@ -278,6 +278,9 @@ li{
 }
 
 
+/*カート内に商品がない場合*/
+
+
 
 /*購入確認ページ*/
 
@@ -331,9 +334,6 @@ li{
 	margin-left:20px;
 }
 
-
-
-
 /*購入確定ボタン*/
 
 .confirm{
@@ -344,10 +344,16 @@ li{
 }
 
 
-
-
-
 /*購入確定ページ*/
+
+.cart-blank{
+	text-align:center;
+	margin:150px 0px;
+}
+
+.cart-blank h3{
+	margin:80px 0px;
+}
 
 
 /*まっつん入力部分*/
@@ -365,4 +371,66 @@ li{
 
 .form{
 	width:100px;
+}
+
+/*商品追加ページ*/
+
+.post-product{
+    padding:20px 50px;
+	text-align:left;
+    border: solid 3px #808080;
+    width:50%;
+    margin:0 auto;
+}
+
+
+/*販売ステータス*/
+.form-control{
+	width:100%;
+}
+
+.disc-add{
+	text-align:left;
+}
+
+.add-item{
+	margin:40px 0px;
+}
+
+.add-item div{
+	display:inline-block;
+	margin:5px 10px;
+}
+
+.add-item p{
+	font-size:15px;
+}
+
+/*ディスク順、曲順入力フォーム*/
+.num-form{
+	width:10%;
+}
+
+/*各項目名*/
+.label{
+	font-weight:400;
+	font-size:15px;
+	color:black;
+}
+
+/*アーティスト、ジャンル、レーベルの入力部分*/
+#artist-outer,
+#genre-outer,
+#label-outer{
+	display:block;
+}
+
+/*保存ボタンの中央寄せ*/
+.product-submit{
+	text-align:center;
+}
+
+/*保存ボタンの修飾*/
+.p-submit{
+	padding:10px 40%;
 }
