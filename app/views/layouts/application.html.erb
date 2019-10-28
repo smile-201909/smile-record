@@ -10,13 +10,13 @@
 
   　<meta charset="utf-8">
     <!-- src="URL" について：add.jsと共通のディレクトリ(= app)が３つ上にあるので . が３つではないのか？ -->
-<!--     <script type="text/javascript" src= "...assets/javascripts/add.js"></script> -->
+    <!-- <script type="text/javascript" src= "...assets/javascripts/add.js"></script> -->
     <script type="text/javascript">
-  　　$(function() {
+      $(function() {
         $("#artist-outer").load("../../artists/new #artist-inner");
         $("#genre-outer").load("../../genres/new #genre-inner");
         $("#label-outer").load("../../labels/new #label-inner");
-  　　})
+      })
     </script>
 
     <!-- GoogleFonts 自家製フォント工房 -->
@@ -24,103 +24,76 @@
 
     <% self_css_path = "/assets/"+controller.controller_name  %>
     <%= stylesheet_link_tag self_css_path, :media => "all" %>
-
-
   </head>
 
   <!-- bodyタグを装飾。 link="クリック前の色" vlink="クリック後の色" -->
   <body link="black" vlink="black">
-
     <div id="container">
-
-          <% if user_signed_in? %> <!-- エンドユーザ サインイン時 -->
-
-          <div class="clearfix header">
-
-            <div class="header-left">
-              <%= link_to products_path do %>Smile Rec<span>☻</span>rd<% end %>
-            </div>
-
-            <div class="header-right">
-
-              <li class="menu-item">
-                  <%= form_tag(search_path, :method => 'get') do %>
-                    <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                    <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
-                    <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
-                  <% end %><!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                  <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
-              </li>
-
-              <li class="menu-item"><%= link_to user_path(current_user.id), class: 'link' do %>マイページ<% end %></li>
-
-              <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete, class: 'link text-dark' do %>logout</p><% end %></li>
-              <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
-            </div>
+      <% if user_signed_in? %> <!-- エンドユーザ サインイン時 -->
+        <div class="clearfix header">
+          <div class="header-left">
+            <%= link_to products_path, style: "color: black" do %><strong>Smile Rec<span>☻</span>rd</strong><% end %>
           </div>
-
-          <% elsif administrator_signed_in? %> <!-- 管理者 サインイン時 -->
-
-            <div class="clearfix header">
-
-              <div class="header-left">
-                <%= link_to administrators_products_path do %>Smile Rec<span>☻</span>rd<% end %>
-              </div>
-
-
-            <div class="header-right">
-                <li class="menu-item">
-                  <%= form_tag(search_path, :method => 'get') do %>
-                    <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                    <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
-                    <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
-                  <% end %>
-                </li>
-                <li class="menu-item"><%= link_to  administrators_top_path, class: 'link' do %>管理者ページ<% end %></li>
-
-                <li class="menu-item"><%= link_to  destroy_administrator_session_path, method: :delete, class: 'link' do %> 管理者ログアウト</i><% end %></li>
-            </div>
-
-
-          <% else %> <!-- ログアウト状態 -->
-
-            <div class="clearfix header">
-              <div class="header-left">
-                <%= link_to products_path do %>Smile Rec<span>☻</span>rd<% end %>
-              </div>
-
-              <div class="header-right">
-                <li class="menu-item">
-                  <%= form_tag(search_path, :method => 'get') do %>
-                    <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
-                    <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
-                  <% end %>
-                </li>
-                  <li class="menu-item"><%= link_to new_user_registration_path, class: 'link' do %>sign up<% end %></li>
-
-                  <li class="menu-item"><%= link_to new_user_session_path, class: 'link' do %>login<% end %></li>
-
-                  <li class="menu-item"><%= link_to carts_path do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
-              </div>
-            </div>
-
-          <% end %>
-
-          <%# サイドバー %>
-          <% if administrator_signed_in? %>
-            <ul>
-              <li><%= link_to "管理者ページ", administrators_top_path, class: 'link' %></li>
-              <li><%= link_to "商品一覧", administrators_products_path, class: 'link' %></li>
-              <li><%= link_to "ユーザ一覧", administrators_users_path, class: 'link' %></li>
-              <li><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link'%></li>
-              <li><%= link_to "入荷履歴", administrators_arrivals_path, class: 'link' %></li>
-            </ul>
-          <% end %>
-
-
-
-  </div>
-
-    <%= yield %>
+          <div class="header-right">
+            <li class="menu-item">
+              <%= form_tag(search_path, :method => 'get') do %>
+                <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                  <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
+                  <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
+                <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+              <% end %>
+              <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
+            </li>
+            <li class="menu-item"><%= link_to user_path(current_user.id), class: 'link', style: "color: black" do %><strong>マイページ</strong><% end %></li>
+            <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete, class: 'link', style: "color: black" do %><strong>logout</strong></p><% end %></li>
+            <li class="menu-item"><%= link_to carts_path, style: "color: black" do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
+          </div>
+        </div>
+      <% elsif administrator_signed_in? %> <!-- 管理者 サインイン時 -->
+        <div class="clearfix header">
+          <div class="header-left">
+            <%= link_to administrators_products_path, style: "color: black" do %><strong>Smile Rec<span>☻</span>rd</strong><% end %>
+          </div>
+          <div class="header-right">
+            <li class="menu-item">
+              <%= form_tag(search_path, :method => 'get') do %>
+                <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                <!-- fontawesomeのアイコンをsubmit_tag に埋めるための記述 -->
+                <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
+              <% end %>
+            </li>
+            <li class="menu-item"><%= link_to  administrators_top_path, class: 'link', style: "color: black" do %>管理者ページ<% end %></li>
+            <li class="menu-item"><%= link_to  destroy_administrator_session_path, method: :delete, class: 'link', style: "color: black" do %> <strong>管理者ログアウト</strong></i><% end %></li>
+          </div>
+      <% else %> <!-- ログアウト状態 -->
+        <div class="clearfix header">
+          <div class="header-left">
+            <%= link_to products_path, style: "color: black" do%><strong>Smile Rec<span>☻</span>rd</strong><% end %>
+          </div>
+          <div class="header-right">
+            <li class="menu-item">
+              <%= form_tag(search_path, :method => 'get') do %>
+                <%= text_field_tag :search,"", :placeholder => "キーワードを入力",:class=>"search-form" %> <!-- searchはカラム名(productsテーブルに、検索用に新しく作成) -->
+                <%= button_tag type: 'submit', class: 'btn search-btn btn-primary' do %><i class="fa fa-search"></i><% end %>
+              <% end %>
+            </li>
+            <li class="menu-item"><%= link_to new_user_registration_path, class: 'link', style: "color: black" do %><strong>sign up</strong><% end %></li>
+            <li class="menu-item"><%= link_to new_user_session_path, class: 'link', style: "color: black" do %><strong>login</strong><% end %></li>
+            <li class="menu-item"><%= link_to carts_path, style: "color: black" do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
+          </div>
+        </div>
+      <% end %>
+      <%# サイドバー %>
+      <% if administrator_signed_in? %>
+        <ul class="col-md-12 sidebar">
+          <li type="button" class="admin-item"><%= link_to "管理者ページ", administrators_top_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="admin-item"><%= link_to "商品一覧", administrators_products_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="admin-item"><%= link_to "ユーザ一覧", administrators_users_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="admin-item"><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="admin-item"><%= link_to "入荷履歴", administrators_arrivals_path, class: 'link', style: "color: white" %></li>
+        </ul>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

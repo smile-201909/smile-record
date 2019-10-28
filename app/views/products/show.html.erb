@@ -40,9 +40,7 @@
             <p><%= f.select :product_amount, 1..@product.stock_amount %>  枚</p>
             <p><%= f.submit "カートに入れる" ,:class=>"button" %></p>
           <% end %>
-
         <% end %>
-
       <% end %>
       <p><%= link_to "商品一覧に戻る", products_path %></p>
     </div>

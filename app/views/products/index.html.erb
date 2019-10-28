@@ -21,57 +21,54 @@
 
 
 
-    <% if administrator_signed_in? %>
+<% if administrator_signed_in? %>
 
   <div id="infinite-scroll">
-  <div class="products">
+    <div class="products">
 
-      <div class="contents clearfix">
+      <div class="clearfix">
 
         <% @products.each do |product| %>
-          	<ul>
-      	    	<li class="contents-item">
-                <!-- 商品画像 -->
-      				<%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
-                <!-- 商品名 -->
-      		        <p><%= link_to administrators_product_path(product.id) do %><%= product.product_name %><% end %></p>
-                <!-- 商品価格 -->
-      		        <%= (product.price*1.1).floor %>円（税込み）
-      		        <%# .floorは小数点以下切り捨て %>
+          <div class="contents-item">
+            <!-- 商品画像 -->
+            <%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %>
+            <!-- 商品名 -->
+            <p><%= link_to administrators_product_path(product.id) do %><%= product.product_name %><% end %></p>
+            <!-- 商品価格 -->
+            <%= (product.price*1.1).floor %>円（税込み）
+            <%# .floorは小数点以下切り捨て %>
 
-                  <% if product.status == "販売停止中" %>
-                  <p><%= product.status %></p>
-                  <% end %>
-                  <!-- 在庫の有無　一旦コメントアウト -->
-                  <% if product.stock_amount == 0 %>
-                    <p> -- SOLD OUT -- </p>
-                  <% end %>
+            <% if product.status == "販売停止中" %>
+              <p><%= product.status %></p>
+            <% end %>
+            <!-- 在庫の有無　一旦コメントアウト -->
+            <% if product.stock_amount == 0 %>
+              <p> -- SOLD OUT -- </p>
+            <% end %>
 
-      		    </li>
-      	    </ul>
-
+          </div>
         <% end %>
+      </div>
       <%= paginate @products %>
     </div>
   </div>
-  </div>
-    <% else %>
+
+<% else %>
 
   <div id="infinite-scroll">
-  <div class="products">
+    <div class="products">
 
-    <div class="contents clearfix">
+      <div class="clearfix">
 
-      <% @products.each do |product| %>
-        <ul>
-          <li class="contents-item">
+        <% @products.each do |product| %>
+          <div class="contents-item">
             <!-- 商品画像 -->
             <div><%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "200x200" %></div>
             <!-- 商品名 -->
             <div><%= link_to product_path(product.id) do %><%= product.product_name %><% end %></div>
             <!-- 商品価格 -->
             <div><%= (product.price*1.1).floor %>円（税込み）</div>
-              <%# .floorは小数点以下切り捨て %>
+            <%# .floorは小数点以下切り捨て %>
 
 
             <% if product.status == "販売停止中" %>
@@ -81,10 +78,12 @@
             <% if product.stock_amount == 0 %>
               <p> -- SOLD OUT -- </p>
             <% end %>
-          </li>
-        </ul>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%= paginate @products %>
+    </div>
   </div>
-  <% end %>
-        <%= paginate @products %>
-  </div>
+
+<% end %>
+
