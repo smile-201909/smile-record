@@ -1,45 +1,52 @@
-<h1>新規住所の追加</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+		<h1 class="text-center">新規住所の追加</h1>
+			<div class="box1">
+				<%= form_for(@address, url: user_addresses_path)  do |f| %>
 
+						<% if @address.errors.any? %>
+							<h3>入力した内容にエラーが<%= @address.errors.count %>件あります</h3>
+							<ul>
+								<% @address.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+								<% end %>
+							</ul>
+						<% end %>
+					<p class="text-center">
+						<h5>住所の名前</h5>
+						<%= f.text_field :pulldown_name %>
+					</p>
+					<div class="name1">
+						<h5>姓（漢字）</h5>
+						<%= f.text_field :family_name,:class=>"form" %>
+					</div>
+					<div class="name1">
+						<h5>名（漢字）※全角入力</h5>
+						<%= f.text_field :first_name,:class=>"form" %>
+					</div>
+					<div class="name1">
+						<h5>姓（カナ）</h5>
+						<%= f.text_field :family_name_kana,:class=>"form" %>
+					</div>
+					<div class="name1">
+						<h5>名（カナ）※全角入力</h5>
+						<%= f.text_field :first_name_kana,:class=>"form" %>
+					</div>
+					<h5>郵便番号 ※半角入力、ハイフン不要</h5>
+					<%= f.text_field :post %>
 
-<!-- form_for部分 -->
-<%= form_for(@address, url: user_addresses_path)  do |f| %>
+					<h5>住所</h5>
+					<%= f.text_area :a_address %>
 
-	<% if @address.errors.any? %>
-		<h3>入力した内容にエラーが<%= @address.errors.count %>件あります</h3>
-		<ul>
-			<% @address.errors.full_messages.each do |message| %>
-			<li><%= message %></li>
-			<% end %>
-		</ul>
-	<% end %>
-
-	<h5>住所の名前</h5>
-	<%= f.text_field :pulldown_name %>
-
-	<h4>姓（漢字）</h4>
-	<%= f.text_field :family_name %>
-
-	<h4>名（漢字）</h4>
-	<%= f.text_field :first_name %>
-
-	<h5>姓（カナ）</h5>
-	<%= f.text_field :family_name_kana %>
-
-	<h5>名（カナ）</h5>
-	<%= f.text_field :first_name_kana %>
-
-	<h5>郵便番号</h5>
-	<%= f.text_field :post %>
-
-	<h5>住所</h5>
-	<%= f.text_field :a_address %>
-
-	<h5>電話番号</h5>
-	<%= f.text_field :phone %>
-
-
-
-
-	<%= f.submit '保存' %>
-
-<% end %>
+					<h5>電話番号 ※半角入力、ハイフン不要</h5>
+					<%= f.text_field :phone %>
+					
+					<p class="text-center">
+						<%= f.submit '保存' %>
+					</p>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
