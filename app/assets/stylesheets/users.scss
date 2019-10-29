@@ -1,3 +1,41 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.user-lists {
+	font-size: 30px;
+	margin-top: 200px;
+	text-align: center;
+	.array {
+        font-size: 20px;
+        text-align: right;
+    }
+    .user-list {
+        height: 50px;
+        border-bottom: 3px solid orange;
+        margin-bottom: 10px;
+
+    }
+    .user-list-left {
+        float: left;
+        margin-left: 20px;
+    }
+    .user-list-right {
+        text-align: right;
+        font-size: 15px;
+        padding-top: 5px;
+    }
+    button {
+        height: 40px;
+        width: 60px;
+        background-color: #FF9933;
+        border-radius: 5px;
+        a {
+            color: #fff;
+        }
+    }
+    #search {
+        outline:2px solid #d27d00;
+    }
+}

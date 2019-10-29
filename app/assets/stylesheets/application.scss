@@ -28,6 +28,9 @@
 	box-sizing: border-box;
 }
 
+body {
+	background-color: #F5DEB3;
+}
 
 /*子要素をfloat状態にした時、親要素に.clearfixをつけて親要素の高さが0になるのを防ぐ*/
 .clearfix::after {
@@ -48,6 +51,7 @@ h1,h2{
 	/*GoogleFonts 自家製フォント工房*/
 	font-family: "M PLUS Rounded 1c";
 	font-size:30px;
+	
 }
 
 li{
@@ -89,6 +93,7 @@ form .search-form{
 .header{
 	height:122px;
 	background-color: #f2ba1b;
+	display: block;
 	position:fixed;
 	/*position:fixed;によるズレを防ぐ*/
 	width:100%;
@@ -574,7 +579,19 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 	width:100px;
 }
 
+
+// サイドバー
 .sidebar {
+	position: fixed;
+	top: 120px;
 	margin-top: 5px;
 	margin-bottom: 40px;
+	z-index: 10;
+	.btn-warning:hover {
+		opacity: 0.6;
+	}
 }
+
+// 管理者ユーザー一覧
+
+
