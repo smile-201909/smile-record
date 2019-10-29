@@ -37,6 +37,7 @@ body {
 content: "";
 display: block;
 clear: both;
+height: 200px;
 }
 
 /*サイト幅*/
@@ -47,7 +48,7 @@ clear: both;
 
 h2{
 	text-align:center;
-	margin:200px 0px 50px 0px;
+	margin:0px 0px 50px 0px;
 	/*GoogleFonts 自家製フォント工房*/
 	font-family: "M PLUS Rounded 1c";
 	font-size:30px;
@@ -94,9 +95,8 @@ border: solid 2px #d27d00;/*線色*/
 	height:122px;
 	background-color: #f2ba1b;
 	display: block;
-	position:fixed;
-	/*position:fixed;によるズレを防ぐ*/
 	width:100%;
+	position: fixed;
 	top:0;
 	left:0;
 	z-index:1;
@@ -410,6 +410,4 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
 // 管理者ユーザー一覧
-
-
 
