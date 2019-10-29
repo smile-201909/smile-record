@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <h4>ユーザ情報編集</h4>
-      <div class="box1">
+    <div class="col-md-8 col-md-offset-2 edit-user-title">
+      <h2>ユーザ情報編集</h2>
+      <div class="box1 edit-user-info">
         <%= form_for(@user) do |f| %>
               <div class="name1">
                 <h5>姓（漢字）</h5>
@@ -39,7 +39,7 @@
             <p class="text-center">
                 <%= f.submit '保存' %>
             </p>
-         <% end %>
+        <% end %>
             <p class="text-center">
                 <%= link_to 'マイページへ', user_path(@user) %>
             </p>
