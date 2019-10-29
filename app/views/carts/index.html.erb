@@ -22,31 +22,31 @@
 	<div class="cart clearfix">
 		<div class="cart-left clearfix">
 				<% @cart_items.each do |cart_item|%>
-				<li class="cart-item">
-					<div>
-						<%= link_to product_path(cart_item.product_id) do %>
-						<!-- 商品画像 -->
-							<%= attachment_image_tag cart_item.product, :product_image, fallback: "no_image.jpg", size: "150x150",class: "cart-item-logo" %>
-						<% end %>
-					</div>
+					<div class="cart-item">
+						<div>
+							<%= link_to product_path(cart_item.product_id) do %>
+							<!-- 商品画像 -->
+								<%= attachment_image_tag cart_item.product, :product_image, fallback: "no_image.jpg", size: "150x150",class: "cart-item-logo" %>
+							<% end %>
+						</div>
 
-					<div class="cart-item-string">
-							<!-- 商品名 -->
-							<p><%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%></p>
-							<!-- 税込価格 -->
-							<p><%= (cart_item.product.price*1.1).floor %>円（税込み）</p>
-							<!-- 購入数編集 -->
-						    <p><%= fields_for "cart_items[]", cart_item do |fi| %>
-								<p><%= fi.select :product_amount, 1..cart_item.product.stock_amount %>枚
-								<!-- プルダウンには１〜在庫数までを表示 -->
-					    	<% end %>
-					    	<!-- 削除 -->
-							<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
-							<!-- 数量を更新 -->
-							<%= submit_tag "数量を更新" %></p>
+						<div class="cart-item-string">
+								<!-- 商品名 -->
+								<p><%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%></p>
+								<!-- 税込価格 -->
+								<p><%= (cart_item.product.price*1.1).floor %>円（税込み）</p>
+								<!-- 購入数編集 -->
+							    <%= fields_for "cart_items[]", cart_item do |fi| %>
+									<%= fi.select :product_amount, 1..cart_item.product.stock_amount %>枚
+									<!-- プルダウンには１〜在庫数までを表示 -->
+						    	<% end %>
+						    	<!-- 削除 -->
+								<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
+						</div>
 					</div>
-				</li>
 				<% end %>
+					<!-- 数量を更新 -->
+					<%= submit_tag "数量を更新" %></p>
 
 			<% end %>
 		</div>
