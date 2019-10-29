@@ -93,6 +93,7 @@ border: solid 2px #d27d00;/*線色*/
 .header{
 	height:122px;
 	background-color: #f2ba1b;
+	display: block;
 	position:fixed;
 	/*position:fixed;によるズレを防ぐ*/
 	width:100%;
@@ -407,3 +408,8 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 		opacity: 0.6;	
 	}
 }
+
+// 管理者ユーザー一覧
+
+
+
