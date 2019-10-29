@@ -174,9 +174,10 @@ form .search-form{
 }
 
 .product-image{
-	width:600px;
+	width:300px;
 	margin:0 auto;
 	margin-bottom:15px;
+	text-align:center;
 }
 
 
@@ -198,9 +199,22 @@ form .search-form{
 }
 
 .product_name{
-	font-size:30px;
-	margin-top:20px;
+	text-align:center;
+	margin:20px 0px 30px 0px;
 }
+
+.product-detail-item{
+	font-size:20px;
+}
+
+
+.disc-name{
+	padding-top:20px;
+	font-size:20px;
+}
+
+
+
 
 .song{
 	/*ulタグにより、<li>タグが浮くのを防ぐ*/
@@ -209,8 +223,7 @@ form .search-form{
 
 .song-list {
 	width:250px;
-    padding: 0.5em 1em;
-    margin: 2em 0;
+    padding: 10px 10px;
     background: #FFF;
     border: solid 1px #000000;/*線*/
     border-radius: 10px;/*角の丸み*/

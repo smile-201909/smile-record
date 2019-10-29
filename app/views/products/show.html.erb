@@ -1,11 +1,11 @@
 <div class="product-info clearfix">
   <h2>商品詳細</h2>
-  <div class="product-image"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: 'no_image.jpg', size: '600x600' %></div>
+  <div class="product-image"><%= attachment_image_tag @product, :product_image, format: 'jpeg', fallback: 'no_image.jpg', size: '300x300' %></div>
   <div class="product-detail">
     <div class="detail-left">
       <h3>曲リスト</h3>
       <% @discs.each do |disc| %>
-        <p>ディスク <%= disc.disc_name %></p>
+        <p class="disc-name">ディスク <%= disc.disc_name %></p>
         <ul class="song">
           <% disc.songs.each do |song| %>
             <li class="song-list"><%= song.song_num %>.<%= song.song_name %></li>
@@ -14,15 +14,15 @@
       <% end %>
     </div>
     <div class="detail-right">
-      <p class="product_name"><%= @product.product_name %></p>
-      <p><%= @product.artist.artist_name %></p>
-      <p><%= @product.label.label_name %></p>
-      <p><%= (@product.price*1.1).floor %>円（税込み）</p>
-      <p>在庫：　<%= @product.stock_amount %>枚</p>
+      <h3 class="product_name"><%= @product.product_name %></h3>
+      <p class="product-detail-item"><%= @product.artist.artist_name %></p>
+      <p class="product-detail-item"><%= @product.label.label_name %></p>
+      <p class="product-detail-item"><%= (@product.price*1.1).floor %>円（税込み）</p>
+      <p class="product-detail-item">在庫：　<%= @product.stock_amount %>枚</p>
       <% if @product.status == "販売停止中" %>
-        <p><%= @product.status %></p>
+        <p class="product-detail-item"><%= @product.status %></p>
       <% end %>
-      <p><%= @product.genre.genre_name %></p>
+      <p class="product-detail-item"><%= @product.genre.genre_name %></p>
 
 
       <% if administrator_signed_in? %>
@@ -34,7 +34,7 @@
             <%= link_to "削　除", product_path(@product), method: :delete, data:{ confirm: '本当に消しますか？' },:class=>"change-button" %>
           </div>
         </div>
-        <%= link_to "この商品の入荷履歴を見る", administrators_arrival_path(@product.id) %>
+        <p><%= link_to "この商品の入荷履歴を見る", administrators_arrival_path(@product.id) %></p>
       <% else %>
 
         <% if @product.stock_amount != 0 && @product.status != "販売停止中" %>
