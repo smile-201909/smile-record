@@ -1,33 +1,31 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
         <h2>ユーザ詳細</h2>
           <div class="box1">
-              <h5>姓（漢字）</h5>
-              <%= @user.family_name %>
-              <h5>名（漢字）</h5>
-              <%= @user.first_name %>
-              <h5>姓（カナ）</h5>
-              <%= @user.family_name_kana %>
-              <h5>姓（カナ）</h5>
-              <%= @user.first_name_kana %>
-                  <h5>郵便番号※半角入力、ハイフン不要</h5>
-                  <%= @address.post %>
-                  <h5>住所</h5>
-                  <%= @address.a_address %>
-                  <h5>電話番号※半角入力、ハイフン不要</h5>
-                  <%= @address.phone %>
-              <h5>メールアドレス</h5>
-              <%= @user.email %>
-              <button type="button" class="btn btn-success">
-                <%= link_to 'Edit', edit_user_path(@user.id) %>
-              </button>
-              <button type="button" class="btn btn-warning">
-                <%= link_to user_addresses_path(@user.id) do %>お届け先の住所の登録・変更・削除はこちら<% end %>
-              </button>
-              <button type="button" class="btn btn-danger">
-                <%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' }%>
-              </button>
+            <div class="box1-detail">
+
+              <div><h5>姓（漢字）</h5>
+              <%= @user.family_name %></div>
+              <div><h5>名（漢字）</h5>
+              <%= @user.first_name %></div>
+              <div><h5>姓（カナ）</h5>
+              <%= @user.family_name_kana %></div>
+              <div><h5>姓（カナ）</h5>
+              <%= @user.first_name_kana %></div>
+                  <div><h5>郵便番号※半角入力、ハイフン不要</h5>
+                  <%= @address.post %></div>
+                  <div><h5>住所</h5>
+                  <%= @address.a_address %></div>
+                  <div><h5>電話番号※半角入力、ハイフン不要</h5>
+                  <%= @address.phone %></div>
+              <div><h5>メールアドレス</h5>
+              <%= @user.email %></div>
+
+            </div>
+                <div class="user-detail"><%= link_to '編集', edit_user_path(@user.id),:class=>"user-detail-button" %></div>
+                <div class="user-detail"><%= link_to user_addresses_path(@user.id),:class=>"user-detail-button" do %>お届け先の住所の登録・変更・削除はこちら<% end %></div>
+                <div class="user-leave"><%= link_to '退会', user_path(@user), method: :delete, data: { confirm: '退会しますか？' },:class=>"user-leave-button" %></div>
           </div>
     </div>
     <div class="col-lg-8">
