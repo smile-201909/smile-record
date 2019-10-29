@@ -1,17 +1,23 @@
 <div class="nested-fields form-inline">
-  <div class="form-group">
+  <div class="add-item form-group">
   	<p>ディスク名</p>
-	<%= f.number_field :disc_num, min:1 %>
+	<%= f.number_field :disc_num, min:1, :class=>"num-form" %>
 	<%= f.text_field :disc_name %>
 	<%= link_to_remove_association "ディスクを削除", f %>
   </div>
-	  <p>曲名</p>
-	<%= f.fields_for :songs do |song| %>
-		<%= render 'products/song_fields', f: song %><!-- cocoonの仕様の表記。renderで、_disc_fields.html.erb を呼び出す -->
-		<!-- ↑ f: song の f はproductのform_forで定義した変数。 -->
-	<% end %>
+  <div class="add-item">
+	  <p class="song-name">曲名</p>
+		<%= f.fields_for :songs do |song| %>
+			<%= render 'products/song_fields', f: song %><!-- cocoonの仕様の表記。renderで、_disc_fields.html.erb を呼び出す -->
+			<!-- ↑ f: song の f はproductのform_forで定義した変数。 -->
+		<% end %>
 		<div class = "links">
-			<%= link_to_add_association "曲を追加", f, :songs %> <!-- 追加ボタンは階層が一つ上のviewファイル内に書く -->
+			<%= link_to_add_association "曲を追加", f, :songs,:class=>"song-add-button" %> <!-- 追加ボタンは階層が一つ上のviewファイル内に書く -->
 		</div>
 
+	</div>
+
 </div>
+
+
+

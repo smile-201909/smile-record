@@ -11,62 +11,83 @@
     </ul>
 <% end %>
 
-<%= form_for(@product, url: administrators_products_path) do |f| %>
-    <div>
+<div class="post-product">
 
-            <%= f.label :artist_id %>
-            <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => '選んでください' %>
-            <%= link_to '新規アーティストを追加', new_artist_path %>
+<%= form_for(@product, url: administrators_products_path) do |f| %>
+
+        <div class="add-item">
+            <div>
+            <%= f.label :artist_id, :class=>'label' %>
+            <%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => '選んでください', class: 'form-control' %>
+            </div>
 
             <div id="artist-outer">
             <!-- ここに　artist/new ページをインクルード -->
             </div>
+        </div>
 
+        <div class="add-item">
             <div>
-            <%= f.label :genre_id %>
-            <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => '選んでください' %>
-            <%= link_to '新規ジャンルを追加', new_genre_path %>
+            <%= f.label :genre_id, :class=>'label' %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => '選んでください', class: 'form-control' %>
             </div>
-            <div>
 
             <div id="genre-outer">
             <!-- ここに　genre/new ページをインクルード -->
             </div>
+        </div>
 
-            <%= f.label :label_id %>
-            <%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => '選んでください' %>
-            <%= link_to '新規レーベルを追加', new_label_path %>
+        <div class="add-item">
+            <div>
+            <%= f.label :label_id, :class=>'label' %>
+            <%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => '選んでください', class: 'form-control' %>
+            </div>
 
             <div id="label-outer">
             <!-- ここに　label/new ページをインクルード -->
             </div>
-
-
-            <p>シングル/アルバム名</p>
-            <%= f.text_field :product_name %>
-            <p>ジャケット画像：</p>
-            <%= f.attachment_field :product_image %>
-
-
-            <p>販売ステータス：</p>
-            <%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %>
-            <p>価格（税抜）</p>
-            <%= f.number_field :price %>
-            <p></p>
-            <p>入荷数量</p>
-            <%= f.fields_for 'arrivals' do |arrival| %>
-                <%= arrival.number_field :arrival_amount %>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
-            <% end %>
-            <%= f.fields_for 'discs' do |disc| %>
-                <%= render 'products/disc_fields', f: disc %> <!-- cocoonの仕様の表記。renderで、_disc_fields.html.erb を呼び出す -->
-            <% end %>
-            <div class = “links”>
-                <%= link_to_add_association 'ディスクを追加',f, :discs %>
-            </div>
-            <%= f.submit '保存' %>
-
-
         </div>
 
+        <div class="add-item">
+            <div><%= f.label :product_name, :class=>'label' %></div>
+            <div><%= f.text_field :product_name %></div>
+        </div>
+        <div class="add-item">
+                <div><%= f.label :product_image, :class=>'label' %></div>
+                <div><%= f.attachment_field :product_image %></div>
+        </div>
+
+            <div class="add-item">
+                <div><%= f.label :status, :class=>'label' %></div>
+                <div><%= f.select :status, Product.statuses.keys.to_a, {}, class: 'form-control' %></div>
+            </div>
+            <div class="add-item">
+                <div><%= f.label :price, :class=>'label' %></div>
+                <div><%= f.number_field :price %></div>円
+            </div>
+            <div class="add-item">
+                    <%= f.fields_for 'arrivals' do |arrival| %>
+                        <div><%= f.label :arrival_amount, :class=>'label' %></div>
+                        <!-- ↓ label の機能追加のため、id:"product_arrival_amount" を追加(検証) -->
+                        <!-- アソシエーションのaccepts_nested_attributes_forでidが変わっているため -->
+                        <div><%= arrival.number_field :arrival_amount, id:"product_arrival_amount" %></div>枚 <!-- 一番左のarrivalは上の行で定義した変数 -->
+                    <% end %>
+            </div>
+
+            <div class="add-item disc-add">
+                <%= f.fields_for 'discs' do |disc| %>
+                    <%= render 'disc_fields', f: disc %>
+                <% end %>
+                <div class="links">
+                    <%= link_to_add_association 'ディスクを追加',f, :discs,:class=>"disc-add-button" %>
+                </div>
+            </div>
+
+
+            <div class="product-submit">
+            <%= f.submit '保存',:class=>'button p-submit' %>
+            </div>
 <% end %>
+
+</div>
 

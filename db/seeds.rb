@@ -19,7 +19,15 @@ Genre.create(:genre_name => 'JPOP')
 Label.create(:label_name => 'レーベル１')
 
 
+
+# 管理者ログイン情報
 Administrator.create(:email => 'example@admin.com', :password => '000000')
+
+
+# エンドユーザのログインデータ１００人分
+
+
+# 商品データ１００個分
 
 if Rails.env == "development"
     100.times do |i|
