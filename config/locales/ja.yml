@@ -1,0 +1,16 @@
+---
+ja:
+  activerecord:
+  attributes:
+      artist_id: アーティスト名
+      genre_id: ジャンル名
+      label_id: レーベル名
+      product_name: シングル/アルバム名
+      product_image: ジャケット画像
+      status: 販売状況
+      price: 税抜価格
+      arrival_amount: 入荷数量（在庫増減数）
+      artist_name: +追加
+      genre_name: +追加
+      label_name: +追加
+      stock_amount: 在庫数

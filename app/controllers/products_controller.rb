@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
-  
+
 def index
-  @products = Product.page(params[:page])
+  #.per(12)は、kaminariで12件表示
+  @products = Product.page(params[:page]).per(16)
 end
 
 def show

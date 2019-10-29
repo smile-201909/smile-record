@@ -9,8 +9,11 @@
 
 
 <% if @cart_items.blank? %>
+<div class="cart-blank">
 	<h3>カート内に商品がありません。</h3>
-	<%= link_to "商品一覧に戻る", products_path %>
+	<%= link_to "商品一覧に戻る", products_path,:class=>"button" %>
+</div>
+
 <% else %>
 	<!-- each文をform_tagで囲って数量の一括更新を実装 -->
 	<%= form_tag cart_update_path, method: :put do %>
