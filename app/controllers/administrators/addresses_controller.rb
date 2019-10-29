@@ -11,7 +11,7 @@ class Administrators::AddressesController < ApplicationController
   def edit
     @user = User.find(params[:user_id])
     @address = Address.find(params[:id])
-    render "administrators/addresses/edit"
+    render "addresses/edit"
   end
 
   def update
@@ -22,7 +22,7 @@ class Administrators::AddressesController < ApplicationController
       redirect_to administrators_user_addresses_path(@user.id)
     else
       flash[:notice] = "error "
-      render 'administrators/addresses/edit'
+      render 'addresses/edit'
     end
   end
 

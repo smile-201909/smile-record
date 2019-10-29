@@ -46,7 +46,7 @@
             </li>
             <li class="menu-item"><%= link_to user_path(current_user.id), class: 'link', style: "color: black" do %><strong>マイページ</strong><% end %></li>
             <li class="menu-item"><%= link_to destroy_user_session_path, method: :delete, class: 'link', style: "color: black" do %><strong>logout</strong></p><% end %></li>
-            <li class="menu-item cart-item"><%= link_to carts_path, style: "color: black" do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
+            <li class="menu-item"><%= link_to carts_path, style: "color: black" do %><i class="fa fa-shopping-cart fa-2x "></i><% end %></li>
           </div>
         </div>
       <% elsif administrator_signed_in? %> <!-- 管理者 サインイン時 -->
@@ -86,11 +86,11 @@
       <%# サイドバー %>
       <% if administrator_signed_in? %>
         <ul class="col-md-12 sidebar">
-          <li type="button" class="btn btn-success btn-lg"><%= link_to "管理者ページ", administrators_top_path, class: 'link', style: "color: white" %></li>
-          <li type="button" class="btn btn-success btn-lg"><%= link_to "商品一覧", administrators_products_path, class: 'link', style: "color: white" %></li>
-          <li type="button" class="btn btn-success btn-lg"><%= link_to "ユーザ一覧", administrators_users_path, class: 'link', style: "color: white" %></li>
-          <li type="button" class="btn btn-success btn-lg"><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link', style: "color: white" %></li>
-          <li type="button" class="btn btn-success btn-lg"><%= link_to "入荷履歴", administrators_arrivals_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="btn btn-warning btn-lg" style="background-color: orange"><%= link_to "管理者ページ", administrators_top_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="btn btn-warning btn-lg" style="background-color: orange"><%= link_to "商品一覧", administrators_products_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="btn btn-warning btn-lg" style="background-color: orange"><%= link_to "ユーザ一覧", administrators_users_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="btn btn-warning btn-lg" style="background-color: orange"><%= link_to "商品の追加・入荷", new_administrators_product_path, class: 'link', style: "color: white" %></li>
+          <li type="button" class="btn btn-warning btn-lg" style="background-color: orange"><%= link_to "入荷履歴", administrators_arrivals_path, class: 'link', style: "color: white" %></li>
         </ul>
       <% end %>
       <%= yield %>

@@ -9,7 +9,7 @@ class AdministratorsController < ApplicationController
     @address = Address.find_by(user_id: @user.id)
     @receipts = Receipt.order(created_at: :desc).page(params[:page]).per(5)
 
-    render "user/edit"
+    render "users/show"
   end
 
   def edit
