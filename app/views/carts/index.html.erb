@@ -32,7 +32,7 @@
 
 						<div class="cart-item-string">
 								<!-- 商品名 -->
-								<p><%= link_to cart_item.product.product_name, product_path(cart_item.product_id)%></p>
+								<p class="cart-product-name"><%= link_to cart_item.product.product_name, product_path(cart_item.product_id) %></p>
 								<!-- 税込価格 -->
 								<p><%= (cart_item.product.price*1.1).floor %>円（税込み）</p>
 								<!-- 購入数編集 -->
@@ -41,24 +41,22 @@
 									<!-- プルダウンには１〜在庫数までを表示 -->
 						    	<% end %>
 						    	<!-- 削除 -->
-								<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' } %>
+								<%= link_to "削除", cart_path(cart_item.id), method: :delete, data:{ confirm: '本当に消しますか？' },:class=>"cart-destroy-button" %>
 						</div>
 					</div>
 				<% end %>
 					<!-- 数量を更新 -->
-					<%= submit_tag "数量を更新" %></p>
+					<%= submit_tag "数量を更新",:class=>"cart-update-button" %></p>
 
 			<% end %>
 		</div>
-
 
 		<div class="cart-right">
 			<p>合計金額：</p>
 			<p class="purchase-price"><%= (@total_price*1.1).floor  %>円</p>
 			<p>送料：　500円（一律）</p>
 			<p><%= link_to "購入確認へ進む", new_receipt_path,:class=>"button" %></p>
-			<p><%= link_to "もっと買い物をする", products_path %></p>
+			<p><%= link_to "もっと買い物をする", products_path,:class=>"link" %></p>
 		</div>
 	</div>
-
 <% end %>
