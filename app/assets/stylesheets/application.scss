@@ -44,7 +44,7 @@
 
 h1,h2{
 	text-align:center;
-	margin:150px 0px 50px 0px;
+	margin:200px 0px 50px 0px;
 	/*GoogleFonts 自家製フォント工房*/
 	font-family: "M PLUS Rounded 1c";
 	font-size:30px;
@@ -64,14 +64,14 @@ form .search-form{
 /*検索ボタン*/
 .search-btn{
 	position: relative;
-display: inline-block;
-padding: 6px;
-text-decoration: none;
-background: #fd9535;/*色*/
-border-radius: 4px;/*角の丸み*/
-box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
-font-weight: bold;
-border: solid 2px #d27d00;/*線色*/
+	display: inline-block;
+	padding: 6px;
+	text-decoration: none;
+	background: #fd9535;/*色*/
+	border-radius: 4px;/*角の丸み*/
+	box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+	font-weight: bold;
+	border: solid 2px #d27d00;/*線色*/
 }
 
 .fa-search{
@@ -158,24 +158,6 @@ border: solid 2px #d27d00;/*線色*/
 	margin:20px 0px;
 }
 
-.admin-item :hover{
-	font-size:15px;
-	color: #FFF;
-	/*文字の周りに関する装飾*/
-	position: relative;
-	display: inline-block;
-	padding: 10px 30px;
-	text-decoration: none;
-	background: #fd9535;/*色*/
-	border-radius: 4px;/*角の丸み*/
-	box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
-	font-weight: bold;
-	border: solid 2px #d27d00;/*線色*/
-	margin:20px 0px;
-}
-
-
-
 /*商品一覧*/
 
 .contents-item{
@@ -246,25 +228,56 @@ border: solid 2px #d27d00;/*線色*/
 	margin:0px -15px 10px 10px;
 }*/
 
+/*商品詳細ページ*/
+
+/*編集、削除ボタン*/
+
+.product-change{
+	margin:20px 0px;
+}
+
+.change-button{
+    display:inline-block;
+	border: solid 2px #f2ba1b;/*線色*/
+	padding: 10px 30px;
+	background: #fff;/*色*/
+	border-radius: 4px;/*角の丸み*/
+	color:#fd9535;
+	margin:5px 0px 0px 30px;
+}
+
+.change-button:hover{
+    display:inline-block;
+	border: solid 2px #f2ba1b;/*線色*/
+	padding: 10px 30px;
+	background: #f2ba1b;/*色*/
+	border-radius: 4px;/*角の丸み*/
+	color:#ffffff;
+	margin:5px 0px 0px 30px;
+	text-decoration:none;
+}
+
 
 /*商品詳細　「カートに入れる」ボタン*/
 /*カート一覧ページ　購入画面へ進むボタン*/
 /*購入情報確認ページ　購入確定ボタン*/
 .button{
-/*文字そのものに関する装飾*/
-font-size:15px;
-color: #FFF;
-/*文字の周りに関する装飾*/
-position: relative;
-display: inline-block;
-padding: 10px 30px;
-text-decoration: none;
-background: #fd9535;/*色*/
-border-radius: 4px;/*角の丸み*/
-box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
-font-weight: bold;
-border: solid 2px #d27d00;/*線色*/
-margin:20px 0px;
+	/*文字そのものに関する装飾*/
+
+	font-size:15px;
+	color: #FFF;
+	/*文字の周りに関する装飾*/
+
+	position: relative;
+	display: inline-block;
+	padding: 10px 30px;
+	text-decoration: none;
+	background: #fd9535;/*色*/
+	border-radius: 4px;/*角の丸み*/
+	box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+	font-weight: bold;
+	border: solid 2px #d27d00;/*線色*/
+	margin:20px 0px;
 }
 
 .button:active {
@@ -418,13 +431,39 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
 /*商品追加ページ*/
+/*商品編集ページ*/
 
 .post-product{
-    padding:20px 50px;
+    padding:20px 100px;
 	text-align:left;
     border: solid 3px #808080;
     width:50%;
     margin:0 auto;
+    margin-bottom:100px;
+}
+
+
+/*アーティスト、レーベル、ジャンルの保存ボタン*/
+.create-button{
+    display:inline-block;
+	border: solid 1px #000;/*線色*/
+	padding: 0px 10px;
+	background: #fff;/*色*/
+	border-radius: 4px;/*角の丸み*/
+	color:#000;
+	margin:5px 0px 0px 5px;
+}
+
+
+.create-button:hover{
+    display:inline-block;
+	border: solid 1px #FD9534;/*線色*/
+	padding: 0px 10px;
+	background: #FD9534;/*色*/
+	border-radius: 4px;/*角の丸み*/
+	color:#fff;
+	margin:5px 0px 0px 5px;
+	text-decoration:none;
 }
 
 
@@ -450,10 +489,31 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 	font-size:15px;
 }
 
+
+/*ディスク、ソング等、cocoon関連*/
+
 /*ディスク順、曲順入力フォーム*/
 .num-form{
-	width:10%;
+	width:20%;
 }
+
+/*"曲名"*/
+.song-name{
+	margin:10px 0px 0px 10px;
+}
+
+/*"ディスクを追加"*/
+
+.disc-add-button{
+  margin:10px 0px 10px 10px;
+}
+/*"曲を追加"*/
+
+.song-add-button{
+  margin-left:10px;
+}
+
+
 
 /*各項目名*/
 .label{
@@ -479,6 +539,10 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 	padding:10px 40%;
 }
 
+/*在庫増減数、在庫数*/
+.stock{
+	　margin-left:30px;
+}
 
 /*まっつん入力部分*/
 

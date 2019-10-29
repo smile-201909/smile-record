@@ -1,7 +1,7 @@
 <div class="nested-fields form-inline">
   <div class="form-group">
-		<%= f.number_field :song_num %>
+		<%= f.number_field :song_num,:class=>"num-form" %>
 		<%= f.text_field :song_name %>
-		<%= link_to_remove_association "曲を削除", f %>
+		<%= link_to_remove_association "曲を削除", f, :class=>"add-button" %>
   </div>
 </div>

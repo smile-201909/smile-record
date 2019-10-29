@@ -63,7 +63,7 @@
         <% @products.each do |product| %>
           <div class="contents-item">
             <!-- 商品画像 -->
-            <div><%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "200x200" %></div>
+            <div><%= attachment_image_tag product, :product_image, fallback: "no_image.jpg", size: "100x100" %></div>
             <!-- 商品名 -->
             <div><%= link_to product_path(product.id) do %><%= product.product_name %><% end %></div>
             <!-- 商品価格 -->

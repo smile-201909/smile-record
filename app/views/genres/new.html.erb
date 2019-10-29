@@ -1,8 +1,9 @@
 <div id ="genre-inner">
 
 	<%= form_for(@genre) do |f| %>
-		<%= f.text_field :genre_name %>
-		<%= f.submit '保存' %>
+		<%= f.label :genre_name, :class=>'label' %>
+		<%= f.text_field :genre_name,id:"genre_genre_name" %>
+		<%= f.submit '保存',:class=>"create-button" %>
 	<% end %>
 
 </div>
