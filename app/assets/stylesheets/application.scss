@@ -50,6 +50,7 @@ a:hover{
 	content: "";
 	display: block;
 	clear: both;
+	height: 200px;
 }
 
 /*サイト幅*/
@@ -60,7 +61,7 @@ a:hover{
 
 h1,h2{
 	text-align:center;
-	margin:200px 0px 50px 0px;
+	margin:0px 0px 50px 0px;
 	/*GoogleFonts 自家製フォント工房*/
 	font-family: "M PLUS Rounded 1c";
 	font-size:30px;
@@ -106,9 +107,8 @@ form .search-form{
 	height:122px;
 	background-color: #f2ba1b;
 	display: block;
-	position:fixed;
-	/*position:fixed;によるズレを防ぐ*/
 	width:100%;
+	position: fixed;
 	top:0;
 	left:0;
 	z-index:1;
@@ -181,8 +181,9 @@ form .search-form{
 	text-align:center; /*各要素を中央寄せ*/
 	float: left;
 	width:25%;
-	margin-bottom:100px;
+	margin-bottom: 150px;
 }
+
 
 /*商品詳細ページ*/
 
@@ -738,5 +739,3 @@ box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
 // 管理者ユーザー一覧
-
-
